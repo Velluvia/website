@@ -2,7 +2,7 @@ import Link from "next/link";
 import CollectionCard from "@/components/CollectionCard";
 import ProductCard from "@/components/ProductCard";
 import HeroLogo from "@/components/HeroLogo";
-import { collections, products } from "@/lib/products";
+import { collections, getProductsByCollection } from "@/lib/products";
 
 const occasions = [
   { label: "Welcome New Joiners", glyph: "W" },
@@ -12,11 +12,11 @@ const occasions = [
   { label: "Personal Gifts, Any Occasion", glyph: "P" },
 ];
 
-// Homepage "Featured pieces" — pulled from Signature Gifting, the collection being
-// actively built out for launch. Showing all of them for now; once specific products
-// are chosen to feature, replace this with an explicit slug list, e.g.:
+// Homepage "Featured pieces" — pulled from Signature Gifting, sorted by price.
+// Once specific products are chosen to feature instead of the whole collection,
+// replace this with an explicit slug list, e.g.:
 //   const featured = products.filter((p) => ["blush-bloom-gift-set", "dino-adventure-gift-set"].includes(p.slug));
-const featured = products.filter((p) => p.collection === "signature");
+const featured = getProductsByCollection("signature");
 
 export default function HomePage() {
   return (

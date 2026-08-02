@@ -375,7 +375,7 @@ export function getCollection(slug: string): Collection | undefined {
 }
 
 export function getProductsByCollection(slug: string): Product[] {
-  return products.filter((p) => p.collection === slug);
+  return products.filter((p) => p.collection === slug).sort((a, b) => a.price - b.price);
 }
 
 export function getProduct(slug: string): Product | undefined {
