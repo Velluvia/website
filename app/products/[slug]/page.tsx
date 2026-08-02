@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
+import ProductGallery from "@/components/ProductGallery";
 import { formatPrice, getCollection, getProduct, products } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -26,27 +27,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     <section>
       <div className="wrap">
         <div className="pdp-grid">
-          <div className="pdp-gallery">
-            <div className="main">
-              {product.images.length > 0 ? (
-                <img src={product.images[0]} alt={product.name} />
-              ) : (
-                <div className="monogram-tile">
-                  <span className="glyph">V</span>
-                  <span className="label">Velluvia</span>
-                </div>
-              )}
-            </div>
-            {product.images.length > 1 && (
-              <div className="thumbs">
-                {product.images.map((src) => (
-                  <div className="thumb" key={src}>
-                    <img src={src} alt={product.name} />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <ProductGallery images={product.images} alt={product.name} />
 
           <div className="pdp-info">
             {collection && (

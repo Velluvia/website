@@ -694,15 +694,41 @@ section {
   gap: 14px;
 }
 .pdp-gallery .main {
-  aspect-ratio: 4/5;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3/2;
   background: var(--sand-deep);
   border-radius: var(--radius);
   overflow: hidden;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: zoom-in;
 }
 .pdp-gallery .main img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
+}
+.expand-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(27, 39, 57, 0.82);
+  color: var(--ivory);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.pdp-gallery .main:hover .expand-hint {
+  opacity: 1;
 }
 .pdp-gallery .thumbs {
   display: grid;
@@ -714,11 +740,106 @@ section {
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--sand-deep);
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+  opacity: 0.7;
+}
+.pdp-gallery .thumbs .thumb:hover {
+  opacity: 1;
+}
+.pdp-gallery .thumbs .thumb.active {
+  border-color: var(--gold);
+  opacity: 1;
 }
 .pdp-gallery .thumbs img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
+}
+
+/* -- lightbox -- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(20, 18, 15, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: zoom-out;
+}
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+  cursor: default;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--ivory);
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(247, 239, 228, 0.12);
+  border: none;
+  color: var(--ivory);
+  font-size: 34px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.lightbox-nav:hover {
+  background: rgba(247, 239, 228, 0.24);
+}
+.lightbox-nav.prev {
+  left: 20px;
+}
+.lightbox-nav.next {
+  right: 20px;
+}
+.lightbox-count {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(247, 239, 228, 0.7);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+@media (max-width: 640px) {
+  .lightbox {
+    padding: 16px;
+  }
+  .lightbox-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 26px;
+  }
+  .lightbox-close {
+    top: 10px;
+    right: 12px;
+    font-size: 28px;
+  }
 }
 .pdp-info .collection-tag {
   font-size: 12px;
