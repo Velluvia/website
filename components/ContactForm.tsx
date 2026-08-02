@@ -35,7 +35,7 @@ export default function ContactForm() {
     return (
       <div className="empty-state" style={{ padding: "60px 0" }}>
         <h3>Thank you — message sent.</h3>
-        <p>We&rsquo;ll be in touch shortly. For anything urgent, call 07480 854250.</p>
+        <p>We&rsquo;ll be in touch shortly by email.</p>
       </div>
     );
   }

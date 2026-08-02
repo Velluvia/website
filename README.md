@@ -69,11 +69,13 @@ git push -u origin main
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | — | e.g. `https://www.velluvia.co.uk`. Used to build Stripe redirect URLs. |
 | `STRIPE_SECRET_KEY` | [Stripe Dashboard → API keys](https://dashboard.stripe.com/apikeys) | Use `sk_test_…` while testing, `sk_live_…` once ready to take real payments. |
+| `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com) → API Keys | Powers the chat widget. Without it, chat still works but every message is immediately forwarded to `CONTACT_TO_EMAIL` instead of being answered. Pay-per-use — check current pricing before high-traffic launch. |
+| `CHAT_MODEL` | — | Optional, defaults to `claude-3-5-haiku-latest`. |
 | `ZOHO_SMTP_HOST` | — | `smtp.zoho.com` (global) or `smtp.zoho.eu` (EU data centre) |
 | `ZOHO_SMTP_PORT` | — | `465` |
 | `ZOHO_SMTP_USER` | Your Zoho mailbox | e.g. `hello@velluvia.co.uk` |
 | `ZOHO_SMTP_PASS` | Zoho Mail → Settings → Security → **App Passwords** | Do not use your normal login password |
-| `CONTACT_TO_EMAIL` | — | Inbox that should receive contact-form submissions |
+| `CONTACT_TO_EMAIL` | — | Inbox that receives contact-form submissions **and** escalated chat conversations |
 
 Redeploy after adding/changing env vars (Vercel does this automatically on the next push, or use
 "Redeploy" in the dashboard).
@@ -136,6 +138,26 @@ form via `ZOHO_SMTP_*` env vars above.
   product data / `ProductCard.tsx`).
 - **Copy & brand tokens:** colours, type and spacing are defined as CSS variables at the top of
   `app/globals.css` — update once, it cascades everywhere.
+
+## Legal pages (placeholder content)
+
+`/privacy-policy`, `/terms-conditions` and `/returns-policy` are template starting points, clearly
+marked with a red "PLACEHOLDER" note on each page. They include blanks for your **Company
+Number** and **ICO Registration Number** once you have them — search each file in
+`app/privacy-policy/`, `app/terms-conditions/`, `app/returns-policy/` for `[to be added]` and
+replace. Have a solicitor review before relying on these commercially.
+
+## AI chat assistant
+
+The chat bubble (bottom-right on every page) answers common questions about collections,
+occasions and policies directly, using Claude (Anthropic's API) with a system prompt scoped to
+Velluvia's actual facts — it's instructed not to invent prices, policies or company details it
+wasn't given. When a visitor asks about a specific order, wants a refund, needs a bulk/corporate
+quote, or the assistant isn't confident, it asks for their email and forwards the full transcript
+to `CONTACT_TO_EMAIL` via the same Zoho mailbox as the contact form.
+
+Requires `ANTHROPIC_API_KEY` (see env var table above). To adjust what the assistant knows or how
+it behaves, edit `SYSTEM_PROMPT` in `app/api/chat/route.ts`.
 
 ## What's intentionally out of scope for v1
 

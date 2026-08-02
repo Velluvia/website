@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CollectionCard from "@/components/CollectionCard";
 import ProductCard from "@/components/ProductCard";
-import RibbonFigure from "@/components/RibbonFigure";
+import HeroLogo from "@/components/HeroLogo";
 import { collections, products } from "@/lib/products";
 
 const occasions = [
@@ -13,7 +13,7 @@ const occasions = [
 ];
 
 const featured = products.filter((p) =>
-  ["the-signature-gift-box", "luxe-leather-writing-set", "sport-backpack", "home-warming-hamper"].includes(
+  ["the-signature-gift-box", "luxe-leather-writing-set", "office-welcome-kit", "home-warming-hamper"].includes(
     p.slug
   )
 );
@@ -41,7 +41,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <RibbonFigure />
+          <HeroLogo />
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { getTransporter, getSenderAddress, getContactInbox } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,15 +9,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
 
-    const {
-      ZOHO_SMTP_HOST,
-      ZOHO_SMTP_PORT,
-      ZOHO_SMTP_USER,
-      ZOHO_SMTP_PASS,
-      CONTACT_TO_EMAIL,
-    } = process.env;
-
-    if (!ZOHO_SMTP_HOST || !ZOHO_SMTP_USER || !ZOHO_SMTP_PASS) {
+    const transporter = getTransporter();
+    if (!transporter) {
       console.error("Zoho SMTP env vars are not configured.");
       return NextResponse.json(
         { error: "Email is not configured yet. Please try again later." },
@@ -25,16 +18,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: ZOHO_SMTP_HOST,
-      port: Number(ZOHO_SMTP_PORT) || 465,
-      secure: true,
-      auth: { user: ZOHO_SMTP_USER, pass: ZOHO_SMTP_PASS },
-    });
-
     await transporter.sendMail({
-      from: `"Velluvia Website" <${ZOHO_SMTP_USER}>`,
-      to: CONTACT_TO_EMAIL || ZOHO_SMTP_USER,
+      from: `"Velluvia Website" <${getSenderAddress()}>`,
+      to: getContactInbox(),
       replyTo: email,
       subject: `New enquiry: ${enquiryType || "General"} — ${name}`,
       text: [

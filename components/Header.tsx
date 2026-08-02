@@ -10,7 +10,7 @@ export default function Header() {
     <header className="site-header">
       <div className="wrap bar">
         <Link href="/" className="brand-mark">
-          <span className="v">V</span>
+          <img src="/images/logo-badge.png" alt="Velluvia" className="brand-badge" />
           <span>VELLUVIA</span>
         </Link>
 

@@ -24,10 +24,6 @@ export default function ContactPage() {
               <span className="eyebrow" style={{ display: "block", marginBottom: 6 }}>Email</span>
               <a href="mailto:hello@velluvia.co.uk" style={{ fontSize: 16 }}>hello@velluvia.co.uk</a>
             </div>
-            <div style={{ marginBottom: 18 }}>
-              <span className="eyebrow" style={{ display: "block", marginBottom: 6 }}>Phone</span>
-              <a href="tel:+447480854250" style={{ fontSize: 16 }}>07480 854250</a>
-            </div>
             <div>
               <span className="eyebrow" style={{ display: "block", marginBottom: 6 }}>Social</span>
               <span style={{ fontSize: 16 }}>@Velluvia</span>
