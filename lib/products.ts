@@ -8,7 +8,7 @@ export const collections: Collection[] = [
     description:
       "Our core collection — thoughtfully assembled gift boxes for welcomes, farewells, birthdays and every occasion in between, wrapped in the full Velluvia unboxing ritual.",
     accent: "gold",
-    image: "/images/product-giftbox-1.jpg",
+    image: "/images/blush-bloom/blush-bloom-hero.jpg",
   },
   {
     slug: "luxe",
@@ -40,20 +40,29 @@ export const collections: Collection[] = [
 
 export const products: Product[] = [
   {
-    slug: "the-signature-gift-box",
+    slug: "blush-bloom-gift-set",
     collection: "signature",
-    name: "The Signature Gift Box",
+    name: "The Blush & Bloom Gift Set",
     price: 6800,
     currency: "gbp",
     description:
-      "Our founding gift box — a considered edit wrapped in monogrammed tissue, closed with a wax-style seal, and finished with our satin ribbon and hand-tied hang tag.",
+      "A beautifully curated celebration of femininity, comfort, and self-care. Presented in Velluvia's signature blush-pink packaging, The Blush & Bloom Gift Set brings together cosy comforts and pampering treats — designed to turn an ordinary moment into something wonderfully memorable.",
     details: [
-      "Includes gold-monogrammed tissue wrap, sticker seal, thank-you card and hang tag",
-      "Sage satin ribbon printed with the Velluvia wordmark",
-      "Presented in a rigid kraft gift box",
-      "Contents curated seasonally — enquire for current edit",
+      "120oz insulated tumbler with straw and cleaning brush",
+      "Scented candle, ultra-soft micro-flannel fleece blanket, and embroidered fuzzy socks",
+      "Freesia and rose bath bombs, oatmeal soap bar",
+      "Satin eye mask, keepsake piggy bank and matching accessories",
+      "Wrapped in Velluvia's signature marbled box, satin ribbon and gift card",
+      "Perfect for: birthdays, self-care, girls' night in, thank-you gifts, anniversaries, Mother's Day, bridesmaids, or just because",
     ],
-    images: ["/images/product-giftbox-1.jpg", "/images/product-giftbox-2.jpg"],
+    images: [
+      "/images/blush-bloom/blush-bloom-hero.jpg",
+      "/images/blush-bloom/blush-bloom-box.jpg",
+      "/images/blush-bloom/blush-bloom-flatlay.jpg",
+      "/images/blush-bloom/blush-bloom-blanket.jpg",
+      "/images/blush-bloom/blush-bloom-essentials.jpg",
+      "/images/blush-bloom/blush-bloom-lifestyle.jpg",
+    ],
   },
   {
     slug: "little-explorer-gift-set",

@@ -13,7 +13,7 @@ const occasions = [
 ];
 
 const featured = products.filter((p) =>
-  ["the-signature-gift-box", "luxe-leather-writing-set", "office-welcome-kit", "home-warming-hamper"].includes(
+  ["blush-bloom-gift-set", "luxe-leather-writing-set", "office-welcome-kit", "home-warming-hamper"].includes(
     p.slug
   )
 );
