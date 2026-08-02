@@ -12,11 +12,11 @@ const occasions = [
   { label: "Personal Gifts, Any Occasion", glyph: "P" },
 ];
 
-const featured = products.filter((p) =>
-  ["blush-bloom-gift-set", "luxe-leather-writing-set", "office-welcome-kit", "home-warming-hamper"].includes(
-    p.slug
-  )
-);
+// Homepage "Featured pieces" — pulled from Signature Gifting, the collection being
+// actively built out for launch. Showing all of them for now; once specific products
+// are chosen to feature, replace this with an explicit slug list, e.g.:
+//   const featured = products.filter((p) => ["blush-bloom-gift-set", "dino-adventure-gift-set"].includes(p.slug));
+const featured = products.filter((p) => p.collection === "signature");
 
 export default function HomePage() {
   return (
