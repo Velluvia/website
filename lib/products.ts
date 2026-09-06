@@ -18,6 +18,7 @@ export const collections: Collection[] = [
       "Our premium tier for executive and high-value corporate gifting — fine writing instruments, leather goods and keepsakes finished in gold on black.",
     accent: "charcoal",
     image: "/images/product-writingset-1.jpg",
+    comingSoon: true,
   },
   {
     slug: "office",
@@ -26,6 +27,7 @@ export const collections: Collection[] = [
     description:
       "A practical, polished edit for desks and onboarding — notebooks, organisers and welcome kits designed for hybrid teams and new starters alike.",
     accent: "navy",
+    image: "/images/office-pen/office-pen-hero.jpg",
   },
   {
     slug: "home",
@@ -35,6 +37,7 @@ export const collections: Collection[] = [
       "Warm, considered pieces for the kitchen and the home — the softer side of Velluvia, marked by our navy-and-blush botanical monogram.",
     accent: "sage",
     image: "/images/logo-home.jpg",
+    comingSoon: true,
   },
 ];
 
@@ -273,25 +276,6 @@ export const products: Product[] = [
     ],
   },
   {
-    slug: "reminder-tumbler",
-    collection: "signature",
-    name: "The Reminder Tumbler",
-    price: 2199,
-    currency: "gbp",
-    description:
-      "A Little Nudge, Every Sip. A daily dose of encouragement in stainless steel. The Reminder Tumbler is personalised with a name, initial, or message of your choice, and made to be used every single day — not just unwrapped once and shelved.",
-    details: [
-      "20oz insulated stainless steel tumbler with straw & lid",
-      "Rose-gold or matte black finish",
-      "Choice of engraved message: 'Not a Day Over Fabulous', 'Sometimes You Forget You're Awesome', 'Do It With Love', or fully custom text",
-      "Optional name or initial engraving",
-      "Presented in a compact Velluvia gift box with ribbon",
-      "Perfect for: birthdays, thank-you gifts, best friends, coworkers, self-care, or just because",
-    ],
-    images: [],
-    monogramTile: true,
-  },
-  {
     slug: "luxe-leather-writing-set",
     collection: "luxe",
     name: "Luxe Leather Writing Set",
@@ -322,6 +306,35 @@ export const products: Product[] = [
     ],
     images: [],
     monogramTile: true,
+  },
+  {
+    slug: "office-signature-pen",
+    collection: "office",
+    name: "The Velluvia Signature Pen",
+    price: 2899,
+    currency: "gbp",
+    description:
+      "Timeless Elegance, Thoughtful Impression. The Velluvia Signature Pen is a premium ballpoint crafted for the moments that matter — signing a contract, welcoming a new hire, or simply making a well-appointed desk feel a little more considered. Finished in deep black lacquer with polished gold-tone trim and engraved with the Velluvia mark, it's designed to be picked up and noticed, not left in a drawer.",
+    details: [
+      "Black lacquer barrel with polished gold-tone clip, bands and tip",
+      "Engraved Velluvia 'V' monogram and wordmark on the barrel",
+      "Smooth twist-action ballpoint mechanism",
+      "Presented in a rigid, foil-branded Velluvia Signature gift box with satin ribbon",
+      "A refined pairing with our notebooks and correspondence sets for a complete desk gift",
+      "Perfect for: onboarding new joiners, promotions, retirements, client thank-yous, corporate milestones, or as a personal everyday-carry upgrade",
+    ],
+    images: [
+      "/images/office-pen/office-pen-hero.jpg",
+      "/images/office-pen/office-pen-lifestyle-writing.jpg",
+      "/images/office-pen/office-pen-boxed.jpg",
+      "/images/office-pen/office-pen-notebook.jpg",
+      "/images/office-pen/office-pen-macro.jpg",
+      "/images/office-pen/office-pen-marble-card.jpg",
+      "/images/office-pen/office-pen-hand-writing.jpg",
+      "/images/office-pen/office-pen-birdseye.jpg",
+      "/images/office-pen/office-pen-flatlay.jpg",
+      "/images/office-pen/office-pen-angled.jpg",
+    ],
   },
   {
     slug: "office-welcome-kit",

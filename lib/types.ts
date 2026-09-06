@@ -5,6 +5,7 @@ export type Collection = {
   description: string;
   accent: "gold" | "charcoal" | "sage" | "navy";
   image?: string;
+  comingSoon?: boolean; // true while its products are still awaiting stock/photography
 };
 
 export type Product = {

@@ -48,7 +48,13 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               ))}
             </ul>
 
-            <AddToCartButton slug={product.slug} />
+            {collection?.comingSoon ? (
+              <button className="btn btn-outline" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
+                Coming Soon
+              </button>
+            ) : (
+              <AddToCartButton slug={product.slug} />
+            )}
             <TrustBadges />
             <p style={{ fontSize: 13, color: "var(--ink-soft)", marginTop: 14 }}>
               Corporate order or bespoke content? <Link href="/contact" style={{ textDecoration: "underline" }}>Get in touch</Link> and we&rsquo;ll help directly.

@@ -34,6 +34,12 @@ export default function CollectionDetailPage({ params }: { params: { slug: strin
           <p style={{ maxWidth: 560, color: dark ? "rgba(247,239,228,0.75)" : "var(--ink-soft)", fontSize: 17 }}>
             {collection.description}
           </p>
+          {collection.comingSoon && (
+            <p className="coming-soon-notice">
+              This collection is coming soon — pieces are on their way and not yet available to
+              order.
+            </p>
+          )}
         </div>
       </section>
 

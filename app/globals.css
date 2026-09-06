@@ -465,6 +465,32 @@ section {
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
+.coming-soon-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  background: rgba(27, 39, 57, 0.88);
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius);
+}
+.coming-soon-notice {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: rgba(183, 147, 91, 0.14);
+  border: 1px solid rgba(183, 147, 91, 0.3);
+  border-radius: var(--radius);
+  color: var(--gold-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .collection-card {
   position: relative;
   aspect-ratio: 3/4;
