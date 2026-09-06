@@ -129,17 +129,23 @@ export default function ChatWidget() {
           </div>
 
           {awaitingEmail && !escalated ? (
-            <form className="chat-input-row" onSubmit={submitEmail}>
-              <input
-                type="email"
-                required
-                placeholder="Your email, so the team can reply"
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-              />
-              <button type="submit" className="btn btn-gold" disabled={loading}>
-                Send
-              </button>
+            <form className="chat-input-row chat-email-row" onSubmit={submitEmail}>
+              <p className="chat-email-label">
+                📧 Enter your email so our team can follow up:
+              </p>
+              <div className="chat-email-fields">
+                <input
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  autoFocus
+                />
+                <button type="submit" className="btn btn-gold" disabled={loading}>
+                  Send
+                </button>
+              </div>
             </form>
           ) : !escalated ? (
             <form className="chat-input-row" onSubmit={sendMessage}>

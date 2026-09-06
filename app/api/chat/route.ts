@@ -37,7 +37,7 @@ async function callClaude(messages: ChatMessage[]): Promise<{ reply: string; esc
   if (!apiKey) {
     return {
       reply:
-        "Our chat assistant isn't fully set up yet — please use the contact form and our team will get back to you by email.",
+        "Our chat assistant isn't fully set up yet — pop your email in below and our team will get back to you directly.",
       escalate: true,
     };
   }
@@ -64,7 +64,7 @@ async function callClaude(messages: ChatMessage[]): Promise<{ reply: string; esc
     console.error("Anthropic API error:", res.status, errText);
     return {
       reply:
-        "Something went wrong on our side — I've flagged this for our team to follow up by email.",
+        "Something went wrong on our side — please pop your email in below and our team will follow up directly.",
       escalate: true,
     };
   }
