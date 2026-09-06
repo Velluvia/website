@@ -415,6 +415,13 @@ export function getOccasionTags(product: Product, count = 2): string[] {
     .slice(0, count);
 }
 
+// Shared with app/api/checkout/route.ts so the cart page's "you're £X away
+// from free delivery" messaging can never drift out of sync with what's
+// actually charged at checkout.
+export const FREE_DELIVERY_THRESHOLD = 20000; // £200.00, in pence
+export const STANDARD_DELIVERY_COST = 399; // £3.99
+export const EXPRESS_DELIVERY_COST = 799; // £7.99
+
 export function formatPrice(pence: number): string {
   return new Intl.NumberFormat("en-GB", {
     style: "currency",

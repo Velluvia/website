@@ -4,6 +4,8 @@ import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductGallery from "@/components/ProductGallery";
 import ReviewsSection from "@/components/ReviewsSection";
+import TrustBadges from "@/components/TrustBadges";
+import YouMayAlsoLike from "@/components/YouMayAlsoLike";
 import { formatPrice, getCollection, getProduct, products } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -47,6 +49,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </ul>
 
             <AddToCartButton slug={product.slug} />
+            <TrustBadges />
             <p style={{ fontSize: 13, color: "var(--ink-soft)", marginTop: 14 }}>
               Corporate order or bespoke content? <Link href="/contact" style={{ textDecoration: "underline" }}>Get in touch</Link> and we&rsquo;ll help directly.
             </p>
@@ -54,6 +57,13 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
       </div>
       <ReviewsSection productSlug={product.slug} productName={product.name} />
+      {collection && (
+        <YouMayAlsoLike
+          collectionSlug={collection.slug}
+          excludeSlug={product.slug}
+          collectionName={collection.name}
+        />
+      )}
     </section>
   );
 }

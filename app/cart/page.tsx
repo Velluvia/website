@@ -3,7 +3,31 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/CartProvider";
-import { formatPrice } from "@/lib/products";
+import TrustBadges from "@/components/TrustBadges";
+import { formatPrice, FREE_DELIVERY_THRESHOLD } from "@/lib/products";
+
+function FreeShippingBar({ subtotal }: { subtotal: number }) {
+  const remaining = FREE_DELIVERY_THRESHOLD - subtotal;
+  const pct = Math.min(100, Math.round((subtotal / FREE_DELIVERY_THRESHOLD) * 100));
+
+  return (
+    <div className="shipping-bar">
+      <p className="shipping-bar-text">
+        {remaining > 0 ? (
+          <>
+            You&rsquo;re <strong>{formatPrice(remaining)}</strong> away from free standard
+            delivery
+          </>
+        ) : (
+          <>🎉 You&rsquo;ve unlocked free standard delivery</>
+        )}
+      </p>
+      <div className="shipping-bar-track">
+        <div className="shipping-bar-fill" style={{ width: `${pct}%` }} />
+      </div>
+    </div>
+  );
+}
 
 export default function CartPage() {
   const { items, subtotal, setQuantity, removeItem } = useCart();
@@ -92,6 +116,7 @@ export default function CartPage() {
           </div>
 
           <div className="cart-summary">
+            <FreeShippingBar subtotal={subtotal} />
             <div className="summary-row">
               <span>Subtotal</span>
               <span>{formatPrice(subtotal)}</span>
@@ -108,6 +133,7 @@ export default function CartPage() {
               {loading ? "Redirecting…" : "Checkout"}
             </button>
             {error && <p style={{ color: "#B0554C", fontSize: 13, marginTop: 12 }}>{error}</p>}
+            <TrustBadges compact />
           </div>
         </div>
       </div>

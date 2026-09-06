@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
-import { getProduct } from "@/lib/products";
+import {
+  getProduct,
+  FREE_DELIVERY_THRESHOLD,
+  STANDARD_DELIVERY_COST,
+  EXPRESS_DELIVERY_COST,
+} from "@/lib/products";
 
 type CheckoutRequestItem = { slug: string; quantity: number };
 
@@ -39,11 +44,47 @@ export async function POST(req: NextRequest) {
     });
 
     const stripe = getStripe();
+
+    // Subtotal drives the free-delivery threshold — computed from the same
+    // validated line items rather than trusting anything from the client.
+    const subtotal = items.reduce((sum, { slug, quantity }) => {
+      const product = getProduct(slug);
+      const qty = Math.max(1, Math.min(20, Math.floor(quantity) || 1));
+      return sum + (product ? product.price * qty : 0);
+    }, 0);
+    const FREE_DELIVERY = FREE_DELIVERY_THRESHOLD;
+    const standardCost = subtotal >= FREE_DELIVERY ? 0 : STANDARD_DELIVERY_COST;
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
       shipping_address_collection: { allowed_countries: ["GB", "IE", "US", "CA", "AU"] },
-      success_url: `${siteUrl}/checkout/success`,
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: { amount: standardCost, currency: "gbp" },
+            display_name:
+              standardCost === 0 ? "Standard Delivery (Free over £200)" : "Standard Delivery",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 3 },
+              maximum: { unit: "business_day", value: 5 },
+            },
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: { amount: EXPRESS_DELIVERY_COST, currency: "gbp" },
+            display_name: "Express Delivery",
+            delivery_estimate: {
+              minimum: { unit: "business_day", value: 1 },
+              maximum: { unit: "business_day", value: 2 },
+            },
+          },
+        },
+      ],
+      success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/checkout/cancel`,
       billing_address_collection: "auto",
     });

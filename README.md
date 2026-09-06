@@ -159,6 +159,87 @@ to `CONTACT_TO_EMAIL` via the same Zoho mailbox as the contact form.
 Requires `ANTHROPIC_API_KEY` (see env var table above). To adjust what the assistant knows or how
 it behaves, edit `SYSTEM_PROMPT` in `app/api/chat/route.ts`.
 
+## Shipping
+
+Checkout offers two delivery options, calculated server-side from the real cart subtotal (not
+trusted from the client):
+
+- **Standard Delivery** — £3.99, or **free automatically once the cart subtotal reaches £200**
+- **Express Delivery** — £7.99, always (a paid speed upgrade, not affected by the free-delivery
+  threshold)
+
+To change the threshold or prices, edit `FREE_DELIVERY_THRESHOLD` and the two `shipping_rate_data`
+blocks in `app/api/checkout/route.ts`.
+
+## Occasion reminders ("never forget a birthday")
+
+A homepage signup lets visitors save a recurring date (birthday, anniversary, etc.) and email —
+a smaller version of the mechanism Moonpig's own leadership credits as a core growth driver
+(they report ~40% of orders happen within 7 days of one of their reminder emails). A second daily
+scheduled job (`app/api/cron/occasion-reminders/route.ts`) checks for saved occasions landing
+7 days out and sends a gentle nudge pointing back to Signature Gifting, then automatically
+re-arms for next year — no extra setup beyond what's already configured for the review-request
+job (same `CRON_SECRET`, same Zoho mailbox, same Neon database). To change how far ahead it
+reminds people, edit `DAYS_BEFORE_OCCASION` in that file.
+
+## Trust signals & cross-sell
+
+- `components/TrustBadges.tsx` — shown on every product page (full version) and in the cart
+  summary (compact version): secure checkout, the free-delivery threshold, and the returns
+  window. Edit the `items` array in that file to change the wording.
+- `components/YouMayAlsoLike.tsx` — shows up to 4 other products from the same collection at the
+  bottom of each product page. No tracking or "recently viewed" data involved — it's a direct,
+  honest "more like this."
+- The cart page shows a live progress bar toward the free-delivery threshold, using the same
+  `FREE_DELIVERY_THRESHOLD` constant the checkout route charges against (`lib/products.ts`), so
+  the two can't drift out of sync.
+
+## Order confirmation & review-request emails
+
+Two things happen automatically after a real purchase, both requiring one-time setup:
+
+### 1. Order confirmation email (sent immediately)
+
+Stripe Checkout does **not** email your customer on its own unless you enable it — and even then,
+it's a generic Stripe-branded receipt, not something in your own voice. Instead, this site listens
+for the payment event directly via a **webhook** and sends its own branded confirmation through
+your existing Zoho mailbox.
+
+**Setup:**
+1. Stripe Dashboard → **Developers → Webhooks → Add endpoint**
+2. Endpoint URL: `https://www.velluvia.co.uk/api/webhooks/stripe`
+3. Select the event: **checkout.session.completed**
+4. After creating it, copy the **Signing secret** (starts with `whsec_`) into `STRIPE_WEBHOOK_SECRET`
+   in Vercel, then redeploy
+
+Without this webhook configured, checkout still works fine — customers just won't get a
+confirmation email from Velluvia (Stripe's own receipt will still fire if that's enabled
+separately in Stripe's dashboard settings).
+
+### 2. "Leave a review" email (sent ~7 days later)
+
+There's no real signal available for "the parcel has actually arrived" (Stripe and couriers don't
+tell this site that), so this uses a fixed **7 days after purchase** as a reasonable proxy for UK
+delivery. A scheduled job (`app/api/cron/review-requests/route.ts`, run daily via `vercel.json`)
+checks for orders old enough that haven't had this email yet, sends it, and marks them done so it
+never sends twice.
+
+**Setup:**
+1. Add a `CRON_SECRET` environment variable in Vercel — any random string (a password generator
+   works fine). Vercel automatically attaches this as the request's Bearer token when it triggers
+   the job, so nothing else needs configuring.
+2. That's it — `vercel.json` already defines the daily schedule, and it ships with your next
+   deploy.
+
+**To change the delay:** edit `DAYS_BEFORE_REVIEW_REQUEST` in
+`app/api/cron/review-requests/route.ts`.
+
+**Known constraint:** Vercel's Hobby plan limits cron jobs to once per day, run sometime within the
+scheduled hour (not to the exact minute) — fine for this use case. It also caps each run at 20
+orders and a 10-second execution window to stay within Hobby's function timeout; if order volume
+ever exceeds that in a single day, some customers would get their review email a day later than
+intended, not skipped — worth upgrading to Vercel Pro if that becomes a real pattern.
+
 ## Product reviews (verified purchase)
 
 Each product page has a review section: visitors can write a review, but it's only accepted

@@ -25,6 +25,8 @@ export function getSql(): NeonQueryFunction<false, false> {
 }
 
 let tableReady = false;
+let ordersTableReady = false;
+let remindersTableReady = false;
 
 /**
  * Creates the reviews table if it doesn't exist yet. Safe to call on every
@@ -51,4 +53,60 @@ export async function ensureReviewsTable() {
   `;
   await sql`CREATE INDEX IF NOT EXISTS reviews_product_idx ON reviews (product_slug);`;
   tableReady = true;
+}
+
+/**
+ * Tracks completed orders — populated by the Stripe webhook, not by the
+ * checkout flow itself (webhooks are the only reliable signal that a
+ * payment actually completed; the client redirect to /checkout/success can
+ * be skipped, retried, or hit without a real payment behind it). Used to:
+ *   1. Avoid sending duplicate order-confirmation emails if Stripe retries
+ *      the webhook (it does, on non-2xx responses).
+ *   2. Know which orders are old enough to receive a "leave a review" email,
+ *      and avoid sending that twice.
+ */
+export async function ensureOrdersTable() {
+  if (ordersTableReady) return;
+  const sql = getSql();
+  await sql`
+    CREATE TABLE IF NOT EXISTS orders (
+      id SERIAL PRIMARY KEY,
+      stripe_session_id TEXT NOT NULL UNIQUE,
+      customer_email TEXT NOT NULL,
+      customer_name TEXT,
+      product_slugs TEXT[] NOT NULL,
+      amount_total INTEGER NOT NULL,
+      confirmation_sent BOOLEAN NOT NULL DEFAULT FALSE,
+      review_request_sent BOOLEAN NOT NULL DEFAULT FALSE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS orders_review_pending_idx ON orders (review_request_sent, created_at);`;
+  ordersTableReady = true;
+}
+
+/**
+ * Stores customer-submitted "remind me about this occasion every year" signups
+ * — the same mechanism Moonpig credits as a core growth driver (their own
+ * reported figure: ~40% of orders happen within 7 days of a reminder email).
+ * Month/day are stored separately (not a full date) so "does this occasion
+ * recur today" is a simple equality check rather than year-aware date math.
+ */
+export async function ensureRemindersTable() {
+  if (remindersTableReady) return;
+  const sql = getSql();
+  await sql`
+    CREATE TABLE IF NOT EXISTS occasion_reminders (
+      id SERIAL PRIMARY KEY,
+      email TEXT NOT NULL,
+      recipient_name TEXT,
+      occasion_label TEXT NOT NULL,
+      occasion_month INTEGER NOT NULL CHECK (occasion_month BETWEEN 1 AND 12),
+      occasion_day INTEGER NOT NULL CHECK (occasion_day BETWEEN 1 AND 31),
+      last_sent_year INTEGER,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS reminders_date_idx ON occasion_reminders (occasion_month, occasion_day);`;
+  remindersTableReady = true;
 }

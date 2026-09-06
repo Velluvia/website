@@ -2,6 +2,7 @@ import Link from "next/link";
 import CollectionCard from "@/components/CollectionCard";
 import ProductCard from "@/components/ProductCard";
 import HeroLogo from "@/components/HeroLogo";
+import ReminderSignup from "@/components/ReminderSignup";
 import { collections, getProductsByCollection } from "@/lib/products";
 
 const occasions = [
@@ -127,6 +128,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ReminderSignup />
     </>
   );
 }
