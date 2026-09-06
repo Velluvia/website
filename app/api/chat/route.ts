@@ -42,7 +42,7 @@ async function callClaude(messages: ChatMessage[]): Promise<{ reply: string; esc
     };
   }
 
-  const model = process.env.CHAT_MODEL || "claude-3-5-haiku-latest";
+  const model = process.env.CHAT_MODEL || "claude-haiku-4-5";
 
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",

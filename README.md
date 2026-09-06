@@ -70,7 +70,7 @@ git push -u origin main
 | `NEXT_PUBLIC_SITE_URL` | — | e.g. `https://www.velluvia.co.uk`. Used to build Stripe redirect URLs. |
 | `STRIPE_SECRET_KEY` | [Stripe Dashboard → API keys](https://dashboard.stripe.com/apikeys) | Use `sk_test_…` while testing, `sk_live_…` once ready to take real payments. |
 | `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com) → API Keys | Powers the chat widget. Without it, chat still works but every message is immediately forwarded to `CONTACT_TO_EMAIL` instead of being answered. Pay-per-use — check current pricing before high-traffic launch. |
-| `CHAT_MODEL` | — | Optional, defaults to `claude-3-5-haiku-latest`. |
+| `CHAT_MODEL` | — | Optional, defaults to `claude-haiku-4-5`. Anthropic periodically retires older models — if the chat widget ever silently stops responding again in the future, check [Anthropic's model deprecation page](https://platform.claude.com/docs/en/about-claude/model-deprecations) first before assuming it's a config/billing issue. |
 | `ZOHO_SMTP_HOST` | — | `smtp.zoho.com` (global) or `smtp.zoho.eu` (EU data centre) |
 | `ZOHO_SMTP_PORT` | — | `465` |
 | `ZOHO_SMTP_USER` | Your Zoho mailbox | e.g. `hello@velluvia.co.uk` |
