@@ -43,7 +43,7 @@ export const products: Product[] = [
     slug: "blush-bloom-gift-set",
     collection: "signature",
     name: "The Blush & Bloom Gift Set",
-    price: 3099,
+    price: 2599,
     currency: "gbp",
     description:
       "A beautifully curated celebration of femininity, comfort, and self-care. Presented in Velluvia's signature blush-pink packaging, The Blush & Bloom Gift Set brings together cosy comforts and pampering treats — designed to turn an ordinary moment into something wonderfully memorable.",
@@ -68,7 +68,7 @@ export const products: Product[] = [
     slug: "dino-adventure-gift-set",
     collection: "signature",
     name: "The Dino Adventure Gift Set",
-    price: 3499,
+    price: 2999,
     currency: "gbp",
     description:
       "A playful, thoughtfully curated gift designed to spark curiosity, creativity, and big smiles in little explorers. The Dino Adventure Gift Set brings together fun, comfort, and practical everyday essentials in a charming dinosaur theme.",
@@ -92,7 +92,7 @@ export const products: Product[] = [
     slug: "frozen-dreams-gift-set",
     collection: "signature",
     name: "The Frozen Dreams Gift Set",
-    price: 3499,
+    price: 2999,
     currency: "gbp",
     description:
       "A magical gift designed for little dreamers who love sparkle, imagination, and cosy moments. The Frozen Dreams Gift Set brings together a beautiful collection of winter-inspired essentials in enchanting shades of icy blue, soft white, and pastel pink.",
@@ -141,7 +141,7 @@ export const products: Product[] = [
     slug: "pretty-pampered-gift-set",
     collection: "signature",
     name: "The Pretty & Pampered Gift Set",
-    price: 1599,
+    price: 1999,
     currency: "gbp",
     description:
       "A Little Pretty. A Little Pampering. A Lot of Love. A playful, feminine treat designed to make her smile, The Pretty & Pampered Gift Set brings together cosy comforts, sweet indulgences, and relaxing self-care essentials in one beautifully presented package, arranged in a soft pink aesthetic.",
@@ -166,7 +166,7 @@ export const products: Product[] = [
     slug: "gentlemans-signature-gift-set",
     collection: "signature",
     name: "The Gentleman's Signature Gift Set",
-    price: 2999,
+    price: 2599,
     currency: "gbp",
     description:
       "Thoughtful. Timeless. Truly Him. A refined collection created for the man who deserves to feel appreciated, celebrated, and effortlessly looked after. The Gentleman's Signature Gift Set combines practical everyday essentials with moments of relaxation and indulgence in a sophisticated black-and-gold presentation.",
@@ -220,7 +220,7 @@ export const products: Product[] = [
     slug: "pink-blossom-gift-set",
     collection: "signature",
     name: "The Pink Blossom Gift Set",
-    price: 2499,
+    price: 2599,
     currency: "gbp",
     description:
       "Made Especially. Just for You. A beautifully curated celebration of love, appreciation, and togetherness, The Pink Blossom Gift Set is designed to make someone feel cherished, valued, and truly special. Wrapped in soft pinks and romantic floral details, this luxurious collection combines cosy comforts, indulgent self-care treats, and heartfelt keepsakes.",
@@ -249,7 +249,7 @@ export const products: Product[] = [
     slug: "unicorn-dream-gift-set",
     collection: "signature",
     name: "The Unicorn Dream Gift Set",
-    price: 2399,
+    price: 2599,
     currency: "gbp",
     description:
       "Sparkle. Dream. Believe. A magical collection created for little dreamers, The Unicorn Dream Gift Set brings together adorable treasures and delightful everyday essentials in a dreamy world of pastel colours, rainbows, and unicorns.",
@@ -271,6 +271,25 @@ export const products: Product[] = [
       "/images/unicorn-dream/unicorn-dream-star.jpg",
       "/images/unicorn-dream/unicorn-dream-notebook.jpg",
     ],
+  },
+  {
+    slug: "reminder-tumbler",
+    collection: "signature",
+    name: "The Reminder Tumbler",
+    price: 2199,
+    currency: "gbp",
+    description:
+      "A Little Nudge, Every Sip. A daily dose of encouragement in stainless steel. The Reminder Tumbler is personalised with a name, initial, or message of your choice, and made to be used every single day — not just unwrapped once and shelved.",
+    details: [
+      "20oz insulated stainless steel tumbler with straw & lid",
+      "Rose-gold or matte black finish",
+      "Choice of engraved message: 'Not a Day Over Fabulous', 'Sometimes You Forget You're Awesome', 'Do It With Love', or fully custom text",
+      "Optional name or initial engraving",
+      "Presented in a compact Velluvia gift box with ribbon",
+      "Perfect for: birthdays, thank-you gifts, best friends, coworkers, self-care, or just because",
+    ],
+    images: [],
+    monogramTile: true,
   },
   {
     slug: "luxe-leather-writing-set",

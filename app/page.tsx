@@ -21,6 +21,20 @@ const featured = getProductsByCollection("signature");
 export default function HomePage() {
   return (
     <>
+      <section className="featured-first">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="eyebrow">Best Loved</span>
+            <h2>Featured pieces</h2>
+          </div>
+          <div className="product-grid">
+            {featured.map((p) => (
+              <ProductCard product={p} key={p.slug} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="hero">
         <div className="wrap hero-grid">
           <div>
@@ -71,20 +85,6 @@ export default function HomePage() {
           <div className="collection-grid">
             {collections.map((c) => (
               <CollectionCard collection={c} key={c.slug} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Best Loved</span>
-            <h2>Featured pieces</h2>
-          </div>
-          <div className="product-grid">
-            {featured.map((p) => (
-              <ProductCard product={p} key={p.slug} />
             ))}
           </div>
         </div>
