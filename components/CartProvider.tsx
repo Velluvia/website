@@ -20,6 +20,7 @@ type CartContextValue = {
   items: { product: Product; quantity: number }[];
   subtotal: number;
   count: number;
+  hydrated: boolean;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -102,6 +103,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     items,
     subtotal,
     count,
+    hydrated,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

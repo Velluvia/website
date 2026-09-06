@@ -13,13 +13,16 @@ export const runtime = "nodejs";
 async function sendConfirmationEmail(session: Stripe.Checkout.Session, productSlugs: string[]) {
   const transporter = getTransporter();
   if (!transporter) {
-    console.error("Zoho SMTP not configured — skipping order confirmation email.");
-    return;
+    console.error("Zoho SMTP not configured — cannot send order confirmation email.");
+    return false;
   }
 
   const email = session.customer_details?.email;
   const name = session.customer_details?.name || "there";
-  if (!email) return;
+  if (!email) {
+    console.error("Checkout session has no customer email — cannot send confirmation.");
+    return false;
+  }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk";
   const lines = productSlugs
@@ -27,10 +30,11 @@ async function sendConfirmationEmail(session: Stripe.Checkout.Session, productSl
     .filter(Boolean)
     .map((p) => `  • ${p!.name}`)
     .join("\n");
-
   const total = formatPrice(session.amount_total || 0);
 
-  await transporter.sendMail({
+  // Two sends: one to the customer, one to the business inbox, so an order is
+  // never placed without *someone* getting notified even if one send fails.
+  const customerMail = transporter.sendMail({
     from: `"Velluvia" <${getSenderAddress()}>`,
     to: email,
     subject: "Your Velluvia order is confirmed",
@@ -50,6 +54,79 @@ Velluvia
 
 ${siteUrl}`,
   });
+
+  const ownerMail = transporter.sendMail({
+    from: `"Velluvia Website" <${getSenderAddress()}>`,
+    to: process.env.CONTACT_TO_EMAIL || getSenderAddress(),
+    subject: `New order — ${total} — ${name}`,
+    text: `A new order just came in.
+
+Customer: ${name} (${email})
+Total: ${total}
+
+Items:
+${lines}
+
+Stripe session: ${session.id}`,
+  });
+
+  const results = await Promise.allSettled([customerMail, ownerMail]);
+  results.forEach((r, i) => {
+    if (r.status === "rejected") {
+      console.error(`${i === 0 ? "Customer" : "Owner"} confirmation email failed:`, r.reason);
+    }
+  });
+  // Report success if at least one of the two got through — a customer email
+  // failure and an owner-notification failure are independent problems, and
+  // one working is much better than treating "partial success" as total failure.
+  return results.some((r) => r.status === "fulfilled");
+}
+
+/**
+ * Database bookkeeping (idempotency + review-request tracking) is treated as
+ * best-effort and fully isolated from the email send above. If the database
+ * isn't connected, hasn't been set up yet, or is briefly unreachable, orders
+ * should still get their confirmation email — that's the critical path.
+ * A database outage should never silently take email down with it.
+ */
+async function recordOrder(
+  session: Stripe.Checkout.Session,
+  productSlugs: string[]
+): Promise<{ alreadySent: boolean; recorded: boolean }> {
+  try {
+    await ensureOrdersTable();
+    const sql = getSql();
+
+    const existing = await sql`
+      SELECT id, confirmation_sent FROM orders WHERE stripe_session_id = ${session.id};
+    `;
+    if (existing.length > 0 && existing[0].confirmation_sent) {
+      return { alreadySent: true, recorded: true };
+    }
+
+    if (existing.length > 0) {
+      await sql`UPDATE orders SET confirmation_sent = TRUE WHERE stripe_session_id = ${session.id};`;
+    } else {
+      await sql`
+        INSERT INTO orders (stripe_session_id, customer_email, customer_name, product_slugs, amount_total, confirmation_sent)
+        VALUES (
+          ${session.id},
+          ${session.customer_details?.email || ""},
+          ${session.customer_details?.name || null},
+          ${productSlugs},
+          ${session.amount_total || 0},
+          TRUE
+        );
+      `;
+    }
+    return { alreadySent: false, recorded: true };
+  } catch (err) {
+    console.error(
+      "Order database bookkeeping failed (email will still be attempted) — is a Neon Postgres database connected to this Vercel project yet? Storage > Create Database > Neon.",
+      err
+    );
+    return { alreadySent: false, recorded: false };
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -73,60 +150,45 @@ export async function POST(req: NextRequest) {
   }
 
   if (event.type !== "checkout.session.completed") {
-    // Acknowledge anything we're not handling so Stripe doesn't retry it forever.
     return NextResponse.json({ received: true });
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
 
+  let productSlugs: string[] = [];
   try {
-    await ensureOrdersTable();
-    const sql = getSql();
-
-    // Idempotency: Stripe retries webhooks on non-2xx responses, and this event
-    // could theoretically be delivered more than once. Skip if already recorded.
-    const existing = await sql`
-      SELECT id, confirmation_sent FROM orders WHERE stripe_session_id = ${session.id};
-    `;
-    if (existing.length > 0 && existing[0].confirmation_sent) {
-      return NextResponse.json({ received: true, alreadyProcessed: true });
-    }
-
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
       expand: ["data.price.product"],
       limit: 100,
     });
-    const productSlugs = lineItems.data
+    productSlugs = lineItems.data
       .map((item) => {
         const product = item.price?.product;
         if (!product || typeof product === "string" || !("metadata" in product)) return null;
         return (product as any).metadata?.slug as string | undefined;
       })
       .filter((slug): slug is string => Boolean(slug));
-
-    await sendConfirmationEmail(session, productSlugs);
-
-    if (existing.length > 0) {
-      await sql`UPDATE orders SET confirmation_sent = TRUE WHERE stripe_session_id = ${session.id};`;
-    } else {
-      await sql`
-        INSERT INTO orders (stripe_session_id, customer_email, customer_name, product_slugs, amount_total, confirmation_sent)
-        VALUES (
-          ${session.id},
-          ${session.customer_details?.email || ""},
-          ${session.customer_details?.name || null},
-          ${productSlugs},
-          ${session.amount_total || 0},
-          TRUE
-        );
-      `;
-    }
-
-    return NextResponse.json({ received: true });
   } catch (err) {
-    console.error("Webhook processing error:", err);
-    // Return 500 so Stripe retries — better to risk a duplicate attempt (guarded
-    // against above) than to silently drop a real order confirmation.
-    return NextResponse.json({ error: "Processing failed." }, { status: 500 });
+    console.error("Could not fetch line items for order email — sending without item list:", err);
   }
+
+  // Check for a duplicate delivery first (best-effort — see recordOrder), then
+  // send the email regardless of whether that check succeeded.
+  const { alreadySent } = await recordOrder(session, productSlugs);
+  if (alreadySent) {
+    return NextResponse.json({ received: true, alreadyProcessed: true });
+  }
+
+  const emailed = await sendConfirmationEmail(session, productSlugs);
+  if (!emailed) {
+    console.error(
+      `Order ${session.id} completed but no confirmation email could be sent — check ZOHO_SMTP_* env vars.`
+    );
+  }
+
+  // Always acknowledge the webhook once we've made a genuine attempt, so Stripe
+  // doesn't retry indefinitely for a persistent config issue that a retry can't
+  // fix (e.g. wrong SMTP credentials) — the console error above is what should
+  // get investigated, not Stripe hammering this endpoint.
+  return NextResponse.json({ received: true, emailed });
 }
