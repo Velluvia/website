@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductGallery from "@/components/ProductGallery";
+import ReviewsSection from "@/components/ReviewsSection";
 import { formatPrice, getCollection, getProduct, products } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -52,6 +53,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
+      <ReviewsSection productSlug={product.slug} productName={product.name} />
     </section>
   );
 }

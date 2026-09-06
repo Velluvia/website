@@ -159,6 +159,46 @@ to `CONTACT_TO_EMAIL` via the same Zoho mailbox as the contact form.
 Requires `ANTHROPIC_API_KEY` (see env var table above). To adjust what the assistant knows or how
 it behaves, edit `SYSTEM_PROMPT` in `app/api/chat/route.ts`.
 
+## Product reviews (verified purchase)
+
+Each product page has a review section: visitors can write a review, but it's only accepted
+if the email they provide matches a **completed Stripe order that included that specific
+product** — this is checked live against Stripe at submission time, not a separate order
+database that could fall out of sync.
+
+### One-time setup
+
+1. In your Vercel project: **Storage → Create Database**. Vercel's native "Vercel Postgres" was
+   discontinued — Postgres is now offered via the Marketplace, powered by **Neon**. Choose
+   **Neon** under "Marketplace Database Providers," then follow the prompts (region, a name for
+   the database, free tier is fine) and **Continue** through to connect it to this project.
+2. Vercel automatically injects `DATABASE_URL` into your project's environment variables —
+   nothing to copy by hand.
+3. Redeploy. The reviews table creates itself automatically on first use (`CREATE TABLE IF NOT
+   EXISTS` runs on every request — cheap once it already exists). No migration step.
+
+### How verification works
+
+When someone submits a review, the API (`app/api/reviews/route.ts`) scans your recent completed
+Stripe Checkout Sessions for one where the `customer_details.email` matches what they entered
+**and** the order included a line item for that product (matched via the `slug` metadata already
+attached to each product at checkout — see `app/api/checkout/route.ts`). If no match is found,
+the review is rejected with an explanatory message rather than posted as unverified.
+
+A customer can revise their own review later — resubmitting with the same product + email updates
+their existing review rather than creating a duplicate.
+
+### Known limitations, honestly
+
+- **Scan-based verification, not indexed lookup** — Stripe's Checkout Sessions don't support
+  searching by email directly, so this pages through recent completed sessions (capped at 500) to
+  find a match. Completely fine at small-shop order volumes; if you ever have thousands of orders,
+  this should move to a proper order database indexed by email instead.
+- **No moderation queue** — verified reviews post immediately. If you want to approve reviews
+  before they go live, add a `status` column (`pending`/`approved`) and filter the public GET
+  route to `approved` only, with a simple admin view to flip the status.
+- **No photo uploads** — text and star rating only for now.
+
 ## What's intentionally out of scope for v1
 
 - No admin/CMS — product edits are code changes (fast to extend to a headless CMS later if the

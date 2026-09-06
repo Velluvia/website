@@ -1,11 +1,25 @@
 import Link from "next/link";
 import { Product } from "@/lib/types";
-import { formatPrice } from "@/lib/products";
+import { formatPrice, getOccasionTags } from "@/lib/products";
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  tag,
+  spotlight,
+}: {
+  product: Product;
+  tag?: string;
+  spotlight?: boolean;
+}) {
+  const occasions = getOccasionTags(product, spotlight ? 3 : 2);
+
   return (
-    <Link href={`/products/${product.slug}`} className="product-card">
+    <Link
+      href={`/products/${product.slug}`}
+      className={`product-card ${spotlight ? "spotlight" : ""}`}
+    >
       <div className="product-media">
+        {tag && <span className="corner-tag">{tag}</span>}
         {product.images.length > 0 ? (
           <img src={product.images[0]} alt={product.name} />
         ) : (
@@ -14,9 +28,19 @@ export default function ProductCard({ product }: { product: Product }) {
             <span className="label">Velluvia</span>
           </div>
         )}
+        <span className="shop-cta">Shop This Set</span>
       </div>
       <p className="product-name">{product.name}</p>
       <p className="product-price">{formatPrice(product.price)}</p>
+      {occasions.length > 0 && (
+        <div className="occasion-pills">
+          {occasions.map((o) => (
+            <span className="pill" key={o}>
+              {o}
+            </span>
+          ))}
+        </div>
+      )}
     </Link>
   );
 }

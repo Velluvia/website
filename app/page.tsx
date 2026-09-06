@@ -12,11 +12,11 @@ const occasions = [
   { label: "Personal Gifts, Any Occasion", glyph: "P" },
 ];
 
-// Homepage "Featured pieces" — pulled from Signature Gifting, sorted by price.
-// Once specific products are chosen to feature instead of the whole collection,
-// replace this with an explicit slug list, e.g.:
-//   const featured = products.filter((p) => ["blush-bloom-gift-set", "dino-adventure-gift-set"].includes(p.slug));
-const featured = getProductsByCollection("signature");
+// Homepage "Featured pieces" — Signature Gifting, sorted by price. Only products with
+// real photography are shown here, since this is the first thing visitors see; items
+// still using a placeholder tile (like The Reminder Tumbler, pending supplier photos)
+// are excluded automatically rather than needing to be remembered and removed by hand.
+const featured = getProductsByCollection("signature").filter((p) => p.images.length > 0);
 
 export default function HomePage() {
   return (
@@ -24,12 +24,18 @@ export default function HomePage() {
       <section className="featured-first">
         <div className="wrap">
           <div className="section-head">
-            <span className="eyebrow">Best Loved</span>
-            <h2>Featured pieces</h2>
+            <span className="eyebrow">Signature Gifting</span>
+            <h2>Gifts worth opening twice</h2>
+            <p>Handpicked sets, ready to ship — start here.</p>
           </div>
-          <div className="product-grid">
-            {featured.map((p) => (
-              <ProductCard product={p} key={p.slug} />
+          <div className="product-grid featured-grid">
+            {featured.map((p, i) => (
+              <ProductCard
+                product={p}
+                key={p.slug}
+                tag="Signature Gifting"
+                spotlight={i === 0}
+              />
             ))}
           </div>
         </div>

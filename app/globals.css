@@ -521,6 +521,68 @@ section {
 /* -- product grid / card -- */
 .featured-first {
   padding-top: 48px;
+  background: radial-gradient(ellipse at 20% 0%, rgba(183, 147, 91, 0.1), transparent 55%),
+    radial-gradient(ellipse at 90% 30%, rgba(139, 149, 115, 0.08), transparent 50%), var(--ivory);
+}
+.featured-grid .product-card.spotlight {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.featured-grid .product-card.spotlight .product-name {
+  font-size: 22px;
+}
+.featured-grid .product-card.spotlight .product-price {
+  font-size: 16px;
+}
+.corner-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: rgba(27, 39, 57, 0.85);
+  color: var(--gold-light);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.shop-cta {
+  position: absolute;
+  inset: auto 0 0 0;
+  text-align: center;
+  padding: 10px 0 12px;
+  background: linear-gradient(0deg, rgba(20, 18, 15, 0.75), transparent);
+  color: var(--ivory);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+.product-card:hover .shop-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+.occasion-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.occasion-pills .pill {
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  background: rgba(139, 149, 115, 0.14);
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
 }
 .product-grid {
   display: grid;
@@ -1059,6 +1121,127 @@ section {
   border-radius: var(--radius);
 }
 
+/* -- reviews -- */
+.reviews-section {
+  border-top: 1px solid var(--line);
+  background: var(--sand);
+}
+.reviews-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.reviews-head h2 {
+  font-size: 28px;
+  margin-top: 8px;
+}
+.reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+.avg-text {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.no-reviews {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin-top: 10px;
+}
+.stars {
+  color: var(--line);
+  letter-spacing: 2px;
+}
+.stars .star.filled {
+  color: var(--gold);
+}
+.rating-input {
+  display: flex;
+  gap: 4px;
+}
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: var(--line);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.star-btn.filled {
+  color: var(--gold);
+}
+.review-form-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 40px;
+  max-width: 560px;
+}
+.review-form-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+.review-success {
+  color: var(--sage-deep);
+  font-weight: 600;
+  margin: 0;
+}
+.review-error {
+  color: #b0554c;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.review-list {
+  display: grid;
+  gap: 24px;
+  max-width: 760px;
+}
+.review-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.review-item-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.review-title {
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+.review-body {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+.review-meta {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .reviews-head {
+    flex-direction: column;
+  }
+  .review-form-wrap {
+    padding: 20px;
+  }
+}
+
 /* -- chat widget -- */
 .chat-widget-root {
   position: fixed;
@@ -1225,6 +1408,9 @@ section {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  .featured-grid .product-card.spotlight {
+    grid-row: span 1;
+  }
   .pillar-grid {
     grid-template-columns: 1fr;
     gap: 26px;
@@ -1262,6 +1448,13 @@ section {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px 12px;
+  }
+  .featured-grid .product-card.spotlight {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .featured-grid .product-card.spotlight .product-media {
+    aspect-ratio: 16/9;
   }
   section {
     padding: 60px 0;

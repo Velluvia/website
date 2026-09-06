@@ -401,6 +401,20 @@ export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
+// Pulls the first couple of real occasions from a product's own "Perfect for: ..." detail
+// line, so any tags shown on cards are always genuine product content, never invented.
+export function getOccasionTags(product: Product, count = 2): string[] {
+  const line = product.details.find((d) => d.toLowerCase().startsWith("perfect for"));
+  if (!line) return [];
+  const afterColon = line.split(":")[1] || "";
+  return afterColon
+    .replace(/\bor\b/gi, ",")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, count);
+}
+
 export function formatPrice(pence: number): string {
   return new Intl.NumberFormat("en-GB", {
     style: "currency",
