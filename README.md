@@ -149,6 +149,20 @@ you read or reply to email, only how the website sends it.
    `/api/webhooks/stripe` route if you want server-side order confirmation emails/records beyond
    Stripe's own receipt email — not included in this initial build.
 
+## A note on type-checking during deploys
+
+`next.config.mjs` has `typescript: { ignoreBuildErrors: true }` — added after Vercel's build
+machine repeatedly and silently died during the "Checking validity of types..." step with no
+error text printed at all (not a normal TypeScript failure; those always print "Type error:
+...."). The code was independently verified to type-check cleanly elsewhere, pointing to an
+environment-specific issue on that particular build step rather than an actual mistake in the
+code.
+
+**The tradeoff to know about:** with this setting, a genuine type error in a future change would
+no longer block deployment — it would ship anyway. Run `npx tsc --noEmit` locally (or in any
+sandbox) before pushing real code changes to catch mistakes that this bypass would otherwise let
+through silently.
+
 ## Editing content
 
 - **Products & collections:** `lib/products.ts` — add/edit objects in the `products` and
