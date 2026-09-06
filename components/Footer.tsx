@@ -28,6 +28,7 @@ export default function Footer() {
             <h4>Company</h4>
             <Link href="/about">Our Story</Link>
             <Link href="/contact">Contact</Link>
+            <Link href="/delivery">Delivery &amp; Shipping</Link>
             <Link href="/cart">Cart</Link>
             <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a>
             <p>@Velluvia</p>
@@ -43,13 +44,13 @@ export default function Footer() {
 
         <div className="footer-legal">
           <p>
-            Velluvia Ltd &middot; Registered in England &amp; Wales &middot; Company No. <em>[to be added]</em> &middot;
-            ICO Registration No. <em>[to be added]</em> &middot; Registered Office: Ebbsfleet, Kent, United Kingdom
+            Velluvia is a trading name of <em>[Your Full Legal Name]</em>, sole trader &middot;
+            Based in Ebbsfleet, Kent, United Kingdom &middot; Contact: hello@velluvia.co.uk
           </p>
         </div>
 
         <div className="footer-bottom">
-          <span>&copy; {new Date().getFullYear()} Velluvia Ltd. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Velluvia. All rights reserved.</span>
           <span>Curated with love.</span>
         </div>
       </div>

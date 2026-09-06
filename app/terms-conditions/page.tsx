@@ -24,9 +24,8 @@ export default function TermsPage() {
 
         <h2>1. About us</h2>
         <p>
-          This website is operated by Velluvia Ltd, a company registered in England &amp; Wales
-          (company number <em>[to be added]</em>), registered office: Ebbsfleet, Kent, United
-          Kingdom.
+          This website is operated by <em>[Your Full Legal Name]</em>, trading as Velluvia, a
+          sole trader based in Ebbsfleet, Kent, United Kingdom.
         </p>
 
         <h2>2. Orders &amp; payment</h2>
@@ -37,7 +36,12 @@ export default function TermsPage() {
         </ul>
 
         <h2>3. Delivery</h2>
-        <p><em>[Add delivery timeframes, courier, and shipping cost/policy details here.]</em></p>
+        <p>Full delivery options, pricing and timeframes are set out on our <a href="/delivery">Delivery &amp; Shipping</a> page. In summary:</p>
+        <ul>
+          <li>Standard Delivery: £3.99, or free on orders over £200 — estimated 3&ndash;5 business days</li>
+          <li>Express Delivery: £7.99 — estimated 1&ndash;2 business days</li>
+          <li>We currently deliver to the UK, Ireland, the United States, Canada and Australia</li>
+        </ul>
 
         <h2>4. Cancellations &amp; returns</h2>
         <p>

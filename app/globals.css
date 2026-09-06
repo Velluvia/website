@@ -141,17 +141,23 @@ img {
 .btn-primary {
   background: var(--navy);
   color: var(--ivory);
+  box-shadow: 0 1px 2px rgba(27, 39, 57, 0.1);
 }
 .btn-primary:hover {
   background: var(--gold-dark);
+  box-shadow: 0 10px 20px rgba(139, 106, 56, 0.28);
+  transform: translateY(-1px);
 }
 .btn-gold {
   background: var(--gold);
   color: var(--navy);
+  box-shadow: 0 1px 2px rgba(139, 106, 56, 0.15);
 }
 .btn-gold:hover {
   background: var(--gold-dark);
   color: var(--ivory);
+  box-shadow: 0 10px 20px rgba(139, 106, 56, 0.3);
+  transform: translateY(-1px);
 }
 .btn-outline {
   background: transparent;
@@ -329,9 +335,10 @@ img {
 }
 .hero h1 {
   color: var(--ivory);
-  font-size: clamp(40px, 5.4vw, 68px);
-  line-height: 1.05;
-  margin: 18px 0 24px;
+  font-size: clamp(44px, 6vw, 78px);
+  line-height: 1.03;
+  margin: 20px 0 26px;
+  letter-spacing: -0.01em;
 }
 .hero h1 em {
   color: var(--gold-light);
@@ -427,8 +434,9 @@ section {
   text-align: center;
 }
 .section-head h2 {
-  font-size: clamp(28px, 3.4vw, 40px);
+  font-size: clamp(30px, 3.8vw, 44px);
   margin-top: 10px;
+  letter-spacing: -0.01em;
 }
 .section-head p {
   color: var(--ink-soft);
@@ -466,6 +474,12 @@ section {
   display: flex;
   align-items: flex-end;
   isolation: isolate;
+  box-shadow: 0 1px 3px rgba(27, 39, 57, 0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.collection-card:hover {
+  box-shadow: 0 26px 40px rgba(27, 39, 57, 0.28);
+  transform: translateY(-5px);
 }
 .collection-card img {
   position: absolute;
@@ -591,6 +605,10 @@ section {
 }
 .product-card {
   display: block;
+  transition: transform 0.28s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
 }
 .product-media {
   position: relative;
@@ -599,15 +617,35 @@ section {
   border-radius: var(--radius);
   overflow: hidden;
   margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(27, 39, 57, 0.05);
+  transition: box-shadow 0.28s ease;
+}
+.product-media::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  z-index: 2;
+}
+.product-card:hover .product-media::before {
+  width: 100%;
+}
+.product-card:hover .product-media {
+  box-shadow: 0 22px 34px rgba(27, 39, 57, 0.18);
 }
 .product-media img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  transition: transform 0.4s ease;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 .product-card:hover .product-media img {
-  transform: scale(1.035);
+  transform: scale(1.06);
 }
 .product-name {
   font-family: var(--font-display);
@@ -763,20 +801,22 @@ section {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 3/2;
-  background: var(--sand-deep);
   border-radius: var(--radius);
   overflow: hidden;
   border: none;
   padding: 0;
   margin: 0;
   cursor: zoom-in;
+  line-height: 0;
+  box-shadow: 0 1px 3px rgba(27, 39, 57, 0.05);
 }
 .pdp-gallery .main img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
+  max-height: 640px;
+  object-fit: cover;
   display: block;
+  margin: 0 auto;
 }
 .expand-hint {
   position: absolute;
@@ -822,7 +862,7 @@ section {
 .pdp-gallery .thumbs img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
@@ -1055,6 +1095,44 @@ section {
 /* -- legal pages -- */
 .legal-page {
   max-width: 760px;
+}
+.delivery-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 24px 0 28px;
+}
+.delivery-option-card {
+  background: var(--sand);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.delivery-option-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.delivery-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin: 0 0 4px;
+}
+.delivery-free-note {
+  font-size: 12px;
+  color: var(--sage-deep);
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.delivery-time {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .delivery-options {
+    grid-template-columns: 1fr;
+  }
 }
 .legal-page h2 {
   font-size: 22px;
@@ -1357,9 +1435,9 @@ section {
   gap: 14px;
 }
 .chat-launcher {
-  width: 58px;
   height: 58px;
-  border-radius: 50%;
+  min-width: 58px;
+  border-radius: 30px;
   border: none;
   cursor: pointer;
   background: var(--navy);
@@ -1367,23 +1445,81 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  gap: 10px;
+  padding: 8px 20px 8px 8px;
+  transition: transform 0.15s ease, padding 0.15s ease, border-radius 0.15s ease;
+}
+.chat-launcher.is-open {
+  width: 58px;
+  min-width: 58px;
   padding: 10px;
-  transition: transform 0.15s ease;
+  border-radius: 50%;
 }
 .chat-launcher:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 .chat-launcher img {
-  width: 100%;
-  height: 100%;
+  width: 42px;
+  height: 42px;
   object-fit: cover;
   border-radius: 50%;
+  flex-shrink: 0;
+}
+.chat-launcher-label {
+  color: var(--ivory);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 .chat-launcher-x {
   color: var(--ivory);
   font-size: 26px;
   line-height: 1;
+}
+.chat-greeting {
+  position: relative;
+  max-width: 240px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  border-bottom-right-radius: 4px;
+  padding: 14px 30px 14px 16px;
+  box-shadow: 0 12px 28px rgba(27, 39, 57, 0.18);
+  animation: chatGreetingIn 0.3s ease;
+}
+.chat-greeting p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.chat-greeting-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+@keyframes chatGreetingIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-greeting {
+    animation: none;
+  }
 }
 .chat-panel {
   width: 340px;

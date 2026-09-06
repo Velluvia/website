@@ -12,6 +12,7 @@ const GREETING: Message = {
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(false);
   const [messages, setMessages] = useState<Message[]>([GREETING]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,26 @@ export default function ChatWidget() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, awaitingEmail, loading]);
+
+  // Show a one-time attention bubble a few seconds after page load, so
+  // first-time visitors notice the chat exists rather than mistaking it for
+  // a decorative logo. Once per browser session, and never once they've
+  // actually opened the chat.
+  useEffect(() => {
+    if (sessionStorage.getItem("velluvia-chat-greeted")) return;
+    const timer = setTimeout(() => setShowGreeting(true), 3500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  function dismissGreeting() {
+    setShowGreeting(false);
+    sessionStorage.setItem("velluvia-chat-greeted", "1");
+  }
+
+  function openChat() {
+    dismissGreeting();
+    setOpen((o) => !o);
+  }
 
   async function sendMessage(e: FormEvent) {
     e.preventDefault();
@@ -141,12 +162,33 @@ export default function ChatWidget() {
         </div>
       )}
 
+      {!open && showGreeting && (
+        <div className="chat-greeting">
+          <button
+            className="chat-greeting-close"
+            onClick={dismissGreeting}
+            aria-label="Dismiss"
+            type="button"
+          >
+            &times;
+          </button>
+          <p>👋 Need help finding the perfect gift? Ask us anything.</p>
+        </div>
+      )}
+
       <button
-        className="chat-launcher"
-        onClick={() => setOpen((o) => !o)}
-        aria-label={open ? "Close chat" : "Open chat"}
+        className={`chat-launcher ${open ? "is-open" : ""}`}
+        onClick={openChat}
+        aria-label={open ? "Close chat" : "Open support chat"}
       >
-        {open ? <span className="chat-launcher-x">&times;</span> : <img src="/images/logo-badge.png" alt="" />}
+        {open ? (
+          <span className="chat-launcher-x">&times;</span>
+        ) : (
+          <>
+            <img src="/images/logo-badge.png" alt="" />
+            <span className="chat-launcher-label">Chat with us</span>
+          </>
+        )}
       </button>
     </div>
   );

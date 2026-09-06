@@ -24,13 +24,14 @@ export default function PrivacyPolicyPage() {
 
         <h2>Who we are</h2>
         <p>
-          Velluvia Ltd (&ldquo;Velluvia&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is the data
-          controller for personal data collected through velluvia.co.uk.
+          Velluvia (&ldquo;we&rdquo;, &ldquo;us&rdquo;) is a trading name of <em>[Your Full Legal
+          Name]</em>, operating as a sole trader, and is the data controller for personal data
+          collected through velluvia.co.uk.
         </p>
         <ul>
-          <li>Company number: <em>[to be added]</em></li>
-          <li>Registered office: Ebbsfleet, Kent, United Kingdom</li>
-          <li>ICO registration number: <em>[to be added]</em></li>
+          <li>Business structure: Sole trader</li>
+          <li>Based in: Ebbsfleet, Kent, United Kingdom</li>
+          <li>ICO registration number: <em>[to be added once registered]</em></li>
           <li>Contact: hello@velluvia.co.uk</li>
         </ul>
 
