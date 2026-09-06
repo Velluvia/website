@@ -1,14 +1,16 @@
 # Velluvia — Website & Shop
 
 A Next.js storefront for Velluvia: brand pages (Home, Collections, About, Contact) plus a working
-cart and Stripe checkout. Built to deploy on **Vercel**, with domain/DNS on **Cloudflare** and
-mail on **Zoho Mail**.
+cart and Stripe checkout. Built to deploy on **Vercel**, with domain/DNS on **Cloudflare**, mail
+*receiving* on **Zoho Mail**, and outbound email *sending* via **Resend**.
 
 ## Stack
 
 - **Next.js 14** (App Router, TypeScript) — pages + API routes
 - **Stripe Checkout** — payments (redirect-based, no card data touches our server)
-- **Nodemailer + Zoho SMTP** — contact form delivery
+- **Resend** — outbound email (contact form, order confirmations, review/occasion reminders).
+  Zoho Mail's free plan blocks external SMTP access for new accounts, so sending goes through
+  Resend instead — `hello@velluvia.co.uk` still receives mail in Zoho completely normally.
 - Plain CSS with design tokens in `app/globals.css` (no Tailwind) — matches the Velluvia brand
   guide: ivory/navy/gold, with sage + blush accents for the Home line and charcoal for Luxe.
 - Cart state lives in the browser (React context + `localStorage`) — no database required for v1.
@@ -27,10 +29,11 @@ app/
   checkout/success/page.tsx    Post-payment confirmation
   checkout/cancel/page.tsx     Payment cancelled
   api/checkout/route.ts        Creates a Stripe Checkout Session
-  api/contact/route.ts         Sends enquiry form via Zoho SMTP
+  api/contact/route.ts         Sends enquiry form via Resend
 components/                    Header, Footer, cards, cart provider, forms
 lib/products.ts                Product & collection catalog (edit this to add products)
 lib/stripe.ts                  Server-side Stripe client
+lib/mailer.ts                  Resend email client
 public/images/                 Brand + product imagery
 ```
 
@@ -71,11 +74,9 @@ git push -u origin main
 | `STRIPE_SECRET_KEY` | [Stripe Dashboard → API keys](https://dashboard.stripe.com/apikeys) | Use `sk_test_…` while testing, `sk_live_…` once ready to take real payments. |
 | `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com) → API Keys | Powers the chat widget. Without it, chat still works but every message is immediately forwarded to `CONTACT_TO_EMAIL` instead of being answered. Pay-per-use — check current pricing before high-traffic launch. |
 | `CHAT_MODEL` | — | Optional, defaults to `claude-haiku-4-5`. Anthropic periodically retires older models — if the chat widget ever silently stops responding again in the future, check [Anthropic's model deprecation page](https://platform.claude.com/docs/en/about-claude/model-deprecations) first before assuming it's a config/billing issue. |
-| `ZOHO_SMTP_HOST` | — | `smtp.zoho.com` (global) or `smtp.zoho.eu` (EU data centre) |
-| `ZOHO_SMTP_PORT` | — | `465` |
-| `ZOHO_SMTP_USER` | Your Zoho mailbox | e.g. `hello@velluvia.co.uk` |
-| `ZOHO_SMTP_PASS` | Zoho Mail → Settings → Security → **App Passwords** | Do not use your normal login password |
-| `CONTACT_TO_EMAIL` | — | Inbox that receives contact-form submissions **and** escalated chat conversations |
+| `RESEND_API_KEY` | [resend.com](https://resend.com) → API Keys | Powers all outbound email — contact form, order confirmations, review/occasion reminders. Free tier covers 3,000 emails/month. |
+| `EMAIL_FROM` | — | e.g. `Velluvia <hello@velluvia.co.uk>` — must be at a domain verified in Resend (Resend → Domains), not just any address |
+| `CONTACT_TO_EMAIL` | — | Inbox that receives contact-form submissions, new-order notifications, **and** escalated chat conversations — this stays your normal Zoho inbox, only *sending* moved to Resend |
 
 Redeploy after adding/changing env vars (Vercel does this automatically on the next push, or use
 "Redeploy" in the dashboard).
@@ -96,11 +97,15 @@ Redeploy after adding/changing env vars (Vercel does this automatically on the n
 4. Wait for DNS propagation (usually minutes, sometimes up to a few hours) and confirm the domain
    shows "Valid Configuration" in Vercel.
 
-## 5. Email — Zoho Mail via Cloudflare DNS
+## 5. Email — receiving via Zoho, sending via Resend
 
-To send/receive mail at `@velluvia.co.uk` through Zoho, add these records in **Cloudflare DNS**
-(get the exact values from Zoho Mail → Settings → Domains → your domain → DNS records, as Zoho
-sometimes varies these per account):
+These are two separate systems now, each doing one job:
+
+### Receiving mail (`hello@velluvia.co.uk` inbox) — Zoho Mail via Cloudflare DNS
+
+To receive mail at `@velluvia.co.uk` through Zoho's free webmail, add these records in
+**Cloudflare DNS** (get exact values from Zoho Mail → Settings → Domains → your domain → DNS
+records, as Zoho sometimes varies these per account):
 
 - **MX records** (usually three, in priority order):
   - `mx.zoho.com` (priority 10)
@@ -108,16 +113,31 @@ sometimes varies these per account):
   - `mx3.zoho.com` (priority 50)
 - **TXT record (SPF):** `v=spf1 include:zoho.com ~all`
   - If you also send transactional mail from elsewhere, merge SPF into one record — don't add two.
+  - Once Resend is added (below), this record needs Resend's SPF include merged in too.
 - **TXT record (domain verification):** Zoho gives you a one-time verification TXT record — add
   it exactly as shown, then click "Verify" in Zoho.
 - **DKIM:** Zoho Mail → Settings → DKIM → generate, then add the CNAME/TXT record it gives you.
-  This significantly improves deliverability.
 - Keep all mail-related DNS records **DNS only** (grey cloud) in Cloudflare — proxying MX/TXT
   records breaks mail.
 
-Once MX + SPF + DKIM are verified, `hello@velluvia.co.uk` will receive mail in Zoho, and the
-same mailbox (with an **app password**, not your login password) powers the website's contact
-form via `ZOHO_SMTP_*` env vars above.
+**Important — this is receiving only.** Zoho Mail's free plan does not include SMTP/IMAP/POP
+access for external apps (confirmed directly in Zoho's own documentation), so no SMTP password
+generated here will ever work for *sending* mail from the website. That's what Resend is for.
+
+### Sending mail (contact form, order confirmations, reminders) — Resend
+
+1. Create a free account at [resend.com](https://resend.com)
+2. **Domains → Add Domain** → enter `velluvia.co.uk`
+3. Add the DNS records Resend gives you (its own SPF/DKIM records) at your DNS provider —
+   these sit alongside the Zoho records above, not in place of them
+4. Wait for Resend to show the domain as **Verified**
+5. **API Keys → Create API Key** → copy it into `RESEND_API_KEY` in Vercel
+6. Set `EMAIL_FROM` to an address at the now-verified domain, e.g.
+   `Velluvia <hello@velluvia.co.uk>`
+
+Once both are set up: customers and the contact form send mail *out* through Resend, and any
+replies land normally in the Zoho inbox you already use day to day — nothing changes about how
+you read or reply to email, only how the website sends it.
 
 ## 6. Stripe — going live
 
@@ -154,7 +174,8 @@ occasions and policies directly, using Claude (Anthropic's API) with a system pr
 Velluvia's actual facts — it's instructed not to invent prices, policies or company details it
 wasn't given. When a visitor asks about a specific order, wants a refund, needs a bulk/corporate
 quote, or the assistant isn't confident, it asks for their email and forwards the full transcript
-to `CONTACT_TO_EMAIL` via the same Zoho mailbox as the contact form.
+to `CONTACT_TO_EMAIL` via Resend (see "Email — receiving via Zoho, sending via Resend" above),
+the same path the contact form uses.
 
 Requires `ANTHROPIC_API_KEY` (see env var table above). To adjust what the assistant knows or how
 it behaves, edit `SYSTEM_PROMPT` in `app/api/chat/route.ts`.
@@ -179,7 +200,7 @@ a smaller version of the mechanism Moonpig's own leadership credits as a core gr
 scheduled job (`app/api/cron/occasion-reminders/route.ts`) checks for saved occasions landing
 7 days out and sends a gentle nudge pointing back to Signature Gifting, then automatically
 re-arms for next year — no extra setup beyond what's already configured for the review-request
-job (same `CRON_SECRET`, same Zoho mailbox, same Neon database). To change how far ahead it
+job (same `CRON_SECRET`, same Resend account, same Neon database). To change how far ahead it
 reminds people, edit `DAYS_BEFORE_OCCASION` in that file.
 
 ## Trust signals & cross-sell
@@ -203,7 +224,7 @@ Two things happen automatically after a real purchase, both requiring one-time s
 Stripe Checkout does **not** email your customer on its own unless you enable it — and even then,
 it's a generic Stripe-branded receipt, not something in your own voice. Instead, this site listens
 for the payment event directly via a **webhook** and sends its own branded confirmation through
-your existing Zoho mailbox.
+Resend, to both the customer and to `CONTACT_TO_EMAIL`.
 
 **Setup:**
 1. Stripe Dashboard → **Developers → Webhooks → Add endpoint**

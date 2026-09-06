@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSql, ensureRemindersTable } from "@/lib/db";
-import { getTransporter, getSenderAddress } from "@/lib/mailer";
+import { sendEmail } from "@/lib/mailer";
 
 // Send the nudge a week ahead — enough time to actually order and receive a
 // gift box before the day itself, matching how far ahead people realistically
@@ -33,18 +33,12 @@ export async function GET(req: NextRequest) {
       LIMIT 20;
     `;
 
-    const transporter = getTransporter();
-    if (!transporter) {
-      return NextResponse.json({ error: "Email not configured." }, { status: 500 });
-    }
-
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk";
     let sent = 0;
 
     for (const reminder of due) {
       const who = reminder.recipient_name ? ` for ${reminder.recipient_name}` : "";
-      await transporter.sendMail({
-        from: `"Velluvia" <${getSenderAddress()}>`,
+      const ok = await sendEmail({
         to: reminder.email,
         subject: `${reminder.occasion_label} is coming up — need a gift?`,
         text: `Hi there,
@@ -60,6 +54,12 @@ Velluvia
 
 P.S. We'll remind you again next year for this occasion — no need to sign up twice.`,
       });
+
+      if (!ok) {
+        console.error(`Occasion reminder email failed for reminder id ${reminder.id}`);
+        continue;
+      }
+
       await sql`UPDATE occasion_reminders SET last_sent_year = ${currentYear} WHERE id = ${reminder.id};`;
       sent++;
     }

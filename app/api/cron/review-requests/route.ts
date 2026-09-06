@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSql, ensureOrdersTable } from "@/lib/db";
-import { getTransporter, getSenderAddress } from "@/lib/mailer";
+import { sendEmail } from "@/lib/mailer";
 import { getProduct } from "@/lib/products";
 
 // How many days after purchase to assume UK delivery has happened before
@@ -34,11 +34,6 @@ export async function GET(req: NextRequest) {
       LIMIT 20;
     `;
 
-    const transporter = getTransporter();
-    if (!transporter) {
-      return NextResponse.json({ error: "Email not configured." }, { status: 500 });
-    }
-
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk";
     let sent = 0;
 
@@ -51,8 +46,7 @@ export async function GET(req: NextRequest) {
         .map((p) => `  • ${p!.name}: ${siteUrl}/products/${p!.slug}#reviews`)
         .join("\n");
 
-      await transporter.sendMail({
-        from: `"Velluvia" <${getSenderAddress()}>`,
+      const ok = await sendEmail({
         to: order.customer_email,
         subject: "How was your Velluvia gift?",
         text: `Hi ${order.customer_name || "there"},
@@ -69,6 +63,11 @@ Thank you for supporting Velluvia.
 With love,
 Velluvia`,
       });
+
+      if (!ok) {
+        console.error(`Review-request email failed for order ${order.stripe_session_id}`);
+        continue;
+      }
 
       await sql`UPDATE orders SET review_request_sent = TRUE WHERE id = ${order.id};`;
       sent++;

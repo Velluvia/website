@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTransporter, getSenderAddress, getContactInbox } from "@/lib/mailer";
+import { sendEmail, getContactInbox } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,17 +9,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
 
-    const transporter = getTransporter();
-    if (!transporter) {
-      console.error("Zoho SMTP env vars are not configured.");
-      return NextResponse.json(
-        { error: "Email is not configured yet. Please try again later." },
-        { status: 500 }
-      );
-    }
-
-    await transporter.sendMail({
-      from: `"Velluvia Website" <${getSenderAddress()}>`,
+    const sent = await sendEmail({
       to: getContactInbox(),
       replyTo: email,
       subject: `New enquiry: ${enquiryType || "General"} — ${name}`,
@@ -32,6 +22,13 @@ export async function POST(req: NextRequest) {
         message,
       ].join("\n"),
     });
+
+    if (!sent) {
+      return NextResponse.json(
+        { error: "Email is not configured yet. Please try again later." },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

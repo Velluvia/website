@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getSql, ensureOrdersTable } from "@/lib/db";
-import { getTransporter, getSenderAddress } from "@/lib/mailer";
+import { sendEmail } from "@/lib/mailer";
 import { getProduct, formatPrice } from "@/lib/products";
 import type Stripe from "stripe";
 
@@ -11,12 +11,6 @@ import type Stripe from "stripe";
 export const runtime = "nodejs";
 
 async function sendConfirmationEmail(session: Stripe.Checkout.Session, productSlugs: string[]) {
-  const transporter = getTransporter();
-  if (!transporter) {
-    console.error("Zoho SMTP not configured — cannot send order confirmation email.");
-    return false;
-  }
-
   const email = session.customer_details?.email;
   const name = session.customer_details?.name || "there";
   if (!email) {
@@ -34,11 +28,11 @@ async function sendConfirmationEmail(session: Stripe.Checkout.Session, productSl
 
   // Two sends: one to the customer, one to the business inbox, so an order is
   // never placed without *someone* getting notified even if one send fails.
-  const customerMail = transporter.sendMail({
-    from: `"Velluvia" <${getSenderAddress()}>`,
-    to: email,
-    subject: "Your Velluvia order is confirmed",
-    text: `Hi ${name},
+  const [customerSent, ownerSent] = await Promise.all([
+    sendEmail({
+      to: email,
+      subject: "Your Velluvia order is confirmed",
+      text: `Hi ${name},
 
 Thank you for your order — it's confirmed and being prepared with the full Velluvia unboxing ritual.
 
@@ -53,13 +47,11 @@ With love,
 Velluvia
 
 ${siteUrl}`,
-  });
-
-  const ownerMail = transporter.sendMail({
-    from: `"Velluvia Website" <${getSenderAddress()}>`,
-    to: process.env.CONTACT_TO_EMAIL || getSenderAddress(),
-    subject: `New order — ${total} — ${name}`,
-    text: `A new order just came in.
+    }),
+    sendEmail({
+      to: process.env.CONTACT_TO_EMAIL || "hello@velluvia.co.uk",
+      subject: `New order — ${total} — ${name}`,
+      text: `A new order just came in.
 
 Customer: ${name} (${email})
 Total: ${total}
@@ -68,18 +60,16 @@ Items:
 ${lines}
 
 Stripe session: ${session.id}`,
-  });
+    }),
+  ]);
 
-  const results = await Promise.allSettled([customerMail, ownerMail]);
-  results.forEach((r, i) => {
-    if (r.status === "rejected") {
-      console.error(`${i === 0 ? "Customer" : "Owner"} confirmation email failed:`, r.reason);
-    }
-  });
+  if (!customerSent) console.error("Customer confirmation email failed to send.");
+  if (!ownerSent) console.error("Owner notification email failed to send.");
+
   // Report success if at least one of the two got through — a customer email
   // failure and an owner-notification failure are independent problems, and
   // one working is much better than treating "partial success" as total failure.
-  return results.some((r) => r.status === "fulfilled");
+  return customerSent || ownerSent;
 }
 
 /**
@@ -182,7 +172,7 @@ export async function POST(req: NextRequest) {
   const emailed = await sendConfirmationEmail(session, productSlugs);
   if (!emailed) {
     console.error(
-      `Order ${session.id} completed but no confirmation email could be sent — check ZOHO_SMTP_* env vars.`
+      `Order ${session.id} completed but no confirmation email could be sent — check RESEND_API_KEY and that your sending domain is verified in Resend.`
     );
   }
 

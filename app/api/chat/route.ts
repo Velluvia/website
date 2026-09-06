@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTransporter, getSenderAddress, getContactInbox } from "@/lib/mailer";
+import { sendEmail, getContactInbox } from "@/lib/mailer";
 
 type ChatMessage = { role: "user" | "assistant"; text: string };
 
@@ -99,25 +99,23 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Missing email." }, { status: 400 });
       }
 
-      const transporter = getTransporter();
-      if (!transporter) {
-        return NextResponse.json(
-          { error: "Email is not configured yet. Please use the contact form instead." },
-          { status: 500 }
-        );
-      }
-
       const transcript = (messages || [])
         .map((m) => `${m.role === "user" ? "Visitor" : "Assistant"}: ${m.text}`)
         .join("\n");
 
-      await transporter.sendMail({
-        from: `"Velluvia Chat" <${getSenderAddress()}>`,
+      const sent = await sendEmail({
         to: getContactInbox(),
         replyTo: visitorEmail,
         subject: `Chat escalation — ${visitorEmail}`,
         text: `Visitor email: ${visitorEmail}\n\nTranscript:\n${transcript}`,
       });
+
+      if (!sent) {
+        return NextResponse.json(
+          { error: "Email is not configured yet. Please use the contact form instead." },
+          { status: 500 }
+        );
+      }
 
       return NextResponse.json({ ok: true });
     }
