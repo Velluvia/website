@@ -311,7 +311,7 @@ export const products: Product[] = [
     slug: "office-signature-pen",
     collection: "office",
     name: "The Velluvia Signature Pen",
-    price: 2899,
+    price: 1799,
     currency: "gbp",
     description:
       "Timeless Elegance, Thoughtful Impression. The Velluvia Signature Pen is a premium ballpoint crafted for the moments that matter — signing a contract, welcoming a new hire, or simply making a well-appointed desk feel a little more considered. Finished in deep black lacquer with polished gold-tone trim and engraved with the Velluvia mark, it's designed to be picked up and noticed, not left in a drawer.",
