@@ -24,9 +24,9 @@ export default function PrivacyPolicyPage() {
 
         <h2>Who we are</h2>
         <p>
-          Velluvia (&ldquo;we&rdquo;, &ldquo;us&rdquo;) is a trading name of <em>[Your Full Legal
-          Name]</em>, operating as a sole trader, and is the data controller for personal data
-          collected through velluvia.co.uk.
+          Velluvia (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates as a sole trader based in the
+          United Kingdom, and is the data controller for personal data collected through
+          velluvia.co.uk.
         </p>
         <ul>
           <li>Business structure: Sole trader</li>

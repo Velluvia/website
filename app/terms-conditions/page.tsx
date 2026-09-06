@@ -24,8 +24,8 @@ export default function TermsPage() {
 
         <h2>1. About us</h2>
         <p>
-          This website is operated by <em>[Your Full Legal Name]</em>, trading as Velluvia, a
-          sole trader based in Ebbsfleet, Kent, United Kingdom.
+          This website is operated by Velluvia, a sole trader business based in Ebbsfleet, Kent,
+          United Kingdom.
         </p>
 
         <h2>2. Orders &amp; payment</h2>

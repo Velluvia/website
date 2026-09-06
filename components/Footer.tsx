@@ -44,8 +44,8 @@ export default function Footer() {
 
         <div className="footer-legal">
           <p>
-            Velluvia is a trading name of <em>[Your Full Legal Name]</em>, sole trader &middot;
-            Based in Ebbsfleet, Kent, United Kingdom &middot; Contact: hello@velluvia.co.uk
+            Velluvia &middot; Based in Ebbsfleet, Kent, United Kingdom &middot; Contact:
+            hello@velluvia.co.uk
           </p>
         </div>
 
