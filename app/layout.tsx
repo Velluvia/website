@@ -37,6 +37,13 @@ export const metadata: Metadata = {
     siteName: "Velluvia",
     type: "website",
   },
+  other: {
+    // Verifies domain ownership in Meta Business Manager (Business Portfolio >
+    // Domains). Rendered as a real static <meta> tag via Next.js's metadata
+    // system, on every page — not injected by client-side JS, which Meta
+    // explicitly won't detect. Safe to leave in place indefinitely.
+    "facebook-domain-verification": "cbhnki77g252wy0ku6bwb8otx3n6zi",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
