@@ -219,13 +219,14 @@ reminds people, edit `DAYS_BEFORE_OCCASION` in that file.
 
 ## Meta Pixel (Facebook/Instagram ads)
 
-Loaded via `components/MetaPixel.tsx` using Next.js's `next/script` loader (`strategy="afterInteractive"`)
-rather than a raw script tag pasted into `<head>` — this lets the browser finish rendering the
-page before loading Meta's script, rather than blocking on it.
+Loaded directly in `app/layout.tsx` (not a separate component file — kept inline deliberately so
+there's only one file to keep in sync) using Next.js's `next/script` loader
+(`strategy="afterInteractive"`) rather than a raw script tag pasted into `<head>` — this lets the
+browser finish rendering the page before loading Meta's script, rather than blocking on it.
 
 **Setup:** add `NEXT_PUBLIC_META_PIXEL_ID` in Vercel with the ID from Meta Events Manager →
 Connect data → Set up Meta Pixel (just the number passed to `fbq('init', '...')`, not the whole
-code block). If this variable isn't set, `MetaPixel` renders nothing — safe to deploy without it.
+code block). If this variable isn't set, nothing renders — safe to deploy without it.
 
 **Worth doing next:** this only tracks from the customer's browser, which ad blockers and
 Safari/iOS privacy settings increasingly block or degrade — Meta's own setup wizard recommends
