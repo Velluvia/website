@@ -4,6 +4,7 @@ import { Collection } from "@/lib/types";
 export default function CollectionCard({ collection }: { collection: Collection }) {
   return (
     <Link href={`/collections/${collection.slug}`} className="collection-card">
+      {collection.comingSoon && <span className="coming-soon-badge">Coming Soon</span>}
       {collection.image ? (
         <img src={collection.image} alt={collection.name} />
       ) : (
