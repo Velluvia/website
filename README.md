@@ -217,6 +217,23 @@ re-arms for next year — no extra setup beyond what's already configured for th
 job (same `CRON_SECRET`, same Resend account, same Neon database). To change how far ahead it
 reminds people, edit `DAYS_BEFORE_OCCASION` in that file.
 
+## Meta Pixel (Facebook/Instagram ads)
+
+Loaded via `components/MetaPixel.tsx` using Next.js's `next/script` loader (`strategy="afterInteractive"`)
+rather than a raw script tag pasted into `<head>` — this lets the browser finish rendering the
+page before loading Meta's script, rather than blocking on it.
+
+**Setup:** add `NEXT_PUBLIC_META_PIXEL_ID` in Vercel with the ID from Meta Events Manager →
+Connect data → Set up Meta Pixel (just the number passed to `fbq('init', '...')`, not the whole
+code block). If this variable isn't set, `MetaPixel` renders nothing — safe to deploy without it.
+
+**Worth doing next:** this only tracks from the customer's browser, which ad blockers and
+Safari/iOS privacy settings increasingly block or degrade — Meta's own setup wizard recommends
+pairing it with **Conversions API**, which reports events like completed purchases from the
+*server* instead, where nothing can block it. The Stripe webhook (`app/api/webhooks/stripe/route.ts`)
+that already fires on every completed order is the natural place to add this — not yet built, but
+straightforward to add there when ready.
+
 ## Trust signals & cross-sell
 
 - `components/TrustBadges.tsx` — shown on every product page (full version) and in the cart
