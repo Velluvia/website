@@ -11,17 +11,7 @@ export default function ReturnsPolicyPage() {
         <span className="eyebrow">Legal</span>
         <h1 style={{ fontSize: 34, margin: "12px 0 24px" }}>Returns &amp; Refunds Policy</h1>
 
-        <div className="legal-callout">
-          <p>
-            <span className="placeholder-note">NOTE</span> — This reflects standard UK consumer
-            law as it applies to distance-selling gift retailers, drafted to minimise unnecessary
-            returns within what the law permits. It is not a substitute for legal advice — have a
-            solicitor review this before relying on it commercially, particularly the exemptions
-            for hygiene-sealed and personalised items given your specific product mix.
-          </p>
-        </div>
-
-        <p>Last updated: <em>[date to be added]</em></p>
+        <p>Last updated: 7 September 2026</p>
 
         <h2>Your right to cancel</h2>
         <p>

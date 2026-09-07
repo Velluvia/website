@@ -11,16 +11,7 @@ export default function TermsPage() {
         <span className="eyebrow">Legal</span>
         <h1 style={{ fontSize: 34, margin: "12px 0 24px" }}>Terms &amp; Conditions</h1>
 
-        <div className="legal-callout">
-          <p>
-            <span className="placeholder-note">PLACEHOLDER</span> — This is a general-purpose
-            starting template, not finished legal copy. Have it reviewed by a solicitor before
-            launch, particularly the sections on liability, delivery and consumer rights (UK
-            Consumer Rights Act 2015 / Consumer Contracts Regulations 2013).
-          </p>
-        </div>
-
-        <p>Last updated: <em>[date to be added]</em></p>
+        <p>Last updated: 7 September 2026</p>
 
         <h2>1. About us</h2>
         <p>

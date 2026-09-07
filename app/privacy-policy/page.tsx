@@ -11,16 +11,7 @@ export default function PrivacyPolicyPage() {
         <span className="eyebrow">Legal</span>
         <h1 style={{ fontSize: 34, margin: "12px 0 24px" }}>Privacy Policy</h1>
 
-        <div className="legal-callout">
-          <p>
-            <span className="placeholder-note">PLACEHOLDER</span> — This page is a starting
-            template only. Replace the bracketed sections below with your finalised policy,
-            ideally reviewed by a solicitor or a UK GDPR-compliant policy generator, before the
-            site goes live to the public.
-          </p>
-        </div>
-
-        <p>Last updated: <em>[date to be added]</em></p>
+        <p>Last updated: 7 September 2026</p>
 
         <h2>Who we are</h2>
         <p>
@@ -31,7 +22,6 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>Business structure: Sole trader</li>
           <li>Based in: Ebbsfleet, Kent, United Kingdom</li>
-          <li>ICO registration number: <em>[to be added once registered]</em></li>
           <li>Contact: hello@velluvia.co.uk</li>
         </ul>
 
@@ -39,14 +29,16 @@ export default function PrivacyPolicyPage() {
         <ul>
           <li>Contact details you submit via our enquiry form or chat (name, email, message)</li>
           <li>Order and billing details processed via Stripe at checkout</li>
-          <li>Basic usage data (e.g. pages visited) if analytics are enabled</li>
+          <li>Reviews you submit, and the email used to verify a purchase before posting one</li>
+          <li>Basic browsing and advertising data via Meta Pixel (see Cookies below)</li>
         </ul>
 
         <h2>How we use it</h2>
         <ul>
           <li>To respond to enquiries and process orders</li>
           <li>To fulfil and ship gifts you&rsquo;ve purchased</li>
-          <li>To improve the website and our service</li>
+          <li>To send order confirmations and, if you&rsquo;ve opted in, occasion reminders</li>
+          <li>To improve the website and measure the performance of our advertising</li>
         </ul>
 
         <h2>Payment processing</h2>
@@ -68,7 +60,18 @@ export default function PrivacyPolicyPage() {
 
         <h2>Cookies</h2>
         <p>
-          <em>[Add details here once analytics/marketing cookies, if any, are finalised.]</em>
+          We use Meta Pixel, which places cookies to measure the performance of our Facebook and
+          Instagram advertising and to understand how visitors use our site. You can control or
+          disable these through your browser&rsquo;s cookie and privacy settings, or via your{" "}
+          <a
+            href="https://www.facebook.com/adpreferences/ad_settings"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Facebook Ad Preferences
+          </a>
+          . We also use your browser&rsquo;s local storage (not a cookie) to remember the
+          contents of your shopping cart between visits.
         </p>
 
         <h2>Contact</h2>
