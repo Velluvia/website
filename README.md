@@ -231,9 +231,34 @@ code block). If this variable isn't set, nothing renders — safe to deploy with
 **Worth doing next:** this only tracks from the customer's browser, which ad blockers and
 Safari/iOS privacy settings increasingly block or degrade — Meta's own setup wizard recommends
 pairing it with **Conversions API**, which reports events like completed purchases from the
-*server* instead, where nothing can block it. The Stripe webhook (`app/api/webhooks/stripe/route.ts`)
+*server* instead, where nothing can block it. ~~The Stripe webhook (`app/api/webhooks/stripe/route.ts`)
 that already fires on every completed order is the natural place to add this — not yet built, but
-straightforward to add there when ready.
+straightforward to add there when ready.~~ **Done** — see below.
+
+## Meta Conversions API (server-side purchase tracking)
+
+Fires a `Purchase` event to Meta directly from the server the moment an order completes
+(`lib/meta-conversions.ts`, called from the Stripe webhook), alongside the existing browser
+Pixel. Both events share the same ID (the Stripe checkout session ID) via `event_id` /
+`eventID`, so Meta merges them into a single counted conversion rather than double-counting —
+this is Meta's own documented pattern for running Pixel and Conversions API together, not a
+workaround.
+
+The two events run independently:
+- **Server-side** (`app/api/webhooks/stripe/route.ts`): fires regardless of the customer's
+  browser/ad-blocker situation — this is the reliable one.
+- **Client-side** (`components/MetaPurchaseEvent.tsx`, rendered on `/checkout/success`): fires
+  the Pixel's own `Purchase` event with the accurate order value, fetched from a small endpoint
+  (`app/api/checkout/session/route.ts`) rather than trusting anything from the URL.
+
+**Setup:** add `META_CONVERSIONS_API_TOKEN` in Vercel — from Meta Events Manager → your Pixel →
+Settings → Conversions API → Generate access token. This is a genuine secret, unlike the Pixel
+ID — never commit it or share it outside of Vercel's environment variables. If it's not set, the
+server-side event silently skips (logged, not thrown) — the browser Pixel and the rest of
+checkout keep working normally either way.
+
+**Privacy note:** the customer's email is SHA-256 hashed before being sent to Meta, per their
+own requirement — never transmitted in plain text.
 
 ## Trust signals & cross-sell
 

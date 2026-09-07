@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ClearCartOnMount from "@/components/ClearCartOnMount";
+import MetaPurchaseEvent from "@/components/MetaPurchaseEvent";
 
 export const metadata: Metadata = {
   title: "Order Confirmed",
 };
 
-export default function CheckoutSuccessPage() {
+export default function CheckoutSuccessPage({
+  searchParams,
+}: {
+  searchParams: { session_id?: string };
+}) {
   return (
     <section>
       <ClearCartOnMount />
+      {searchParams.session_id && <MetaPurchaseEvent sessionId={searchParams.session_id} />}
       <div className="wrap empty-state">
         <span className="eyebrow">Order Confirmed</span>
         <h1 style={{ fontSize: 38, margin: "16px 0" }}>Thank you for your order</h1>

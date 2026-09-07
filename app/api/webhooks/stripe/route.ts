@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getSql, ensureOrdersTable } from "@/lib/db";
 import { sendEmail } from "@/lib/mailer";
+import { sendMetaPurchaseEvent } from "@/lib/meta-conversions";
 import { getProduct, formatPrice } from "@/lib/products";
 import type Stripe from "stripe";
 
@@ -174,6 +175,21 @@ export async function POST(req: NextRequest) {
     console.error(
       `Order ${session.id} completed but no confirmation email could be sent — check RESEND_API_KEY and that your sending domain is verified in Resend.`
     );
+  }
+
+  // Best-effort, isolated from everything above — a Meta API hiccup should
+  // never affect whether the customer gets their confirmation email.
+  try {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk";
+    await sendMetaPurchaseEvent({
+      eventId: session.id, // shared with the client-side Pixel event for deduplication
+      email: session.customer_details?.email || undefined,
+      valueMinorUnits: session.amount_total || 0,
+      currency: session.currency || "gbp",
+      eventSourceUrl: `${siteUrl}/checkout/success`,
+    });
+  } catch (err) {
+    console.error("Meta Purchase event failed (order still processed normally):", err);
   }
 
   // Always acknowledge the webhook once we've made a genuine attempt, so Stripe
