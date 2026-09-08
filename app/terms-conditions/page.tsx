@@ -31,7 +31,7 @@ export default function TermsPage() {
         <ul>
           <li>Standard Delivery: £3.99, or free on orders over £200 — estimated 3&ndash;5 business days</li>
           <li>Express Delivery: £7.99 — estimated 1&ndash;2 business days</li>
-          <li>We currently deliver to the UK, Ireland, the United States, Canada and Australia</li>
+          <li>We currently deliver within the United Kingdom only</li>
         </ul>
 
         <h2>4. Cancellations &amp; returns</h2>
@@ -49,10 +49,25 @@ export default function TermsPage() {
 
         <h2>6. Liability</h2>
         <p>
-          <em>
-            [Add your limitation-of-liability clause here — this typically needs solicitor input
-            to balance enforceability with consumer protection law.]
-          </em>
+          Nothing in these terms excludes or limits our liability for death or personal injury
+          caused by our negligence, for fraud, or for anything else that cannot lawfully be
+          excluded or limited under UK law.
+        </p>
+        <p>
+          Subject to that, our liability to you for any single order is limited to the price you
+          paid for that order. We are not liable for indirect or consequential losses — for
+          example, loss of profit, loss of opportunity, or losses arising from a gift not
+          arriving in time for a specific occasion, provided we have taken reasonable steps to
+          deliver within the estimated timeframe stated at checkout.
+        </p>
+        <p>
+          We are not responsible for delays or failures caused by events outside our reasonable
+          control, including but not limited to courier delays, extreme weather, or industrial
+          action.
+        </p>
+        <p>
+          This clause does not affect your statutory rights as a consumer under the Consumer
+          Rights Act 2015 or the Consumer Contracts Regulations 2013.
         </p>
 
         <h2>7. Governing law</h2>

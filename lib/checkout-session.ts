@@ -80,7 +80,7 @@ export async function createCheckoutSession(
   return stripe.checkout.sessions.create({
     mode: "payment",
     line_items,
-    shipping_address_collection: { allowed_countries: ["GB", "IE", "US", "CA", "AU"] },
+    shipping_address_collection: { allowed_countries: ["GB"] },
     shipping_options: [
       {
         shipping_rate_data: {

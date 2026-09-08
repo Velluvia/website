@@ -40,17 +40,13 @@ export default function DeliveryPage() {
         </p>
 
         <h2>Where we deliver</h2>
-        <p>We currently ship to:</p>
-        <ul>
-          <li>United Kingdom</li>
-          <li>Ireland</li>
-          <li>United States</li>
-          <li>Canada</li>
-          <li>Australia</li>
-        </ul>
         <p>
-          Don&rsquo;t see your country listed? <Link href="/contact">Get in touch</Link> and
-          we&rsquo;ll let you know if we can arrange delivery.
+          We currently deliver within the <strong>United Kingdom only</strong>.
+        </p>
+        <p>
+          Based outside the UK? <Link href="/contact">Get in touch</Link> — we&rsquo;re not set
+          up for international delivery yet, but we&rsquo;re happy to let you know if that
+          changes.
         </p>
 
         <h2>Order processing</h2>
