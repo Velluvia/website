@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
-import ProductGallery from "@/components/ProductGallery";
+import ProductVariantGallery from "@/components/ProductVariantGallery";
 import ReviewsSection from "@/components/ReviewsSection";
 import TrustBadges from "@/components/TrustBadges";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
@@ -30,7 +30,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     <section>
       <div className="wrap">
         <div className="pdp-grid">
-          <ProductGallery images={product.images} alt={product.name} />
+          <ProductVariantGallery
+            variants={product.variants}
+            fallbackImages={product.images}
+            alt={product.name}
+          />
 
           <div className="pdp-info">
             {collection && (

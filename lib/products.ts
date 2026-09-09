@@ -369,43 +369,12 @@ export const products: Product[] = [
     monogramTile: true,
   },
   {
-    slug: "home-kitchen-edit",
-    collection: "home",
-    name: "Everyday Essentials Kitchen Edit",
-    price: 5800,
-    currency: "gbp",
-    description:
-      "A warm-toned edit of kitchen staples, gifted the Velluvia way — presented with our botanical monogram and a hand-tied ribbon.",
-    details: [
-      "Curated seasonal kitchen essentials",
-      "Wrapped in Velluvia Home packaging with botanical accent",
-      "Includes a handwritten-style thank-you card",
-    ],
-    images: [],
-    monogramTile: true,
-  },
-  {
-    slug: "home-warming-hamper",
-    collection: "home",
-    name: "Home Warming Hamper",
-    price: 7200,
-    currency: "gbp",
-    description:
-      "A generous hamper for a first home, a housewarming, or simply a thank you — soft furnishings and pantry pieces layered in tissue and ribbon.",
-    details: [
-      "A mix of pantry and soft-furnishing pieces, curated seasonally",
-      "Packed in a lined presentation basket",
-      "Finished with the Velluvia Home ribbon and hang tag",
-    ],
-    images: [],
-    monogramTile: true,
-  },
-  {
     slug: "home-11-piece-cast-iron-cookware-set",
     collection: "home",
     name: "11-Piece Enamelled Cast Iron Cookware Set",
     price: 16599,
     currency: "gbp",
+    order: 0,
     description:
       "There is a quiet confidence in a kitchen stocked with cookware that simply works — pieces you reach for without a second thought, that go from stovetop to oven to table without missing a beat. The Velluvia 11-Piece Enamelled Cast Iron Cookware Set was built around that idea: fewer gaps, better choices, everyday essentials elevated to something you're proud to cook with. Each piece is finished with a smooth, glossy enamel exterior and a cream interior, so food releases cleanly and colour is easy to judge as you cook — no seasoning, no rust, and none of the maintenance that traditional bare cast iron demands.",
     details: [
@@ -425,6 +394,32 @@ export const products: Product[] = [
       "/images/cookware-set/cookware-set-blue-full-alt.jpg",
       "/images/cookware-set/cookware-set-colour-swatch.jpg",
     ],
+    variants: [
+      {
+        name: "Cobalt Blue",
+        hex: "#2C5F8A",
+        images: [
+          "/images/cookware-set/cookware-set-hero.jpg",
+          "/images/cookware-set/cookware-set-blue-full.jpg",
+          "/images/cookware-set/cookware-set-blue-full-alt.jpg",
+        ],
+      },
+      {
+        name: "Signature Red",
+        hex: "#A6241E",
+        images: [
+          "/images/cookware-set/cookware-set-red-lifestyle.jpg",
+          "/images/cookware-set/cookware-set-red-full.jpg",
+        ],
+      },
+      {
+        name: "Turquoise",
+        hex: "#2E93A0",
+        // Photography for this colourway is limited to the comparison shot below —
+        // swap in dedicated Turquoise product photos here once available.
+        images: ["/images/cookware-set/cookware-set-colour-swatch.jpg"],
+      },
+    ],
   },
 ];
 
@@ -433,7 +428,14 @@ export function getCollection(slug: string): Collection | undefined {
 }
 
 export function getProductsByCollection(slug: string): Product[] {
-  return products.filter((p) => p.collection === slug).sort((a, b) => a.price - b.price);
+  return products
+    .filter((p) => p.collection === slug)
+    .sort((a, b) => {
+      const orderA = a.order ?? Infinity;
+      const orderB = b.order ?? Infinity;
+      if (orderA !== orderB) return orderA - orderB;
+      return a.price - b.price;
+    });
 }
 
 export function getProduct(slug: string): Product | undefined {

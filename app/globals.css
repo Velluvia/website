@@ -892,6 +892,48 @@ section {
   display: block;
 }
 
+/* -- colour variant picker -- */
+.variant-picker {
+  margin-top: 16px;
+}
+.variant-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.variant-swatches {
+  display: flex;
+  gap: 10px;
+}
+.variant-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.variant-swatch:hover {
+  transform: scale(1.08);
+}
+.variant-swatch.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* -- lightbox -- */
 .lightbox {
   position: fixed;
