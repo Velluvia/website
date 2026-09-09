@@ -1076,6 +1076,11 @@ section {
   text-align: center;
   font-size: 14px;
 }
+.cart-price {
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0;
+}
 .cart-summary {
   background: var(--sand);
   padding: 30px;
@@ -1772,8 +1777,30 @@ section {
   }
   .cart-line {
     grid-template-columns: 64px 1fr;
-    grid-template-areas: "thumb name" "thumb qty" "thumb price";
-    row-gap: 8px;
+    grid-template-areas:
+      "thumb name"
+      "thumb qty"
+      "thumb price";
+    row-gap: 10px;
+    column-gap: 14px;
+  }
+  .cart-line .thumb {
+    grid-area: thumb;
+  }
+  .cart-line .cart-info {
+    grid-area: name;
+    min-width: 0;
+  }
+  .cart-line .cart-info .product-name {
+    font-size: 15px;
+    word-break: break-word;
+  }
+  .cart-line .qty-control {
+    grid-area: qty;
+    justify-self: start;
+  }
+  .cart-line .cart-price {
+    grid-area: price;
   }
   .hero {
     padding: 70px 0 60px;

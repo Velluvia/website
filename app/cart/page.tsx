@@ -87,7 +87,7 @@ export default function CartPage() {
                     </div>
                   )}
                 </div>
-                <div>
+                <div className="cart-info">
                   <p className="product-name" style={{ marginBottom: 4 }}>
                     <Link href={`/products/${product.slug}`}>{product.name}</Link>
                   </p>
@@ -108,7 +108,7 @@ export default function CartPage() {
                     +
                   </button>
                 </div>
-                <p style={{ fontWeight: 600, color: "var(--navy)" }}>
+                <p className="cart-price">
                   {formatPrice(product.price * quantity)}
                 </p>
               </div>

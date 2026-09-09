@@ -400,6 +400,32 @@ export const products: Product[] = [
     images: [],
     monogramTile: true,
   },
+  {
+    slug: "home-11-piece-cast-iron-cookware-set",
+    collection: "home",
+    name: "11-Piece Enamelled Cast Iron Cookware Set",
+    price: 16599,
+    currency: "gbp",
+    description:
+      "There is a quiet confidence in a kitchen stocked with cookware that simply works — pieces you reach for without a second thought, that go from stovetop to oven to table without missing a beat. The Velluvia 11-Piece Enamelled Cast Iron Cookware Set was built around that idea: fewer gaps, better choices, everyday essentials elevated to something you're proud to cook with. Each piece is finished with a smooth, glossy enamel exterior and a cream interior, so food releases cleanly and colour is easy to judge as you cook — no seasoning, no rust, and none of the maintenance that traditional bare cast iron demands.",
+    details: [
+      "11 coordinated pieces: large and medium round casseroles with lids, an oval casserole with lid, a shallow braiser with lid, a saucepan with lid, a mini cocotte with lid, a rectangular roasting dish, a square ridged griddle pan, a round skillet, a loaf/terrine dish and a round serving dish",
+      "Even, reliable heat retention across every piece, for consistent searing, braising and roasting",
+      "Enamelled cast iron resists chipping and cracking under normal use, with no seasoning required",
+      "Hob, oven and grill safe (see care notes); hand wash recommended to preserve the glaze",
+      "Available in Cobalt Blue, Signature Red or Turquoise",
+      "Presented in Velluvia's signature packaging with tissue wrap, branded seal, ribbon and thank-you card",
+      "Perfect for: housewarmings, weddings, first homes, kitchen upgrades, or a considered gift for the cook in your life",
+    ],
+    images: [
+      "/images/cookware-set/cookware-set-hero.jpg",
+      "/images/cookware-set/cookware-set-red-lifestyle.jpg",
+      "/images/cookware-set/cookware-set-blue-full.jpg",
+      "/images/cookware-set/cookware-set-red-full.jpg",
+      "/images/cookware-set/cookware-set-blue-full-alt.jpg",
+      "/images/cookware-set/cookware-set-colour-swatch.jpg",
+    ],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
