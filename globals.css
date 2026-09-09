@@ -1828,6 +1828,8 @@ section {
   }
   .cart-line .thumb {
     grid-area: thumb;
+    width: 64px;
+    height: 64px;
   }
   .cart-line .cart-info {
     grid-area: name;
