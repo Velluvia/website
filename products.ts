@@ -18,6 +18,7 @@ export const collections: Collection[] = [
       "Our premium tier for executive and high-value corporate gifting — fine writing instruments, leather goods and keepsakes finished in gold on black.",
     accent: "charcoal",
     image: "/images/product-writingset-1.jpg",
+    comingSoon: true,
   },
   {
     slug: "office",
@@ -26,6 +27,7 @@ export const collections: Collection[] = [
     description:
       "A practical, polished edit for desks and onboarding — notebooks, organisers and welcome kits designed for hybrid teams and new starters alike.",
     accent: "navy",
+    image: "/images/office-pen/office-pen-hero.jpg",
   },
   {
     slug: "home",
@@ -35,6 +37,7 @@ export const collections: Collection[] = [
       "Warm, considered pieces for the kitchen and the home — the softer side of Velluvia, marked by our navy-and-blush botanical monogram.",
     accent: "sage",
     image: "/images/logo-home.jpg",
+    comingSoon: true,
   },
 ];
 
@@ -273,25 +276,6 @@ export const products: Product[] = [
     ],
   },
   {
-    slug: "reminder-tumbler",
-    collection: "signature",
-    name: "The Reminder Tumbler",
-    price: 2199,
-    currency: "gbp",
-    description:
-      "A Little Nudge, Every Sip. A daily dose of encouragement in stainless steel. The Reminder Tumbler is personalised with a name, initial, or message of your choice, and made to be used every single day — not just unwrapped once and shelved.",
-    details: [
-      "20oz insulated stainless steel tumbler with straw & lid",
-      "Rose-gold or matte black finish",
-      "Choice of engraved message: 'Not a Day Over Fabulous', 'Sometimes You Forget You're Awesome', 'Do It With Love', or fully custom text",
-      "Optional name or initial engraving",
-      "Presented in a compact Velluvia gift box with ribbon",
-      "Perfect for: birthdays, thank-you gifts, best friends, coworkers, self-care, or just because",
-    ],
-    images: [],
-    monogramTile: true,
-  },
-  {
     slug: "luxe-leather-writing-set",
     collection: "luxe",
     name: "Luxe Leather Writing Set",
@@ -322,6 +306,35 @@ export const products: Product[] = [
     ],
     images: [],
     monogramTile: true,
+  },
+  {
+    slug: "office-signature-pen",
+    collection: "office",
+    name: "The Velluvia Signature Pen",
+    price: 599,
+    currency: "gbp",
+    description:
+      "Timeless Elegance, Thoughtful Impression. The Velluvia Signature Pen is a premium ballpoint crafted for the moments that matter — signing a contract, welcoming a new hire, or simply making a well-appointed desk feel a little more considered. Finished in deep black lacquer with polished gold-tone trim and engraved with the Velluvia mark, it's designed to be picked up and noticed, not left in a drawer.",
+    details: [
+      "Black lacquer barrel with polished gold-tone clip, bands and tip",
+      "Engraved Velluvia 'V' monogram and wordmark on the barrel",
+      "Smooth twist-action ballpoint mechanism",
+      "Presented in a rigid, foil-branded Velluvia Signature gift box with satin ribbon",
+      "A refined pairing with our notebooks and correspondence sets for a complete desk gift",
+      "Perfect for: onboarding new joiners, promotions, retirements, client thank-yous, corporate milestones, or as a personal everyday-carry upgrade",
+    ],
+    images: [
+      "/images/office-pen/office-pen-hero.jpg",
+      "/images/office-pen/office-pen-lifestyle-writing.jpg",
+      "/images/office-pen/office-pen-boxed.jpg",
+      "/images/office-pen/office-pen-notebook.jpg",
+      "/images/office-pen/office-pen-macro.jpg",
+      "/images/office-pen/office-pen-marble-card.jpg",
+      "/images/office-pen/office-pen-hand-writing.jpg",
+      "/images/office-pen/office-pen-birdseye.jpg",
+      "/images/office-pen/office-pen-flatlay.jpg",
+      "/images/office-pen/office-pen-angled.jpg",
+    ],
   },
   {
     slug: "office-welcome-kit",
@@ -356,36 +369,57 @@ export const products: Product[] = [
     monogramTile: true,
   },
   {
-    slug: "home-kitchen-edit",
+    slug: "home-11-piece-cast-iron-cookware-set",
     collection: "home",
-    name: "Everyday Essentials Kitchen Edit",
-    price: 5800,
+    name: "11-Piece Enamelled Cast Iron Cookware Set",
+    price: 16599,
     currency: "gbp",
+    order: 0,
     description:
-      "A warm-toned edit of kitchen staples, gifted the Velluvia way — presented with our botanical monogram and a hand-tied ribbon.",
+      "There is a quiet confidence in a kitchen stocked with cookware that simply works — pieces you reach for without a second thought, that go from stovetop to oven to table without missing a beat. The Velluvia 11-Piece Enamelled Cast Iron Cookware Set was built around that idea: fewer gaps, better choices, everyday essentials elevated to something you're proud to cook with. Each piece is finished with a smooth, glossy enamel exterior and a cream interior, so food releases cleanly and colour is easy to judge as you cook — no seasoning, no rust, and none of the maintenance that traditional bare cast iron demands.",
     details: [
-      "Curated seasonal kitchen essentials",
-      "Wrapped in Velluvia Home packaging with botanical accent",
-      "Includes a handwritten-style thank-you card",
+      "11 coordinated pieces: large and medium round casseroles with lids, an oval casserole with lid, a shallow braiser with lid, a saucepan with lid, a mini cocotte with lid, a rectangular roasting dish, a square ridged griddle pan, a round skillet, a loaf/terrine dish and a round serving dish",
+      "Even, reliable heat retention across every piece, for consistent searing, braising and roasting",
+      "Enamelled cast iron resists chipping and cracking under normal use, with no seasoning required",
+      "Hob, oven and grill safe (see care notes); hand wash recommended to preserve the glaze",
+      "Available in Cobalt Blue, Signature Red or Turquoise",
+      "Presented in Velluvia's signature packaging with tissue wrap, branded seal, ribbon and thank-you card",
+      "Perfect for: housewarmings, weddings, first homes, kitchen upgrades, or a considered gift for the cook in your life",
     ],
-    images: [],
-    monogramTile: true,
-  },
-  {
-    slug: "home-warming-hamper",
-    collection: "home",
-    name: "Home Warming Hamper",
-    price: 7200,
-    currency: "gbp",
-    description:
-      "A generous hamper for a first home, a housewarming, or simply a thank you — soft furnishings and pantry pieces layered in tissue and ribbon.",
-    details: [
-      "A mix of pantry and soft-furnishing pieces, curated seasonally",
-      "Packed in a lined presentation basket",
-      "Finished with the Velluvia Home ribbon and hang tag",
+    images: [
+      "/images/cookware-set/cookware-set-hero.jpg",
+      "/images/cookware-set/cookware-set-red-lifestyle.jpg",
+      "/images/cookware-set/cookware-set-blue-full.jpg",
+      "/images/cookware-set/cookware-set-red-full.jpg",
+      "/images/cookware-set/cookware-set-blue-full-alt.jpg",
+      "/images/cookware-set/cookware-set-colour-swatch.jpg",
     ],
-    images: [],
-    monogramTile: true,
+    variants: [
+      {
+        name: "Cobalt Blue",
+        hex: "#2C5F8A",
+        images: [
+          "/images/cookware-set/cookware-set-hero.jpg",
+          "/images/cookware-set/cookware-set-blue-full.jpg",
+          "/images/cookware-set/cookware-set-blue-full-alt.jpg",
+        ],
+      },
+      {
+        name: "Signature Red",
+        hex: "#A6241E",
+        images: [
+          "/images/cookware-set/cookware-set-red-lifestyle.jpg",
+          "/images/cookware-set/cookware-set-red-full.jpg",
+        ],
+      },
+      {
+        name: "Turquoise",
+        hex: "#2E93A0",
+        // Photography for this colourway is limited to the comparison shot below —
+        // swap in dedicated Turquoise product photos here once available.
+        images: ["/images/cookware-set/cookware-set-colour-swatch.jpg"],
+      },
+    ],
   },
 ];
 
@@ -394,7 +428,14 @@ export function getCollection(slug: string): Collection | undefined {
 }
 
 export function getProductsByCollection(slug: string): Product[] {
-  return products.filter((p) => p.collection === slug).sort((a, b) => a.price - b.price);
+  return products
+    .filter((p) => p.collection === slug)
+    .sort((a, b) => {
+      const orderA = a.order ?? Infinity;
+      const orderB = b.order ?? Infinity;
+      if (orderA !== orderB) return orderA - orderB;
+      return a.price - b.price;
+    });
 }
 
 export function getProduct(slug: string): Product | undefined {
