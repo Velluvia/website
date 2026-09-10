@@ -26,6 +26,7 @@ export type Product = {
   monogramTile?: boolean; // render styled fallback tile instead of photography
   order?: number; // optional manual position within its collection; lower shows first. Products without it sort after, by price.
   variants?: ProductVariant[]; // optional colour/style options; when present, the PDP shows a swatch picker
+  rrpPence?: number; // genuine supplier/manufacturer RRP, in pence. Only set this when you have a real, verifiable figure — it renders as a struck-through comparison price. Leave unset rather than estimate.
 };
 
 export type CartLine = {

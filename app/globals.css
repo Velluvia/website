@@ -588,6 +588,12 @@ section {
   border-radius: var(--radius);
   font-weight: 600;
 }
+.corner-tag.savings-tag {
+  left: auto;
+  right: 10px;
+  background: var(--navy);
+  color: var(--gold-light);
+}
 .shop-cta {
   position: absolute;
   inset: auto 0 0 0;
@@ -684,6 +690,13 @@ section {
   font-size: 13px;
   color: var(--gold-dark);
   font-weight: 600;
+}
+.product-price .rrp-price {
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: line-through;
 }
 
 /* monogram fallback tile for products without photography */
@@ -1046,6 +1059,26 @@ section {
   color: var(--navy);
   font-weight: 600;
   margin-bottom: 22px;
+}
+.pdp-info .price .rrp-price {
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+}
+.pdp-info .price .savings-badge {
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: var(--radius);
 }
 .pdp-info .desc {
   color: var(--ink-soft);

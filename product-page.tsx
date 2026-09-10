@@ -6,7 +6,7 @@ import ProductVariantGallery from "@/components/ProductVariantGallery";
 import ReviewsSection from "@/components/ReviewsSection";
 import TrustBadges from "@/components/TrustBadges";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
-import { formatPrice, getCollection, getProduct, products } from "@/lib/products";
+import { formatPrice, getCollection, getProduct, getSavingsPercent, products } from "@/lib/products";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -25,6 +25,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = getProduct(params.slug);
   if (!product) notFound();
   const collection = getCollection(product.collection);
+  const savingsPercent = getSavingsPercent(product);
 
   return (
     <section>
@@ -43,7 +44,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </Link>
             )}
             <h1>{product.name}</h1>
-            <p className="price">{formatPrice(product.price)}</p>
+            <p className="price">
+              {formatPrice(product.price)}
+              {product.rrpPence && (
+                <>
+                  <span className="rrp-price">RRP {formatPrice(product.rrpPence)}</span>
+                  {savingsPercent && <span className="savings-badge">Save {savingsPercent}%</span>}
+                </>
+              )}
+            </p>
             <p className="desc">{product.description}</p>
 
             <ul className="details">
