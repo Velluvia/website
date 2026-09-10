@@ -48,6 +48,7 @@ export const products: Product[] = [
     name: "The Blush & Bloom Gift Set",
     price: 2599,
     currency: "gbp",
+    rrpPence: 3599,
     description:
       "A beautifully curated celebration of femininity, comfort, and self-care. Presented in Velluvia's signature blush-pink packaging, The Blush & Bloom Gift Set brings together cosy comforts and pampering treats — designed to turn an ordinary moment into something wonderfully memorable.",
     details: [
@@ -73,6 +74,7 @@ export const products: Product[] = [
     name: "The Dino Adventure Gift Set",
     price: 2999,
     currency: "gbp",
+    rrpPence: 3999,
     description:
       "A playful, thoughtfully curated gift designed to spark curiosity, creativity, and big smiles in little explorers. The Dino Adventure Gift Set brings together fun, comfort, and practical everyday essentials in a charming dinosaur theme.",
     details: [
@@ -97,6 +99,7 @@ export const products: Product[] = [
     name: "The Frozen Dreams Gift Set",
     price: 2999,
     currency: "gbp",
+    rrpPence: 3999,
     description:
       "A magical gift designed for little dreamers who love sparkle, imagination, and cosy moments. The Frozen Dreams Gift Set brings together a beautiful collection of winter-inspired essentials in enchanting shades of icy blue, soft white, and pastel pink.",
     details: [
@@ -121,6 +124,7 @@ export const products: Product[] = [
     name: "The Blush Serenity Gift Set",
     price: 1899,
     currency: "gbp",
+    rrpPence: 2499,
     description:
       "A Little Luxury, Just for Her. A beautifully curated gift of comfort, relaxation, and self-care, The Blush Serenity Gift Set is designed to make her feel cherished, appreciated, and truly special. Thoughtfully brought together in soft blush and elegant neutral tones, this indulgent collection combines everyday luxuries with soothing treats.",
     details: [
@@ -146,6 +150,7 @@ export const products: Product[] = [
     name: "The Pretty & Pampered Gift Set",
     price: 1999,
     currency: "gbp",
+    rrpPence: 2599,
     description:
       "A Little Pretty. A Little Pampering. A Lot of Love. A playful, feminine treat designed to make her smile, The Pretty & Pampered Gift Set brings together cosy comforts, sweet indulgences, and relaxing self-care essentials in one beautifully presented package, arranged in a soft pink aesthetic.",
     details: [
@@ -171,6 +176,7 @@ export const products: Product[] = [
     name: "The Gentleman's Signature Gift Set",
     price: 2599,
     currency: "gbp",
+    rrpPence: 3099,
     description:
       "Thoughtful. Timeless. Truly Him. A refined collection created for the man who deserves to feel appreciated, celebrated, and effortlessly looked after. The Gentleman's Signature Gift Set combines practical everyday essentials with moments of relaxation and indulgence in a sophisticated black-and-gold presentation.",
     details: [
@@ -198,6 +204,7 @@ export const products: Product[] = [
     name: "The Citrus Bright Gift Set",
     price: 1999,
     currency: "gbp",
+    rrpPence: 2599,
     description:
       "A Burst of Sunshine. A Moment Just for You. Bright, uplifting, and beautifully curated, The Citrus Bright Gift Set is a joyful collection designed to bring a little sunshine into someone's day, inspired by the fresh, cheerful energy of citrus.",
     details: [
@@ -225,6 +232,7 @@ export const products: Product[] = [
     name: "The Pink Blossom Gift Set",
     price: 2599,
     currency: "gbp",
+    rrpPence: 3099,
     description:
       "Made Especially. Just for You. A beautifully curated celebration of love, appreciation, and togetherness, The Pink Blossom Gift Set is designed to make someone feel cherished, valued, and truly special. Wrapped in soft pinks and romantic floral details, this luxurious collection combines cosy comforts, indulgent self-care treats, and heartfelt keepsakes.",
     details: [
@@ -254,6 +262,7 @@ export const products: Product[] = [
     name: "The Unicorn Dream Gift Set",
     price: 2599,
     currency: "gbp",
+    rrpPence: 3599,
     description:
       "Sparkle. Dream. Believe. A magical collection created for little dreamers, The Unicorn Dream Gift Set brings together adorable treasures and delightful everyday essentials in a dreamy world of pastel colours, rainbows, and unicorns.",
     details: [
@@ -279,8 +288,9 @@ export const products: Product[] = [
     slug: "luxe-leather-writing-set",
     collection: "luxe",
     name: "Luxe Leather Writing Set",
-    price: 9500,
+    price: 1599,
     currency: "gbp",
+    rrpPence: 1999,
     description:
       "A saffiano-leather folio and twin-pen set, foil-stamped with the Velluvia Luxe mark — our most requested piece for executive onboarding and client gifting.",
     details: [
@@ -313,6 +323,7 @@ export const products: Product[] = [
     name: "The Velluvia Signature Pen",
     price: 599,
     currency: "gbp",
+    rrpPence: 1099,
     description:
       "Timeless Elegance, Thoughtful Impression. The Velluvia Signature Pen is a premium ballpoint crafted for the moments that matter — signing a contract, welcoming a new hire, or simply making a well-appointed desk feel a little more considered. Finished in deep black lacquer with polished gold-tone trim and engraved with the Velluvia mark, it's designed to be picked up and noticed, not left in a drawer.",
     details: [
