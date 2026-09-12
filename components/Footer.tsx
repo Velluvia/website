@@ -31,7 +31,9 @@ export default function Footer() {
             <Link href="/delivery">Delivery &amp; Shipping</Link>
             <Link href="/cart">Cart</Link>
             <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a>
-            <p>@Velluvia</p>
+            <p style={{ margin: "2px 0" }}>Facebook: Velluvia Gifting</p>
+            <p style={{ margin: "2px 0" }}>Instagram: @velluvia.co.uk</p>
+            <p style={{ margin: "2px 0" }}>TikTok: @velluvia.co.uk</p>
           </div>
 
           <div>

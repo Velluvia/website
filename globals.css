@@ -1255,6 +1255,29 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+/* -- shipping summary card (contact page) -- */
+.shipping-summary {
+  background: var(--sand);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 30px;
+}
+.shipping-summary p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+.shipping-summary p:first-of-type strong {
+  color: var(--sage-deep);
+}
+.shipping-summary a {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
 .legal-page h2 {
   font-size: 22px;
   margin: 40px 0 14px;
