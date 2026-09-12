@@ -87,7 +87,8 @@ export default function ReturnsPolicyPage() {
         <h2>Contact</h2>
         <p>
           For anything related to returns, email{" "}
-          <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a> with your order number.
+          <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a> or call{" "}
+          <a href="tel:+447480854250">07480 854250</a> with your order number.
         </p>
       </div>
     </section>

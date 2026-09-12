@@ -1424,6 +1424,30 @@ section {
   color: var(--ink-soft);
   margin: 2px 0 0;
 }
+a.trust-badge-link {
+  text-decoration: none;
+  border-radius: var(--radius);
+  margin: -6px;
+  padding: 6px;
+  transition: background 0.15s ease;
+}
+a.trust-badge-link:hover {
+  background: var(--sand);
+}
+a.trust-badge-link .trust-label {
+  color: var(--gold-dark);
+}
+
+/* -- product page returns note -- */
+.pdp-returns-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 8px 0 0;
+}
+.pdp-returns-note a {
+  color: var(--gold-dark);
+  font-weight: 600;
+}
 
 /* -- free shipping progress bar -- */
 .shipping-bar {

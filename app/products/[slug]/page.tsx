@@ -27,8 +27,39 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const collection = getCollection(product.collection);
   const savingsPercent = getSavingsPercent(product);
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: product.images,
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "GBP",
+      price: (product.price / 100).toFixed(2),
+      availability: collection?.comingSoon
+        ? "https://schema.org/PreOrder"
+        : "https://schema.org/InStock",
+      url: `https://velluvia.co.uk/products/${product.slug}`,
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "GB",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 14,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/ReturnShippingFees",
+        merchantReturnLink: "https://velluvia.co.uk/returns-policy",
+      },
+    },
+  };
+
   return (
     <section>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <div className="wrap">
         <div className="pdp-grid">
           <ProductVariantGallery
@@ -54,6 +85,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               )}
             </p>
             <p className="desc">{product.description}</p>
+            <p className="pdp-returns-note">
+              14-day returns &middot;{" "}
+              <Link href="/returns-policy">Full returns policy &amp; contact info &rarr;</Link>
+            </p>
 
             <ul className="details">
               {product.details.map((d) => (
