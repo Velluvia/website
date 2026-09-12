@@ -1278,6 +1278,9 @@ section {
   color: var(--gold-dark);
   font-weight: 600;
 }
+.shipping-summary a + br + a {
+  margin-top: 4px;
+}
 .legal-page h2 {
   font-size: 22px;
   margin: 40px 0 14px;

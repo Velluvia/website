@@ -46,6 +46,10 @@ export default function ContactPage() {
               <Link href="/delivery" style={{ fontSize: 13 }}>
                 Full delivery &amp; shipping details &rarr;
               </Link>
+              <br />
+              <Link href="/returns-policy" style={{ fontSize: 13 }}>
+                Returns &amp; refunds policy &rarr;
+              </Link>
             </div>
           </div>
 
