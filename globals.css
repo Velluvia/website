@@ -1256,7 +1256,38 @@ section {
   }
 }
 
-/* -- shipping summary card (contact page) -- */
+/* -- shipping banner (homepage top strip) -- */
+.shipping-banner {
+  background: var(--navy);
+  padding: 10px 0;
+}
+.shipping-banner-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--gold-light);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.shipping-banner-inner strong {
+  color: #fff;
+}
+.shipping-banner .divider {
+  opacity: 0.5;
+}
+@media (max-width: 640px) {
+  .shipping-banner-inner {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .shipping-banner .divider:nth-of-type(2) {
+    display: none;
+  }
+}
+
 .shipping-summary {
   background: var(--sand);
   border: 1px solid var(--line);
