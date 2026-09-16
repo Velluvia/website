@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Product } from "@/lib/types";
 import { formatPrice, getOccasionTags, getSavingsPercent } from "@/lib/products";
+import QuickAddButton from "./QuickAddButton";
 
 export default function ProductCard({
   product,
@@ -32,6 +33,11 @@ export default function ProductCard({
         )}
         <span className="shop-cta">Shop This Set</span>
       </div>
+      {product.badge && (
+        <span className={`product-badge product-badge-${product.badge}`}>
+          {product.badge === "new" ? "New" : "Bestseller"}
+        </span>
+      )}
       <p className="product-name">{product.name}</p>
       <p className="product-price">
         {formatPrice(product.price)}
@@ -39,6 +45,7 @@ export default function ProductCard({
           <span className="rrp-price">RRP {formatPrice(product.rrpPence)}</span>
         )}
       </p>
+      <QuickAddButton slug={product.slug} />
       {occasions.length > 0 && (
         <div className="occasion-pills">
           {occasions.map((o) => (

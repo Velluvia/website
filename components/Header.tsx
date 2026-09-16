@@ -10,6 +10,7 @@ export default function Header() {
 
   const links = [
     { href: "/collections", label: "Collections" },
+    { href: "/gift-card", label: "Gift Cards" },
     { href: "/about", label: "Our Story" },
     { href: "/contact", label: "Contact" },
   ];
