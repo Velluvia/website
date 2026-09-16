@@ -2,7 +2,7 @@ export default function ShippingBanner() {
   return (
     <div className="shipping-banner">
       <div className="wrap shipping-banner-inner">
-        <span>🇬🇧 We deliver within the UK</span>
+        <span>We deliver within the UK</span>
         <span className="divider" aria-hidden="true">
           &middot;
         </span>
