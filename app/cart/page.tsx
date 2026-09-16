@@ -33,6 +33,33 @@ export default function CartPage() {
   const { items, subtotal, setQuantity, removeItem } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [giftCardInput, setGiftCardInput] = useState("");
+  const [giftCard, setGiftCard] = useState<{ code: string; balancePence: number } | null>(null);
+  const [giftCardChecking, setGiftCardChecking] = useState(false);
+  const [giftCardError, setGiftCardError] = useState("");
+
+  const giftCardDiscount = giftCard ? Math.min(giftCard.balancePence, subtotal) : 0;
+  const total = Math.max(0, subtotal - giftCardDiscount);
+
+  async function handleApplyGiftCard() {
+    setGiftCardChecking(true);
+    setGiftCardError("");
+    try {
+      const res = await fetch("/api/gift-cards/redeem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: giftCardInput }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.valid) throw new Error(data.error || "Invalid gift card code.");
+      setGiftCard({ code: giftCardInput.trim().toUpperCase(), balancePence: data.balancePence });
+    } catch (err: any) {
+      setGiftCardError(err.message || "Something went wrong checking that code.");
+      setGiftCard(null);
+    } finally {
+      setGiftCardChecking(false);
+    }
+  }
 
   async function handleCheckout() {
     setLoading(true);
@@ -43,6 +70,7 @@ export default function CartPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items.map((i) => ({ slug: i.product.slug, quantity: i.quantity })),
+          giftCardCode: giftCard?.code,
         }),
       });
       const data = await res.json();
@@ -121,13 +149,53 @@ export default function CartPage() {
               <span>Subtotal</span>
               <span>{formatPrice(subtotal)}</span>
             </div>
+
+            <div className="gift-card-redeem">
+              {giftCard ? (
+                <div className="gift-card-applied">
+                  <span>
+                    Gift card <strong>{giftCard.code}</strong> applied
+                  </span>
+                  <button type="button" onClick={() => { setGiftCard(null); setGiftCardInput(""); }}>
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="gift-card-input-row">
+                    <input
+                      type="text"
+                      placeholder="Gift card code"
+                      value={giftCardInput}
+                      onChange={(e) => setGiftCardInput(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-outline"
+                      onClick={handleApplyGiftCard}
+                      disabled={giftCardChecking || !giftCardInput.trim()}
+                    >
+                      {giftCardChecking ? "Checking…" : "Apply"}
+                    </button>
+                  </div>
+                  {giftCardError && <p className="form-error">{giftCardError}</p>}
+                </>
+              )}
+            </div>
+
+            {giftCardDiscount > 0 && (
+              <div className="summary-row">
+                <span>Gift card</span>
+                <span>−{formatPrice(giftCardDiscount)}</span>
+              </div>
+            )}
             <div className="summary-row">
               <span>Shipping</span>
               <span>Calculated at checkout</span>
             </div>
             <div className="summary-row total">
               <span>Total</span>
-              <span>{formatPrice(subtotal)}</span>
+              <span>{formatPrice(total)}</span>
             </div>
             <button className="btn btn-primary btn-block" onClick={handleCheckout} disabled={loading} style={{ marginTop: 10 }}>
               {loading ? "Redirecting…" : "Checkout"}

@@ -27,6 +27,7 @@ export function getSql(): NeonQueryFunction<false, false> {
 let tableReady = false;
 let ordersTableReady = false;
 let remindersTableReady = false;
+let giftCardsTableReady = false;
 
 /**
  * Creates the reviews table if it doesn't exist yet. Safe to call on every
@@ -109,4 +110,44 @@ export async function ensureRemindersTable() {
   `;
   await sql`CREATE INDEX IF NOT EXISTS reminders_date_idx ON occasion_reminders (occasion_month, occasion_day);`;
   remindersTableReady = true;
+}
+
+/**
+ * Digital gift cards. balance_pence is decremented at redemption time (see
+ * app/api/checkout route) — never before payment succeeds, so an abandoned
+ * checkout can never lose value off a card. code is the customer-facing
+ * redemption code; stored uppercase so lookups are case-insensitive without
+ * needing a separate normalised column.
+ */
+export async function ensureGiftCardsTable() {
+  if (giftCardsTableReady) return;
+  const sql = getSql();
+  await sql`
+    CREATE TABLE IF NOT EXISTS gift_cards (
+      id SERIAL PRIMARY KEY,
+      code TEXT NOT NULL UNIQUE,
+      initial_balance_pence INTEGER NOT NULL,
+      balance_pence INTEGER NOT NULL,
+      purchaser_email TEXT NOT NULL,
+      recipient_email TEXT,
+      recipient_name TEXT,
+      message TEXT,
+      stripe_session_id TEXT NOT NULL UNIQUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS gift_cards_code_idx ON gift_cards (code);`;
+  giftCardsTableReady = true;
+}
+
+/**
+ * Customer-facing gift card code — deliberately excludes visually ambiguous
+ * characters (0/O, 1/I/L) since these get read aloud, typed from a phone
+ * screenshot, etc. Format: VELV-XXXX-XXXX.
+ */
+export function generateGiftCardCode(): string {
+  const alphabet = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+  const part = () =>
+    Array.from({ length: 4 }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join("");
+  return `VELV-${part()}-${part()}`;
 }

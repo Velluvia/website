@@ -7,7 +7,10 @@ export async function POST(req: NextRequest) {
     const items: CheckoutItem[] = Array.isArray(body?.items) ? body.items : [];
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || req.nextUrl.origin;
 
-    const session = await createCheckoutSession(items, { siteUrl });
+    const session = await createCheckoutSession(items, {
+      siteUrl,
+      giftCardCode: typeof body?.giftCardCode === "string" ? body.giftCardCode : undefined,
+    });
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
     console.error("Checkout error:", err);

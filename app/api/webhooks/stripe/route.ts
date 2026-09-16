@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
-import { getSql, ensureOrdersTable } from "@/lib/db";
+import { getSql, ensureOrdersTable, ensureGiftCardsTable, generateGiftCardCode } from "@/lib/db";
 import { sendEmail } from "@/lib/mailer";
 import { sendMetaPurchaseEvent } from "@/lib/meta-conversions";
 import { getProduct, formatPrice } from "@/lib/products";
@@ -120,6 +120,111 @@ async function recordOrder(
   }
 }
 
+/**
+ * Gift card purchases are a completely separate flow from product orders —
+ * there's no catalog product/slug involved, so this must be checked before
+ * the normal order-confirmation path runs. Idempotency comes from the same
+ * pattern as recordOrder: stripe_session_id is UNIQUE, so a Stripe retry of
+ * this webhook can never mint two codes for one purchase.
+ */
+async function handleGiftCardPurchase(session: Stripe.Checkout.Session): Promise<boolean> {
+  const purchaserEmail = session.metadata?.purchaserEmail || session.customer_details?.email || "";
+  const recipientEmail = session.metadata?.recipientEmail || purchaserEmail;
+  const recipientName = session.metadata?.recipientName || "";
+  const message = session.metadata?.message || "";
+  const amountPence = session.amount_total || 0;
+
+  if (!purchaserEmail) {
+    console.error(`Gift card session ${session.id} has no purchaser email — cannot deliver.`);
+    return false;
+  }
+
+  try {
+    await ensureGiftCardsTable();
+    const sql = getSql();
+
+    const existing = await sql`
+      SELECT code FROM gift_cards WHERE stripe_session_id = ${session.id};
+    `;
+    let code: string;
+    if (existing.length > 0) {
+      code = existing[0].code as string; // already processed (Stripe retry) — reuse, don't re-email a fresh code
+    } else {
+      code = generateGiftCardCode();
+      await sql`
+        INSERT INTO gift_cards (code, initial_balance_pence, balance_pence, purchaser_email, recipient_email, recipient_name, message, stripe_session_id)
+        VALUES (${code}, ${amountPence}, ${amountPence}, ${purchaserEmail}, ${recipientEmail}, ${recipientName || null}, ${message || null}, ${session.id});
+      `;
+    }
+
+    const greeting = recipientName ? `Hi ${recipientName},` : "Hi there,";
+    const giftedLine =
+      recipientEmail !== purchaserEmail
+        ? `${purchaserEmail} sent you a Velluvia Gift Card worth ${formatPrice(amountPence)}!`
+        : `Your Velluvia Gift Card worth ${formatPrice(amountPence)} is ready to use.`;
+    const messageBlock = message ? `\nTheir message to you:\n"${message}"\n` : "";
+
+    await sendEmail({
+      to: recipientEmail,
+      subject: "Your Velluvia Gift Card",
+      text: `${greeting}
+
+${giftedLine}
+${messageBlock}
+Your gift card code:
+${code}
+
+Enter this code at checkout on velluvia.co.uk against any gift set — it never expires, and can be used across multiple orders until the balance runs out.
+
+With love,
+Velluvia`,
+    });
+
+    // Let the purchaser know it was sent, if it went to someone else.
+    if (recipientEmail !== purchaserEmail) {
+      await sendEmail({
+        to: purchaserEmail,
+        subject: "Your Velluvia Gift Card has been sent",
+        text: `Hi,
+
+Your ${formatPrice(amountPence)} Velluvia Gift Card has been emailed to ${recipientEmail}.
+
+With love,
+Velluvia`,
+      });
+    }
+
+    return true;
+  } catch (err) {
+    console.error("Gift card purchase handling failed:", err);
+    return false;
+  }
+}
+
+/**
+ * Deducts a redeemed gift card's balance — only ever called after payment
+ * has actually succeeded (never at redemption-check time), and only once
+ * per session via the same orders-table idempotency check used for regular
+ * order recording, so a Stripe webhook retry can't double-deduct.
+ */
+async function deductGiftCardBalance(session: Stripe.Checkout.Session) {
+  const code = session.metadata?.giftCardCode;
+  const redeemedPence = Number(session.metadata?.giftCardRedeemedPence || 0);
+  if (!code || !redeemedPence) return;
+
+  try {
+    await ensureGiftCardsTable();
+    const sql = getSql();
+    await sql`
+      UPDATE gift_cards
+      SET balance_pence = GREATEST(0, balance_pence - ${redeemedPence})
+      WHERE code = ${code};
+    `;
+  } catch (err) {
+    console.error(`Failed to deduct gift card ${code} balance for session ${session.id}:`, err);
+  }
+}
+
 export async function POST(req: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -146,6 +251,11 @@ export async function POST(req: NextRequest) {
 
   const session = event.data.object as Stripe.Checkout.Session;
 
+  if (session.metadata?.type === "gift_card") {
+    const delivered = await handleGiftCardPurchase(session);
+    return NextResponse.json({ received: true, giftCardDelivered: delivered });
+  }
+
   let productSlugs: string[] = [];
   try {
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
@@ -169,6 +279,11 @@ export async function POST(req: NextRequest) {
   if (alreadySent) {
     return NextResponse.json({ received: true, alreadyProcessed: true });
   }
+
+  // Only deduct once, on the same "genuinely new" path as the confirmation
+  // email below — a Stripe retry that hits the alreadySent branch above must
+  // never reach here a second time.
+  await deductGiftCardBalance(session);
 
   const emailed = await sendConfirmationEmail(session, productSlugs);
   if (!emailed) {

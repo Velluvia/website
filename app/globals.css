@@ -699,6 +699,47 @@ section {
   text-decoration: line-through;
 }
 
+/* -- new / bestseller badge -- */
+.product-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+}
+.product-badge-new {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+.product-badge-bestseller {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* -- quick add -- */
+.quick-add-btn {
+  width: 100%;
+  margin: 8px 0;
+  padding: 8px 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.quick-add-btn:hover {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+
 /* monogram fallback tile for products without photography */
 .monogram-tile {
   width: 100%;
@@ -1211,6 +1252,87 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+.form-error {
+  color: #B0554C;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+/* -- gift card purchase form -- */
+.gift-card-amounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.gift-card-amount-btn {
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.gift-card-amount-btn.active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--gold-light);
+}
+.gift-card-amount-custom {
+  width: 90px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.gift-card-amount-custom.active {
+  border-color: var(--gold);
+}
+
+/* -- gift card redemption at cart -- */
+.gift-card-redeem {
+  margin: 16px 0;
+}
+.gift-card-input-row {
+  display: flex;
+  gap: 8px;
+}
+.gift-card-input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.gift-card-applied {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--sand);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+}
+.gift-card-applied button {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+}
+
+/* -- order history -- */
+.order-history-list {
+  border-top: 1px solid var(--line);
+}
+.order-history-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 /* -- legal pages -- */

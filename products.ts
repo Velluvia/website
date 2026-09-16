@@ -298,7 +298,6 @@ export const products: Product[] = [
       "/images/unicorn-dream/unicorn-dream-star.jpg",
       "/images/unicorn-dream/unicorn-dream-notebook.jpg",
       "/images/unicorn-dream/unicorn-dream-fullset.jpg",
-      "/images/unicorn-dream/unicorn-dream-unboxing1.jpg",
       "/images/unicorn-dream/unicorn-dream-unboxing2.jpg",
     ],
   },
@@ -404,6 +403,7 @@ export const products: Product[] = [
     price: 16599,
     currency: "gbp",
     rrpPence: 20000,
+    badge: "new",
     order: 0,
     description:
       "There is a quiet confidence in a kitchen stocked with cookware that simply works — pieces you reach for without a second thought, that go from stovetop to oven to table without missing a beat. The Velluvia 11-Piece Enamelled Cast Iron Cookware Set was built around that idea: fewer gaps, better choices, everyday essentials elevated to something you're proud to cook with. Each piece is finished with a smooth, glossy enamel exterior and a cream interior, so food releases cleanly and colour is easy to judge as you cook — no seasoning, no rust, and none of the maintenance that traditional bare cast iron demands.",

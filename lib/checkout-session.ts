@@ -1,4 +1,5 @@
 import { getStripe } from "@/lib/stripe";
+import { ensureGiftCardsTable, getSql } from "@/lib/db";
 import {
   getProduct,
   FREE_DELIVERY_THRESHOLD,
@@ -17,7 +18,7 @@ export type CheckoutItem = { slug: string; quantity: number };
  */
 export async function createCheckoutSession(
   items: CheckoutItem[],
-  opts: { siteUrl: string; promotionCode?: string }
+  opts: { siteUrl: string; promotionCode?: string; giftCardCode?: string }
 ): Promise<Stripe.Checkout.Session> {
   if (items.length === 0) {
     throw new Error("Cart is empty.");
@@ -77,9 +78,48 @@ export async function createCheckoutSession(
     }
   }
 
+  // Gift card redemption: re-validated here against the database regardless
+  // of what the client claimed the balance was (the /redeem check endpoint
+  // is informational only — this is the actual source of truth). A one-time
+  // Stripe coupon is the only way to apply an arbitrary pence amount off a
+  // Checkout Session; the matching balance deduction happens in the webhook,
+  // only after payment actually succeeds.
+  let giftCardMetadata: Record<string, string> = {};
+  if (opts.giftCardCode) {
+    const normalized = opts.giftCardCode.trim().toUpperCase();
+    try {
+      await ensureGiftCardsTable();
+      const sql = getSql();
+      const rows = await sql`SELECT balance_pence FROM gift_cards WHERE code = ${normalized};`;
+      const balance = rows[0]?.balance_pence ?? 0;
+      if (balance > 0) {
+        const redeemedPence = Math.min(balance, subtotal);
+        const coupon = await stripe.coupons.create({
+          amount_off: redeemedPence,
+          currency: "gbp",
+          duration: "once",
+          name: `Gift card ${normalized}`,
+        });
+        discounts = [...(discounts || []), { coupon: coupon.id }];
+        giftCardMetadata = {
+          giftCardCode: normalized,
+          giftCardRedeemedPence: String(redeemedPence),
+        };
+      }
+    } catch (err) {
+      console.error("Gift card redemption failed — continuing checkout without it:", err);
+    }
+  }
+
   return stripe.checkout.sessions.create({
     mode: "payment",
     line_items,
+    // Klarna requires enabling it once in Stripe Dashboard → Settings →
+    // Payment methods (Riccardo: this is a one-time toggle, not something
+    // deployable in code). Until that's done, Stripe simply won't offer
+    // Klarna at checkout even with it listed here — it silently falls back
+    // to card only, so this is safe to ship immediately either way.
+    payment_method_types: ["card", "klarna"],
     shipping_address_collection: { allowed_countries: ["GB"] },
     shipping_options: [
       {
@@ -107,6 +147,7 @@ export async function createCheckoutSession(
       },
     ],
     ...(discounts ? { discounts } : {}),
+    ...(Object.keys(giftCardMetadata).length ? { metadata: giftCardMetadata } : {}),
     success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${siteUrl}/checkout/cancel`,
     billing_address_collection: "auto",
