@@ -56,7 +56,7 @@ export const products: Product[] = [
       "Scented candle, ultra-soft micro-flannel fleece blanket, and embroidered fuzzy socks",
       "Freesia and rose bath bombs, oatmeal soap bar",
       "Satin eye mask, keepsake piggy bank and matching accessories",
-      "Wrapped in Velluvia's signature marbled box, satin ribbon and gift card",
+      "Wrapped in a premium marbled gift box, satin ribbon and gift card",
       "Perfect for: birthdays, self-care, girls' night in, thank-you gifts, anniversaries, Mother's Day, bridesmaids, or just because",
     ],
     images: [
@@ -147,7 +147,7 @@ export const products: Product[] = [
       "Pink ribbon tassel gift towel",
       "Matte-pink imitation silk eye mask",
       "Pink greeting card",
-      "Presented in a premium Velluvia gift box",
+      "Presented in a premium gift box",
       "Perfect for: birthdays, self-care, Mother's Day, anniversaries, thank-you gifts, best friends, romantic gestures, or just because",
     ],
     images: [
@@ -173,7 +173,7 @@ export const products: Product[] = [
       "100g scented candle and embroidered pink imitation-silk eye mask",
       "100g rose donut bath ball and 100g natural bath salts",
       "Printed canvas cosmetic bag and rose-themed gift accessories",
-      "Folded greeting card and gift card, presented in a premium Velluvia gift box",
+      "Folded greeting card and gift card, presented in a premium gift box",
       "Perfect for: birthdays, best friends, self-care, girls' night in, thank-you gifts, Mother's Day, bridesmaids, or just because",
     ],
     images: [
@@ -200,7 +200,7 @@ export const products: Product[] = [
       "Scented candle, men's socks and blue resin massage ball",
       "'MY MAN' keychain and large bottle opener",
       "A6 business notebook and motivational greeting card",
-      "Presented in a premium Velluvia Signature gift box",
+      "Presented in a premium gift box",
       "Perfect for: birthdays, anniversaries, Father's Day, Valentine's Day, promotions, graduations, thank-you gifts, partners, husbands, dads, or just because",
     ],
     images: [
@@ -228,7 +228,7 @@ export const products: Product[] = [
       "100ml lemon-scented bath salt",
       "Yellow coral fleece headband and coral fleece heart-embroidered socks",
       "Gold imitation-silk eye mask and yellow dried flower arrangement",
-      "Presented in a beautiful Velluvia Signature gift box",
+      "Presented in a premium gift box",
       "Perfect for: birthdays, self-care, thank-you gifts, best friends, friendship, pick-me-ups, or just because",
     ],
     images: [
@@ -257,7 +257,7 @@ export const products: Product[] = [
       "OMO rose-red coral fleece headband and flamingo keychain",
       "Pink dried flower greeting card and flip-folding makeup mirror",
       "Gold powder imitation-silk eye mask, 100ml love bath salt and 100g rose bath bomb",
-      "Presented in a premium Velluvia Signature gift box",
+      "Presented in a premium gift box",
       "Perfect for: Mother's Day, birthdays, anniversaries, best friends, thank-you gifts, self-care, daughter & mum, sisters, or just because",
     ],
     images: [
@@ -350,7 +350,7 @@ export const products: Product[] = [
       "Black lacquer barrel with polished gold-tone clip, bands and tip",
       "Engraved Velluvia 'V' monogram and wordmark on the barrel",
       "Smooth twist-action ballpoint mechanism",
-      "Presented in a rigid, foil-branded Velluvia Signature gift box with satin ribbon",
+      "Presented in a rigid, foil-branded premium gift box with satin ribbon",
       "A refined pairing with our notebooks and correspondence sets for a complete desk gift",
       "Perfect for: onboarding new joiners, promotions, retirements, client thank-yous, corporate milestones, or as a personal everyday-carry upgrade",
     ],
