@@ -140,10 +140,13 @@ export const products: Product[] = [
     description:
       "A Little Luxury, Just for Her. A beautifully curated gift of comfort, relaxation, and self-care, The Blush Serenity Gift Set is designed to make her feel cherished, appreciated, and truly special. Thoughtfully brought together in soft blush and elegant neutral tones, this indulgent collection combines everyday luxuries with soothing treats.",
     details: [
-      "Rose-gold insulated tumbler with straw & brush",
-      "Soft cosy fleece blanket and scented candle",
-      "Bath bomb, handmade cold-process soap and heart-shaped bath treat",
-      "Pink ribbon towel, compact/beauty accessory and greeting card",
+      "12oz insulated tumbler with straw and cleaning brush",
+      "Rose dried-flower bath bomb (100g)",
+      "White heart-shaped handmade cold-process soap (45g)",
+      "British pear and freesia scented candle (110g)",
+      "Pink ribbon tassel gift towel",
+      "Matte-pink imitation silk eye mask",
+      "Pink greeting card",
       "Presented in a premium Velluvia gift box",
       "Perfect for: birthdays, self-care, Mother's Day, anniversaries, thank-you gifts, best friends, romantic gestures, or just because",
     ],
