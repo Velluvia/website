@@ -41,7 +41,7 @@ export default async function CheckoutFromMetaPage({
       // stale cache or manually-entered catalog item slips a coming-soon
       // product through to an actual checkout attempt.
       const collection = getCollection(product.collection);
-      return !collection?.comingSoon;
+      return !collection?.comingSoon && !product.comingSoon;
     });
 
   if (items.length === 0) {

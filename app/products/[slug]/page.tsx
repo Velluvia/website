@@ -37,7 +37,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       "@type": "Offer",
       priceCurrency: "GBP",
       price: (product.price / 100).toFixed(2),
-      availability: collection?.comingSoon
+      availability: (collection?.comingSoon || product.comingSoon)
         ? "https://schema.org/PreOrder"
         : "https://schema.org/InStock",
       url: `https://velluvia.co.uk/products/${product.slug}`,
@@ -96,7 +96,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               ))}
             </ul>
 
-            {collection?.comingSoon ? (
+            {(collection?.comingSoon || product.comingSoon) ? (
               <button className="btn btn-outline" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
                 Coming Soon
               </button>

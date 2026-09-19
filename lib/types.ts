@@ -28,6 +28,7 @@ export type Product = {
   variants?: ProductVariant[]; // optional colour/style options; when present, the PDP shows a swatch picker
   rrpPence?: number; // genuine supplier/manufacturer RRP, in pence. Only set this when you have a real, verifiable figure — it renders as a struck-through comparison price. Leave unset rather than estimate.
   badge?: "new" | "bestseller"; // "bestseller" should only be set once you have real sales data backing it up — never guess
+  comingSoon?: boolean; // true for an individual product not yet purchasable, even inside an otherwise-live collection (e.g. a new design awaiting a decided launch date)
 };
 
 export type CartLine = {

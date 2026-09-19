@@ -29,7 +29,7 @@ export async function GET() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk";
 
   const eligible = products.filter((p) => {
-    if (p.monogramTile || p.images.length === 0) return false;
+    if (p.monogramTile || p.images.length === 0 || p.comingSoon) return false;
     const collection = getCollection(p.collection);
     if (collection?.comingSoon) return false;
     return true;

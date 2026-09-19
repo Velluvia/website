@@ -22,7 +22,8 @@ export default function ProductCard({
     >
       <div className="product-media">
         {tag && <span className="corner-tag">{tag}</span>}
-        {savingsPercent && <span className="corner-tag savings-tag">Save {savingsPercent}%</span>}
+        {product.comingSoon && <span className="corner-tag savings-tag">Coming Soon</span>}
+        {!product.comingSoon && savingsPercent && <span className="corner-tag savings-tag">Save {savingsPercent}%</span>}
         {product.images.length > 0 ? (
           <img src={product.images[0]} alt={product.name} />
         ) : (
@@ -31,7 +32,7 @@ export default function ProductCard({
             <span className="label">Velluvia</span>
           </div>
         )}
-        <span className="shop-cta">Shop This Set</span>
+        <span className="shop-cta">{product.comingSoon ? "Coming Soon" : "Shop This Set"}</span>
       </div>
       {product.badge && (
         <span className={`product-badge product-badge-${product.badge}`}>
@@ -45,7 +46,7 @@ export default function ProductCard({
           <span className="rrp-price">RRP {formatPrice(product.rrpPence)}</span>
         )}
       </p>
-      <QuickAddButton slug={product.slug} />
+      {!product.comingSoon && <QuickAddButton slug={product.slug} />}
       {occasions.length > 0 && (
         <div className="occasion-pills">
           {occasions.map((o) => (
