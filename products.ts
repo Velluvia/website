@@ -17,17 +17,7 @@ export const collections: Collection[] = [
     description:
       "Freshly designed gift sets, currently in production and not yet available to order. A preview of what's coming to Signature Gifting next.",
     accent: "gold",
-    image: "/images/hugs-in-a-box/hugs-beige-hero.jpg",
-    comingSoon: true,
-  },
-  {
-    slug: "luxe",
-    name: "Velluvia Luxe",
-    tagline: "For the gifts that mark real milestones.",
-    description:
-      "Our premium tier for executive and high-value corporate gifting — fine writing instruments, leather goods and keepsakes finished in gold on black.",
-    accent: "charcoal",
-    image: "/images/product-writingset-1.jpg",
+    image: "/images/hugs-in-a-box/new-arrivals-collection-card.jpg",
     comingSoon: true,
   },
   {
@@ -46,7 +36,7 @@ export const collections: Collection[] = [
     description:
       "Warm, considered pieces for the kitchen and the home — the softer side of Velluvia, marked by our navy-and-blush botanical monogram.",
     accent: "sage",
-    image: "/images/logo-home.jpg",
+    image: "/images/cookware-set/home-collection-card.jpg",
     comingSoon: true,
   },
 ];
@@ -384,38 +374,6 @@ export const products: Product[] = [
       "/images/office-pen/office-pen-flatlay.jpg",
       "/images/office-pen/office-pen-angled.jpg",
     ],
-  },
-  {
-    slug: "office-welcome-kit",
-    collection: "office",
-    name: "Office Welcome Kit",
-    price: 5600,
-    currency: "gbp",
-    description:
-      "A polished first-day set for new starters — notebook, pen and desk essentials, presented the Velluvia way from the moment they sit down.",
-    details: [
-      "Branded notebook, pen and desk organiser",
-      "Finished with a Velluvia hang tag and thank-you card",
-      "Popular for onboarding programmes and hybrid teams",
-    ],
-    images: [],
-    monogramTile: true,
-  },
-  {
-    slug: "office-desk-essentials",
-    collection: "office",
-    name: "Desk Essentials Set",
-    price: 4800,
-    currency: "gbp",
-    description:
-      "A considered edit of everyday desk pieces — for a thank-you, a promotion, or simply a well-appointed workspace.",
-    details: [
-      "Curated desk accessories, seasonally refreshed",
-      "Packed in Velluvia Signature packaging",
-      "A practical, professional gift with a personal finish",
-    ],
-    images: [],
-    monogramTile: true,
   },
   {
     slug: "home-11-piece-cast-iron-cookware-set",
