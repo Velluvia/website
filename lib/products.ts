@@ -561,6 +561,33 @@ export const products: Product[] = [
       "/images/happy-birthday-daisy/birthday-daisy-lifestyle.jpg",
     ],
   },
+  {
+    slug: "little-miss-newborn-gift-set",
+    collection: "signature",
+    name: "The Little Miss Newborn Gift Set",
+    price: 2799,
+    currency: "gbp",
+    rrpPence: 5099,
+    description:
+      "Celebrate the arrival of a beautiful baby girl with a sweet, beautifully coordinated collection of newborn essentials, thoughtfully put together and ready to gift. Perfect for a newborn baby gift, baby shower, maternity celebration, or simply a little surprise to welcome a new arrival — this adorable set brings together four charming pieces for those precious first days.",
+    details: [
+      "A cute bodysuit dress",
+      "Coordinating little cardigan sleeves",
+      "A soft baby bib",
+      "A sweet baby hat",
+      "A matching headband",
+      "Beautifully presented, ready to gift",
+      "Perfect for: baby showers, newborn visits, maternity celebrations, new mums, or welcoming a new arrival",
+      "Please check garment sizing and care instructions before purchase. Always supervise babies while wearing accessories such as headbands, and remove during sleep.",
+    ],
+    images: [
+      "/images/newborn-little-miss/newborn-hero.jpg",
+      "/images/newborn-little-miss/newborn-flatlay-box.jpg",
+      "/images/newborn-little-miss/newborn-flatlay-items.jpg",
+      "/images/newborn-little-miss/newborn-lifestyle-baby.jpg",
+      "/images/newborn-little-miss/newborn-lifestyle-unboxing.jpg",
+    ],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
