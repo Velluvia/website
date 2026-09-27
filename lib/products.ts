@@ -610,8 +610,8 @@ export const products: Product[] = [
       "Please check garment sizing and care instructions before purchase. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats and shoes, and remove them during sleep.",
     ],
     images: [
-      "/images/little-gentleman-newborn-set/little-gentleman-newborn-set-01.jpg",
       "/images/little-gentleman-newborn-set/little-gentleman-newborn-set-02.jpg",
+      "/images/little-gentleman-newborn-set/little-gentleman-newborn-set-01.jpg",
       "/images/little-gentleman-newborn-set/little-gentleman-newborn-set-03.jpg",
       "/images/little-gentleman-newborn-set/little-gentleman-newborn-set-04.jpg",
       "/images/little-gentleman-newborn-set/little-gentleman-newborn-set-05.jpg",
@@ -641,9 +641,9 @@ export const products: Product[] = [
       "Please check garment sizing and care instructions before purchase. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats and shoes, and remove them during sleep. Props shown in lifestyle photos are not included.",
     ],
     images: [
+      "/images/little-explorer-newborn-set/little-explorer-newborn-set-03.jpg",
       "/images/little-explorer-newborn-set/little-explorer-newborn-set-01.jpg",
       "/images/little-explorer-newborn-set/little-explorer-newborn-set-02.jpg",
-      "/images/little-explorer-newborn-set/little-explorer-newborn-set-03.jpg",
       "/images/little-explorer-newborn-set/little-explorer-newborn-set-04.jpg",
       "/images/little-explorer-newborn-set/little-explorer-newborn-set-05.jpg",
     ],
