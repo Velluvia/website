@@ -44,7 +44,7 @@ export default function ProductCard({
         {formatPrice(product.price)}
         {product.rrpPence && (
           <span className="rrp-price">
-            {product.collection === "baby" ? "Worth" : "RRP"} {formatPrice(product.rrpPence)}
+            {product.rrpIsSeparatePrice ? "Worth" : "RRP"} {formatPrice(product.rrpPence)}
           </span>
         )}
       </p>

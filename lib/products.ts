@@ -355,6 +355,34 @@ export const products: Product[] = [
     images: ["/images/luxe/luxe-umbrella-hero.jpg"],
   },
   {
+    slug: "luxe-executive-gift-set",
+    collection: "office",
+    name: "The Luxe Executive Gift Set",
+    price: 1999,
+    currency: "gbp",
+    rrpPence: 2198,
+    rrpIsSeparatePrice: true,
+    badge: "new",
+    description:
+      "Polished at the Desk, Prepared for the Weather. The Luxe Executive Gift Set brings together our Luxe Saffiano Writing Set and Luxe Umbrella in one considered gift — a smart faux-leather folio and engraved pen for the meeting room, and a full-size golf umbrella for the walk there. Both are finished with the Velluvia mark in gold, making it an impressive, genuinely useful choice for welcoming new joiners, thanking clients or marking a promotion.",
+    details: [
+      "Luxe Saffiano Writing Set: A5 faux-leather folio with saffiano texture, card slot and closure strap",
+      "Black ballpoint pen engraved with 'Velluvia', plus a spare refill",
+      "Gold foil-stamped monogram on the folio cover, presented in a rigid black gift box",
+      "Luxe Umbrella: full-size, wind-resistant golf umbrella with a sturdy black frame and foam handle",
+      "Foil-printed Velluvia wordmark and logo beneath the canopy",
+      "Save compared with buying the Writing Set and Umbrella separately",
+      "Perfect for: onboarding new joiners, client gifts, promotions, retirements, corporate events, Father's Day, or a thoughtful thank-you",
+    ],
+    images: [
+      "/images/luxe/luxe-executive-set-hero.jpg",
+      "/images/luxe/luxe-writing-set-open.jpg",
+      "/images/luxe/luxe-umbrella-hero.jpg",
+      "/images/luxe/luxe-writing-set-boxed.jpg",
+      "/images/luxe/luxe-writing-set-bag.jpg",
+    ],
+  },
+  {
     slug: "office-signature-pen",
     collection: "office",
     name: "The Velluvia Signature Pen",
@@ -577,6 +605,7 @@ export const products: Product[] = [
     price: 2799,
     currency: "gbp",
     rrpPence: 10000,
+    rrpIsSeparatePrice: true,
     description:
       "Celebrate the arrival of a beautiful baby girl with a sweet, beautifully coordinated collection of newborn essentials, thoughtfully put together and ready to gift. Perfect for a newborn baby gift, baby shower, maternity celebration, or simply a little surprise to welcome a new arrival — this adorable set brings together charming, genuine Barcellino pieces for those precious first days.",
     details: [
@@ -606,6 +635,7 @@ export const products: Product[] = [
     price: 2799,
     currency: "gbp",
     rrpPence: 12000,
+    rrpIsSeparatePrice: true,
     description:
       "Smart, Soft and Simply Adorable. Welcome a brand-new baby boy in style with The Little Prince Newborn Gift Set — a beautifully coordinated newborn wardrobe that's as practical as it is photo-ready. A classic blue gingham shirt romper for special occasions sits alongside a soft white romper with a sweet teddy appliqué for everyday cuddles, finished with two hats and two pairs of tiny pram shoes. Every piece is genuine Barcellino, chosen for those precious first weeks and presented in our signature white Velluvia gift box, so it's ready to give the moment it arrives. Six pieces, one unforgettable first outfit collection.",
     details: [
@@ -640,6 +670,7 @@ export const products: Product[] = [
     price: 1799,
     currency: "gbp",
     rrpPence: 11000,
+    rrpIsSeparatePrice: true,
     description:
       "Big Adventures Start Small. Playful, cosy and full of charm, The Little Explorer Newborn Gift Set is made for the newest little adventurer in the family. A heather-grey short romper with a buttercup-yellow collar and a teddy-and-train appliqué brings the fun by day, while a soft white footed sleepsuit keeps him snug through the night. A cheerful red-and-grey striped knot hat and two pairs of tiny pram shoes complete the look. Made up of genuine Barcellino pieces, thoughtfully put together and presented in our signature white Velluvia gift box, it's a joyful, ready-to-give welcome at a truly lovely price.",
     details: [
@@ -670,6 +701,7 @@ export const products: Product[] = [
     price: 2299,
     currency: "gbp",
     rrpPence: 12000,
+    rrpIsSeparatePrice: true,
     description:
       "Sweet as a Cherry. The Little Cherry Gift Set brings together eight genuine Barcellino pieces in a cheerful palette of cherry red, coral pink and soft ivory. A classic red-and-white striped footed sleepsuit and an elegant ivory bodysuit with a Peter Pan collar and sparkling monogram form the heart of the set, finished with a coral bolero cardigan, a polka-dot hat, a headband with hand-crocheted cherries, two beautifully detailed bibs and a pair of 'I Love Mum' pram shoes. Presented in our signature white Velluvia gift box, it's a charming, complete wardrobe for her six-month milestone — and a gift she'll look adorable in.",
     details: [
@@ -704,6 +736,7 @@ export const products: Product[] = [
     price: 2799,
     currency: "gbp",
     rrpPence: 13000,
+    rrpIsSeparatePrice: true,
     description:
       "Hearts, Clouds and a Little Sparkle. Soft pinks, delicate ivory and just the right amount of shimmer — The Little Sweetheart Gift Set is seven genuine Barcellino pieces made for your little princess. A dreamy pink romper with sparkling heart balloons, embroidered clouds and frilled legs sits beside an ivory-and-pink romper finished with silver shimmer stripes, a satin bow and a tiny heart charm. A long-sleeve ivory bodysuit for layering, a white hat with a lace bow, two pretty bibs and a pair of 'I Love Mum' pram shoes complete the look. Presented in our signature white Velluvia gift box, it's a gift that feels as special as she is.",
     details: [

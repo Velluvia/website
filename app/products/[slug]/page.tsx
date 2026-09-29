@@ -83,7 +83,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               {product.rrpPence && (
                 <>
                   <span className="rrp-price">
-                    {product.collection === "baby"
+                    {product.rrpIsSeparatePrice
                       ? `Worth ${formatPrice(product.rrpPence)} if bought separately`
                       : `RRP ${formatPrice(product.rrpPence)}`}
                   </span>
