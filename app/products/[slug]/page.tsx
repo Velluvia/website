@@ -82,7 +82,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               {formatPrice(product.price)}
               {product.rrpPence && (
                 <>
-                  <span className="rrp-price">RRP {formatPrice(product.rrpPence)}</span>
+                  <span className="rrp-price">
+                    {product.collection === "baby"
+                      ? `Worth ${formatPrice(product.rrpPence)} if bought separately`
+                      : `RRP ${formatPrice(product.rrpPence)}`}
+                  </span>
                   {savingsPercent && <span className="savings-badge">Save {savingsPercent}%</span>}
                 </>
               )}

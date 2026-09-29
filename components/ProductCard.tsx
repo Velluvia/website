@@ -43,7 +43,9 @@ export default function ProductCard({
       <p className="product-price">
         {formatPrice(product.price)}
         {product.rrpPence && (
-          <span className="rrp-price">RRP {formatPrice(product.rrpPence)}</span>
+          <span className="rrp-price">
+            {product.collection === "baby" ? "Worth" : "RRP"} {formatPrice(product.rrpPence)}
+          </span>
         )}
       </p>
       {!product.comingSoon && <QuickAddButton slug={product.slug} />}
