@@ -4,7 +4,7 @@ import { collections } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Collections",
-  description: "Shop Velluvia Signature, Luxe, Sport and Home collections.",
+  description: "Shop Velluvia Signature, Baby, Office and Home collections.",
 };
 
 export default function CollectionsPage() {
@@ -15,8 +15,8 @@ export default function CollectionsPage() {
           <span className="eyebrow">Shop</span>
           <h2>Collections</h2>
           <p>
-            Four distinct edits, one standard of care — from our founding Signature gift boxes to
-            the premium finish of Luxe, the performance edit of Sport, and the warmth of Home.
+            Five distinct edits, one standard of care — from our founding Signature gift boxes to
+            beautifully boxed baby sets, the considered Office edit, and the warmth of Home.
           </p>
         </div>
         <div className="collection-grid">

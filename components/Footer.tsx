@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <h4>Shop</h4>
             <Link href="/collections/signature">Signature Gifting</Link>
-            <Link href="/collections/luxe">Velluvia Luxe</Link>
+            <Link href="/collections/baby">Velluvia Baby</Link>
             <Link href="/collections/office">Velluvia Office</Link>
             <Link href="/collections/home">Velluvia Home</Link>
           </div>

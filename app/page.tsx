@@ -89,7 +89,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="section-head">
             <span className="eyebrow">Shop by Collection</span>
-            <h2>Four collections, one standard of care</h2>
+            <h2>Five collections, one standard of care</h2>
           </div>
           <div className="collection-grid">
             {collections.map((c) => (
