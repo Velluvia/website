@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import HeroLogo from "@/components/HeroLogo";
 import ReminderSignup from "@/components/ReminderSignup";
 import ShippingBanner from "@/components/ShippingBanner";
+import CollectionStrip from "@/components/CollectionStrip";
 import { collections, getProductsByCollection } from "@/lib/products";
 
 const occasions = [
@@ -19,11 +20,13 @@ const occasions = [
 // still using a placeholder tile (like The Reminder Tumbler, pending supplier photos)
 // are excluded automatically rather than needing to be remembered and removed by hand.
 const featured = getProductsByCollection("signature").filter((p) => p.images.length > 0);
+const babyPicks = getProductsByCollection("baby").filter((p) => p.images.length > 0 && !p.comingSoon);
 
 export default function HomePage() {
   return (
     <>
       <ShippingBanner />
+      <CollectionStrip />
       <section className="featured-first">
         <div className="wrap">
           <div className="section-head">
@@ -43,6 +46,28 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {babyPicks.length > 0 && (
+        <section className="on-sand">
+          <div className="wrap">
+            <div className="section-head">
+              <span className="eyebrow">Velluvia Baby</span>
+              <h2>Little moments, lasting memories</h2>
+              <p>Boxed baby clothing sets featuring genuine Barcellino, ready to give.</p>
+            </div>
+            <div className="product-grid">
+              {babyPicks.map((p) => (
+                <ProductCard product={p} key={p.slug} tag="Velluvia Baby" />
+              ))}
+            </div>
+            <div className="cta-row" style={{ marginTop: 32 }}>
+              <Link href="/collections/baby" className="btn btn-outline">
+                Shop all baby sets
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="hero">
         <div className="wrap hero-grid">
