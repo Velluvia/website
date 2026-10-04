@@ -2230,10 +2230,19 @@ a.trust-badge-link .trust-label {
   margin: 0 0 10px;
 }
 .pdp-video video {
+  /* sizes to the video's own shape, so vertical (9:16) and wide (16:9) clips both fit */
   display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  max-height: 640px;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
   background: var(--navy);
-  border-radius: 4px;
-  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 22px rgba(27, 39, 57, 0.12);
+}
+@media (max-width: 640px) {
+  .pdp-video video {
+    max-height: 72vh;
+  }
 }
