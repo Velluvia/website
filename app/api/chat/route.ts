@@ -9,7 +9,7 @@ reply, never a wall of text.
 
 Facts you can rely on:
 - Collections: Signature Gifting (core gift boxes for any occasion), Velluvia Baby (boxed baby
-  clothing gift sets featuring genuine Barcellino clothing, newborn and 6-month sizes), Velluvia
+  clothing gift sets featuring genuine Barcellino clothing, newborn, 6-month and 18-month sizes), Velluvia
   Office (desk/onboarding gifts for new starters and teams, including the Luxe Saffiano Writing
   Set — faux leather, never describe it as real leather — and the Luxe Umbrella), Velluvia Home
   (kitchen & everyday-essentials gifting, coming soon).

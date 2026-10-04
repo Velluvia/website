@@ -781,6 +781,40 @@ export const products: Product[] = [
       "/images/baby-6m-sweetheart/baby-6m-sweetheart-08.jpg",
     ],
   },
+  {
+    slug: "little-butterfly-18m-gift-set",
+    collection: "baby",
+    name: "The Little Butterfly Jumbo Baby Gift Set (18M)",
+    price: 2999,
+    currency: "gbp",
+    rrpPence: 12000,
+    rrpIsSeparatePrice: true,
+    apparel: { gender: "female", ageGroup: "toddler", size: "18M", color: "Pink/White" },
+    badge: "new",
+    description:
+      "Our Biggest Baby Set Yet — Seven Pieces of Pure Sweetness. The Little Butterfly Jumbo Gift Set is a complete little wardrobe for her 18-month milestone, made up of seven genuine Barcellino pieces in soft blush pink and ivory. The star is a pink romper with a Peter Pan collar, a padded butterfly appliqué with a fluffy pom-pom and tiered tulle ruffles — made for twirling. Layer it with a pink bolero tied with a satin ribbon, a white bolero with a sparkling monogram or a classic white button-front cardigan, and finish with three ivory long-sleeve pieces edged in delicate scalloped lace. Mix, match and layer through the seasons — all presented in our signature white Velluvia gift box, ready to give.",
+    details: [
+      "Featuring genuine Barcellino baby clothing",
+      "Pink short-sleeve romper with Peter Pan collar, butterfly appliqué and tiered tulle ruffle skirt",
+      "Pink long-sleeve bolero with satin ribbon tie and sparkling monogram",
+      "White short-sleeve bolero with button and sparkling monogram",
+      "White V-neck button-front cardigan with pockets",
+      "Three ivory long-sleeve pieces with scalloped lace trim",
+      "Seven pieces in total",
+      "Size: 18 months",
+      "Presented in Velluvia's signature white gift box, ready to give",
+      "Velluvia is an independent retailer and is not affiliated with Barcellino.",
+      "Perfect for: first birthdays and beyond, baby girls, christenings, family celebrations, visiting family, or spoiling a little one",
+      "Please check garment sizing and care instructions before purchase. Decorative sparkles, appliqués and pom-poms are securely attached, but please check garments regularly. Gift box shown in photos is illustrative of our standard presentation.",
+    ],
+    images: [
+      "/images/baby-18m-butterfly/baby-18m-butterfly-01.jpg",
+      "/images/baby-18m-butterfly/baby-18m-butterfly-02.jpg",
+      "/images/baby-18m-butterfly/baby-18m-butterfly-03.jpg",
+      "/images/baby-18m-butterfly/baby-18m-butterfly-04.jpg",
+      "/images/baby-18m-butterfly/baby-18m-butterfly-05.jpg",
+    ],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
