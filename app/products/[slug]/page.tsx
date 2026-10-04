@@ -65,11 +65,26 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <MetaViewContentEvent slug={product.slug} name={product.name} pricePence={product.price} />
       <div className="wrap">
         <div className="pdp-grid">
-          <ProductVariantGallery
-            variants={product.variants}
-            fallbackImages={product.images}
-            alt={product.name}
-          />
+          <div className="pdp-media">
+            <ProductVariantGallery
+              variants={product.variants}
+              fallbackImages={product.images}
+              alt={product.name}
+            />
+            {product.video && (
+              <div className="pdp-video">
+                <p className="pdp-video-label">Watch it in action</p>
+                <video
+                  src={product.video.src}
+                  poster={product.video.poster}
+                  controls
+                  playsInline
+                  preload="none"
+                  aria-label={`${product.name} video`}
+                />
+              </div>
+            )}
+          </div>
 
           <div className="pdp-info">
             {collection && (

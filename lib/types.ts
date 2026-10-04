@@ -34,6 +34,8 @@ export type Product = {
     size: string; // as shown on the garment labels, e.g. "0-3M", "6M"
     color: string; // main colours, e.g. "Pink/White"
   };
+  // Optional product video shown under the photo gallery (files live in /public/videos)
+  video?: { src: string; poster: string };
   rrpIsSeparatePrice?: boolean; // true when rrpPence is the combined price of the set's items bought separately (a bundle value, not a manufacturer RRP) — shows "Worth £X if bought separately" instead of "RRP"
   badge?: "new" | "bestseller"; // "bestseller" should only be set once you have real sales data backing it up — never guess
   comingSoon?: boolean; // true for an individual product not yet purchasable, even inside an otherwise-live collection (e.g. a new design awaiting a decided launch date)

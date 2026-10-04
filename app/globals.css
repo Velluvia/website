@@ -2214,3 +2214,26 @@ a.trust-badge-link .trust-label {
     display: none;
   }
 }
+
+/* ---------- Product video (under the gallery on product pages) ---------- */
+.pdp-media {
+  min-width: 0;
+}
+.pdp-video {
+  margin-top: 22px;
+}
+.pdp-video-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin: 0 0 10px;
+}
+.pdp-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--navy);
+  border-radius: 4px;
+  object-fit: contain;
+}

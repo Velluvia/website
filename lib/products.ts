@@ -418,6 +418,10 @@ export const products: Product[] = [
       "/images/office-pen/office-pen-flatlay.jpg",
       "/images/office-pen/office-pen-angled.jpg",
     ],
+    video: {
+      src: "/videos/velluvia-signature-pen.mp4",
+      poster: "/videos/velluvia-signature-pen-poster.jpg",
+    },
   },
   {
     slug: "home-11-piece-cast-iron-cookware-set",
