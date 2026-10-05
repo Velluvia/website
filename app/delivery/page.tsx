@@ -66,8 +66,7 @@ export default function DeliveryPage() {
         <p>
           If your order hasn&rsquo;t arrived within the estimated timeframe, or arrives damaged,
           please <Link href="/contact">contact us</Link> at{" "}
-          <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a> or{" "}
-          <a href="tel:+447480854250">07480 854250</a> with your order number and we&rsquo;ll
+          <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a> with your order number and we&rsquo;ll
           sort it out. See also our <Link href="/returns-policy">Returns &amp; Refunds Policy</Link>.
         </p>
       </div>

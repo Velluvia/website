@@ -32,7 +32,6 @@ export default function Footer() {
             <Link href="/cart">Cart</Link>
             <Link href="/account">Your Orders</Link>
             <a href="mailto:hello@velluvia.co.uk">hello@velluvia.co.uk</a>
-            <a href="tel:+447480854250">07480 854250</a>
             <p style={{ margin: "2px 0" }}>Facebook: Velluvia Gifting</p>
             <p style={{ margin: "2px 0" }}>Instagram: @velluvia.co.uk</p>
             <p style={{ margin: "2px 0" }}>TikTok: @velluvia.co.uk</p>
