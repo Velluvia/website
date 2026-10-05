@@ -4,7 +4,6 @@ import ProductCard from "@/components/ProductCard";
 import HeroLogo from "@/components/HeroLogo";
 import ReminderSignup from "@/components/ReminderSignup";
 import ShippingBanner from "@/components/ShippingBanner";
-import CollectionStrip from "@/components/CollectionStrip";
 import { collections, getProductsByCollection } from "@/lib/products";
 
 const occasions = [
@@ -26,7 +25,6 @@ export default function HomePage() {
   return (
     <>
       <ShippingBanner />
-      <CollectionStrip />
       <section className="featured-first">
         <div className="wrap">
           <div className="section-head">

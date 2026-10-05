@@ -5,6 +5,7 @@ import "./globals.css";
 import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CollectionStrip from "@/components/CollectionStrip";
 import ChatWidget from "@/components/ChatWidget";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
         <CartProvider>
           <Header />
+          <CollectionStrip />
           <main>{children}</main>
           <Footer />
           <ChatWidget />
