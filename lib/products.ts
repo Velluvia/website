@@ -143,7 +143,7 @@ export const products: Product[] = [
     slug: "blush-serenity-gift-set",
     collection: "signature",
     name: "The Blush Serenity Gift Set",
-    price: 1899,
+    price: 1999,
     currency: "gbp",
     rrpPence: 2499,
     description:
@@ -226,7 +226,7 @@ export const products: Product[] = [
     slug: "citrus-bright-gift-set",
     collection: "signature",
     name: "The Citrus Bright Gift Set",
-    price: 1999,
+    price: 1899,
     currency: "gbp",
     rrpPence: 2599,
     description:
@@ -342,9 +342,9 @@ export const products: Product[] = [
     slug: "luxe-golf-umbrella",
     collection: "office",
     name: "Luxe Umbrella",
-    price: 599,
+    price: 999,
     currency: "gbp",
-    rrpPence: 1099,
+    rrpPence: 1999,
     description:
       "A full-size golf umbrella built to actually hold up in UK weather, finished with the Velluvia mark in gold foil on the canopy — the kind of practical, well-made gift that gets used on the very first rainy day.",
     details: [
