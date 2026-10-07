@@ -319,7 +319,7 @@ export const products: Product[] = [
     name: "Luxe Saffiano Writing Set",
     price: 1599,
     currency: "gbp",
-    rrpPence: 1999,
+    rrpPence: 2599,
     description:
       "A faux-leather saffiano folio and pen set, foil-stamped with the Velluvia Luxe mark — a polished, practical gift made for executive onboarding and client gifting.",
     details: [
@@ -367,7 +367,7 @@ export const products: Product[] = [
     name: "The Luxe Executive Gift Set",
     price: 1999,
     currency: "gbp",
-    rrpPence: 2198,
+    rrpPence: 2598,
     rrpIsSeparatePrice: true,
     badge: "new",
     description:
