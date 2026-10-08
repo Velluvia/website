@@ -317,7 +317,7 @@ export const products: Product[] = [
     slug: "luxe-writing-set",
     collection: "office",
     name: "Luxe Saffiano Writing Set",
-    price: 1599,
+    price: 999,
     currency: "gbp",
     rrpPence: 2599,
     description:
