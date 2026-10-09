@@ -49,7 +49,7 @@ export async function GET() {
     <description>${escapeXml(p.description)}</description>
     <link>${productUrl}</link>
     <g:image_link>${imageUrl}</g:image_link>
-    <g:availability>in stock</g:availability>
+    <g:availability>${p.soldOut ? "out of stock" : "in stock"}</g:availability>
     <g:price>${priceDecimal} ${p.currency.toUpperCase()}</g:price>
     <g:brand>Velluvia</g:brand>
     <g:condition>new</g:condition>

@@ -53,7 +53,7 @@ export function buildGoogleFeed(): string {
         `<g:link>${SITE}/products/${p.slug}</g:link>`,
         `<g:image_link>${x(hero)}</g:image_link>`,
         ...extra.slice(0, 10).map((u) => `<g:additional_image_link>${x(u)}</g:additional_image_link>`),
-        `<g:availability>in_stock</g:availability>`,
+        `<g:availability>${p.soldOut ? "out_of_stock" : "in_stock"}</g:availability>`,
         `<g:price>${(p.price / 100).toFixed(2)} ${p.currency.toUpperCase()}</g:price>`,
         `<g:brand>Velluvia</g:brand>`,
         `<g:condition>new</g:condition>`,

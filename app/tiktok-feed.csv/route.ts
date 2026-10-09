@@ -53,7 +53,7 @@ export async function GET() {
       p.slug,
       p.name,
       p.description,
-      "in stock",
+      p.soldOut ? "out of stock" : "in stock",
       "new",
       priceDecimal,
       p.currency.toUpperCase(),

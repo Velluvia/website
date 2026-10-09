@@ -31,6 +31,9 @@ export async function createCheckoutSession(
     if (!product) {
       throw new Error(`Unknown product: ${slug}`);
     }
+    if (product.soldOut || product.comingSoon) {
+      throw new Error(`Sorry, ${product.name} is currently sold out — please remove it from your cart.`);
+    }
     const qty = Math.max(1, Math.min(20, Math.floor(quantity) || 1));
     return {
       quantity: qty,

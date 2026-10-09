@@ -18,12 +18,13 @@ export default function ProductCard({
   return (
     <Link
       href={`/products/${product.slug}`}
-      className={`product-card ${spotlight ? "spotlight" : ""}`}
+      className={`product-card ${spotlight ? "spotlight" : ""} ${product.soldOut ? "is-sold-out" : ""}`}
     >
       <div className="product-media">
         {tag && <span className="corner-tag">{tag}</span>}
         {product.comingSoon && <span className="corner-tag savings-tag">Coming Soon</span>}
-        {!product.comingSoon && savingsPercent && <span className="corner-tag savings-tag">Save {savingsPercent}%</span>}
+        {!product.comingSoon && product.soldOut && <span className="corner-tag sold-out-tag">Sold Out</span>}
+        {!product.comingSoon && !product.soldOut && savingsPercent && <span className="corner-tag savings-tag">Save {savingsPercent}%</span>}
         {product.images.length > 0 ? (
           <img src={product.images[0]} alt={product.name} />
         ) : (
@@ -32,7 +33,7 @@ export default function ProductCard({
             <span className="label">Velluvia</span>
           </div>
         )}
-        <span className="shop-cta">{product.comingSoon ? "Coming Soon" : "Shop This Set"}</span>
+        <span className="shop-cta">{product.comingSoon ? "Coming Soon" : product.soldOut ? "Sold Out" : "Shop This Set"}</span>
       </div>
       {product.badge && (
         <span className={`product-badge product-badge-${product.badge}`}>
@@ -48,7 +49,7 @@ export default function ProductCard({
           </span>
         )}
       </p>
-      {!product.comingSoon && <QuickAddButton slug={product.slug} />}
+      {!product.comingSoon && !product.soldOut && <QuickAddButton slug={product.slug} />}
       {occasions.length > 0 && (
         <div className="occasion-pills">
           {occasions.map((o) => (

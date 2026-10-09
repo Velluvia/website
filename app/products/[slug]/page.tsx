@@ -41,7 +41,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       price: (product.price / 100).toFixed(2),
       availability: isComingSoon
         ? "https://schema.org/PreOrder"
-        : "https://schema.org/InStock",
+        : product.soldOut
+          ? "https://schema.org/OutOfStock"
+          : "https://schema.org/InStock",
       url: `https://velluvia.co.uk/products/${product.slug}`,
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
@@ -122,6 +124,16 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <button className="btn btn-outline" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
                 Coming Soon
               </button>
+            ) : product.soldOut ? (
+              <>
+                <button className="btn btn-outline btn-block" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
+                  Sold Out
+                </button>
+                <p style={{ fontSize: 13, color: "var(--ink-soft)", marginTop: 10 }}>
+                  This set has sold out.{" "}
+                  <Link href="/contact" style={{ textDecoration: "underline" }}>Get in touch</Link> to ask about restocks.
+                </p>
+              </>
             ) : (
               <AddToCartButton slug={product.slug} />
             )}

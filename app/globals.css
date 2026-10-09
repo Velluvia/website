@@ -2246,3 +2246,15 @@ a.trust-badge-link .trust-label {
     max-height: 72vh;
   }
 }
+
+/* ---------- Sold out ---------- */
+.corner-tag.sold-out-tag {
+  left: auto;
+  right: 10px;
+  background: var(--navy);
+  color: var(--ivory);
+}
+.product-card.is-sold-out .product-media img {
+  opacity: 0.6;
+  filter: grayscale(35%);
+}

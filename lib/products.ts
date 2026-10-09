@@ -143,7 +143,8 @@ export const products: Product[] = [
     slug: "blush-serenity-gift-set",
     collection: "signature",
     name: "The Blush Serenity Gift Set",
-    price: 1899,
+    soldOut: true,
+    price: 1999,
     currency: "gbp",
     rrpPence: 2499,
     description:
@@ -226,7 +227,7 @@ export const products: Product[] = [
     slug: "citrus-bright-gift-set",
     collection: "signature",
     name: "The Citrus Bright Gift Set",
-    price: 1999,
+    price: 1899,
     currency: "gbp",
     rrpPence: 2599,
     description:
@@ -317,9 +318,9 @@ export const products: Product[] = [
     slug: "luxe-writing-set",
     collection: "office",
     name: "Luxe Saffiano Writing Set",
-    price: 1599,
+    price: 999,
     currency: "gbp",
-    rrpPence: 1999,
+    rrpPence: 2599,
     description:
       "A faux-leather saffiano folio and pen set, foil-stamped with the Velluvia Luxe mark — a polished, practical gift made for executive onboarding and client gifting.",
     details: [
@@ -342,9 +343,9 @@ export const products: Product[] = [
     slug: "luxe-golf-umbrella",
     collection: "office",
     name: "Luxe Umbrella",
-    price: 599,
+    price: 999,
     currency: "gbp",
-    rrpPence: 1099,
+    rrpPence: 1999,
     description:
       "A full-size golf umbrella built to actually hold up in UK weather, finished with the Velluvia mark in gold foil on the canopy — the kind of practical, well-made gift that gets used on the very first rainy day.",
     details: [
@@ -365,9 +366,9 @@ export const products: Product[] = [
     slug: "luxe-executive-gift-set",
     collection: "office",
     name: "The Luxe Executive Gift Set",
-    price: 1999,
+    price: 1799,
     currency: "gbp",
-    rrpPence: 2198,
+    rrpPence: 1998,
     rrpIsSeparatePrice: true,
     badge: "new",
     description:
@@ -829,6 +830,7 @@ export function getProductsByCollection(slug: string): Product[] {
   return products
     .filter((p) => p.collection === slug)
     .sort((a, b) => {
+      if (Boolean(a.soldOut) !== Boolean(b.soldOut)) return a.soldOut ? 1 : -1;
       const orderA = a.order ?? Infinity;
       const orderB = b.order ?? Infinity;
       if (orderA !== orderB) return orderA - orderB;
