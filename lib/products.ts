@@ -144,6 +144,7 @@ export const products: Product[] = [
     collection: "signature",
     name: "The Blush Serenity Gift Set",
     soldOut: true,
+
     price: 1999,
     currency: "gbp",
     rrpPence: 2499,
@@ -368,7 +369,8 @@ export const products: Product[] = [
     name: "The Luxe Executive Gift Set",
     price: 1799,
     currency: "gbp",
-    rrpPence: 1998,
+    rrpPence: 2598,
+
     rrpIsSeparatePrice: true,
     badge: "new",
     description:
