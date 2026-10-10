@@ -833,14 +833,15 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "newborn", size: "1M", color: "Yellow/White" },
     badge: "new",
     description:
-      "Sunshine for Her Very First Days. Bright, sweet and full of joy, The Little Sunflower Newborn Gift Set welcomes a brand-new baby girl with a beautifully coordinated collection of genuine Barcellino pieces. The star is a soft white romper with a scalloped buttercup-yellow collar, a sparkling monogram and a cheerful flower appliqué. Two pretty hats, one in sunny yellow and one in white, both decorated with little flowers, sit alongside two embroidered bibs and a pair of flower-trimmed socks. Presented in our signature Velluvia gift box, it's a happy, ready-to-give welcome for a new arrival.",
+      "Sunshine for Her Very First Days. Bright, sweet and full of joy, The Little Sunflower Newborn Gift Set welcomes a brand-new baby girl with a beautifully coordinated collection of genuine Barcellino pieces. The star is a soft white romper with a scalloped buttercup-yellow collar, a sparkling monogram and a cheerful flower appliqué. Two pretty hats, one in sunny yellow and one in white, both decorated with little flowers, sit alongside two embroidered bibs and a matching headband. Six pieces in all, presented in our signature Velluvia gift box: a happy, ready-to-give welcome for a new arrival.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White romper with scalloped yellow collar, sparkling monogram and flower appliqué",
       "Yellow baby hat with white flower appliqués",
       "White baby hat with yellow flower appliqués",
       "Two white bibs with delicate embroidery",
-      "Flower-trimmed baby socks",
+      "Matching baby headband",
+      "Six pieces in total",
       "Size: 1 month (newborn)",
       "Perfect for: new arrivals, baby showers, newborn visits, new mums, hospital visits, spring and summer babies, or welcoming a baby girl",
       "Presented in Velluvia's signature gift box, ready to give",
