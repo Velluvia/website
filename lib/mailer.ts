@@ -38,6 +38,7 @@ export async function sendEmail(opts: {
   text: string;
   replyTo?: string;
   from?: string;
+  headers?: Record<string, string>;
 }): Promise<boolean> {
   const resend = getResendClient();
   if (!resend) {
@@ -51,6 +52,7 @@ export async function sendEmail(opts: {
       subject: opts.subject,
       text: opts.text,
       replyTo: opts.replyTo,
+      headers: opts.headers,
     });
     if (error) {
       console.error("Resend send error:", error);

@@ -25,6 +25,13 @@ export const blackFriday = {
   endsAt: "2026-11-30T23:59:00Z",
   offersLive: false,
   offers: [] as CampaignOffer[],
+  /**
+   * The discount code emailed to everyone on the early-access list. Leave it
+   * empty until the code exists in Stripe. Once it's filled in, offersLive is
+   * true and the early-access date has arrived, the site emails the list
+   * automatically each morning at 8am (UK) until everyone has had it.
+   */
+  earlyAccessCode: "",
 };
 
 export function formatCampaignDate(iso: string) {

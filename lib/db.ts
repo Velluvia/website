@@ -158,7 +158,8 @@ let campaignSignupsTableReady = false;
  * Marketing sign-ups for campaigns such as Black Friday early access.
  * Only people who tick the consent box are stored. View or export them in
  * Vercel → Storage → Neon → SQL editor:
- *   SELECT email, created_at FROM campaign_signups WHERE campaign = 'black-friday-2026' ORDER BY created_at;
+ *   SELECT email, created_at, early_access_sent_at, unsubscribed_at
+ *   FROM campaign_signups WHERE campaign = 'black-friday-2026' ORDER BY created_at;
  */
 export async function ensureCampaignSignupsTable() {
   if (campaignSignupsTableReady) return;
@@ -173,5 +174,8 @@ export async function ensureCampaignSignupsTable() {
       UNIQUE (email, campaign)
     );
   `;
+  await sql`ALTER TABLE campaign_signups ADD COLUMN IF NOT EXISTS confirmation_sent_at TIMESTAMPTZ;`;
+  await sql`ALTER TABLE campaign_signups ADD COLUMN IF NOT EXISTS early_access_sent_at TIMESTAMPTZ;`;
+  await sql`ALTER TABLE campaign_signups ADD COLUMN IF NOT EXISTS unsubscribed_at TIMESTAMPTZ;`;
   campaignSignupsTableReady = true;
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSql, ensureRemindersTable } from "@/lib/db";
 import { sendEmail } from "@/lib/mailer";
+import { sendEarlyAccessBatch } from "@/lib/campaign-email";
 
 // Send the nudge a week ahead — enough time to actually order and receive a
 // gift box before the day itself, matching how far ahead people realistically
@@ -64,7 +65,16 @@ P.S. We'll remind you again next year for this occasion — no need to sign up t
       sent++;
     }
 
-    return NextResponse.json({ checked: due.length, sent });
+    // Black Friday early-access emails ride on this daily job rather than a
+    // separate cron, so no extra Vercel cron slot is needed.
+    let campaign: { sent: number; skipped?: string } = { sent: 0 };
+    try {
+      campaign = await sendEarlyAccessBatch();
+    } catch (err) {
+      console.error("Early-access batch failed:", err);
+    }
+
+    return NextResponse.json({ checked: due.length, sent, campaign });
   } catch (err) {
     console.error("Occasion reminder cron error:", err);
     return NextResponse.json({ error: "Failed to process reminders." }, { status: 500 });
