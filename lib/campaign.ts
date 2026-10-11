@@ -47,7 +47,7 @@ export const blackFriday = {
  * the best deal, and don't extend the end date once it's advertised.
  */
 export const preSale = {
-  enabled: false,
+  enabled: true,
   headline: "Early Christmas Pre-Sale: 10% off one gift box, 15% off two or more",
   shortHeadline: "Pre-Sale: up to 15% off gift boxes",
   /** Percent off by number of items in the basket (highest matching tier wins). */
