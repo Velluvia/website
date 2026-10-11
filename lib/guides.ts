@@ -173,7 +173,7 @@ export const guides: Guide[] = [
         paragraphs: [
           "Because newborn sizes are outgrown so quickly, a 3-month or 6-month set is a clever gift. It will be ready and waiting just as the first wave of gifts no longer fits.",
         ],
-        products: (all) => [...bySize(["3M"])(all), ...bySize(["6M"])(all)].filter((p) => p.apparel?.gender === "female").slice(0, 3),
+        products: (all) => [...bySize(["3M", "3-6M"])(all), ...bySize(["6M"])(all)].filter((p) => p.apparel?.gender === "female").slice(0, 3),
         cta: { href: "/gift-guides/baby-gifts-by-age", label: "See gifts by age" },
       },
     ],
@@ -217,7 +217,7 @@ export const guides: Guide[] = [
         paragraphs: [
           "A brilliant size for a baby shower gift: it fits once the newborn clothes have been outgrown.",
         ],
-        products: bySize(["3M"]),
+        products: bySize(["3M", "3-6M"]),
       },
       {
         heading: "6 months",

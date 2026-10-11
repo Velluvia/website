@@ -116,6 +116,21 @@ export const productSeo: Record<string, Seo> = {
     description:
       "9-piece baby girl gift box (3 months): bodysuit, bolero, 2 hats, 4 bibs & pram shoes featuring genuine Barcellino. Gift-boxed. Great baby shower gift.",
   },
+  "little-pink-princess-1m-gift-set": {
+    title: "Pink Newborn Baby Girl Gift Box 1 Month | 8-Piece",
+    description:
+      "Pink newborn girl gift box (1 month): cardigan, top, leggings, 2 hats, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed, ready to give.",
+  },
+  "little-beach-hut-1m-gift-set": {
+    title: "Newborn Baby Girl Romper Gift Box 1 Month | 7-Piece",
+    description:
+      "Striped newborn girl gift box (1 month): romper, bloomers, 2 hats, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed. Lovely baby shower gift.",
+  },
+  "little-heart-3-6m-gift-set": {
+    title: "Baby Girl Gift Box 3-6 Months | 8-Piece Romper Set",
+    description:
+      "Baby girl gift box (3-6 months): heart romper, rose headband, 2 bloomers, hat, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed, UK delivery.",
+  },
   "little-cherry-6m-gift-set": {
     title: "Baby Girl Gift Box 6 Months | 8-Piece Clothing Set",
     description:
