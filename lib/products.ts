@@ -1008,6 +1008,7 @@ export const products: Product[] = [
       "Please check garment sizing and care instructions before purchase. Decorative sparkles and appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing headbands, bibs and shoes, and remove them during sleep. Props shown in photos are not included.",
     ],
     images: [
+      "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-06.jpg",
       "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-01.jpg",
       "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-02.jpg",
       "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-03.jpg",
