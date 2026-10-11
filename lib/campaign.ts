@@ -55,7 +55,7 @@ export const preSale = {
     { minItems: 1, percent: 10 },
     { minItems: 2, percent: 15 },
   ],
-  startsAt: "2026-10-12T00:00:00Z",
+  startsAt: "2026-10-11T00:00:00Z",
   endsAt: "2026-11-01T23:59:00Z",
   link: "/black-friday",
 };
