@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCart } from "@/components/CartProvider";
 import TrustBadges from "@/components/TrustBadges";
 import { formatPrice, FREE_DELIVERY_THRESHOLD } from "@/lib/products";
+import { preSalePercent, preSaleNextTier } from "@/lib/campaign";
 
 function FreeShippingBar({ subtotal }: { subtotal: number }) {
   const remaining = FREE_DELIVERY_THRESHOLD - subtotal;
@@ -30,7 +31,7 @@ function FreeShippingBar({ subtotal }: { subtotal: number }) {
 }
 
 export default function CartPage() {
-  const { items, subtotal, setQuantity, removeItem } = useCart();
+  const { items, subtotal, count, setQuantity, removeItem } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [giftCardInput, setGiftCardInput] = useState("");
@@ -38,8 +39,12 @@ export default function CartPage() {
   const [giftCardChecking, setGiftCardChecking] = useState(false);
   const [giftCardError, setGiftCardError] = useState("");
 
-  const giftCardDiscount = giftCard ? Math.min(giftCard.balancePence, subtotal) : 0;
-  const total = Math.max(0, subtotal - giftCardDiscount);
+  // Mirrors the automatic pre-sale discount applied at checkout (lib/checkout-session.ts).
+  const preSalePct = preSalePercent(count);
+  const preSaleDiscount = Math.round((subtotal * preSalePct) / 100);
+  const nextTier = preSaleNextTier(count);
+  const giftCardDiscount = giftCard ? Math.min(giftCard.balancePence, subtotal - preSaleDiscount) : 0;
+  const total = Math.max(0, subtotal - preSaleDiscount - giftCardDiscount);
 
   async function handleApplyGiftCard() {
     setGiftCardChecking(true);
@@ -149,6 +154,19 @@ export default function CartPage() {
               <span>Subtotal</span>
               <span>{formatPrice(subtotal)}</span>
             </div>
+
+            {preSaleDiscount > 0 && (
+              <div className="summary-row presale-row">
+                <span>Pre-sale {preSalePct}% off</span>
+                <span>−{formatPrice(preSaleDiscount)}</span>
+              </div>
+            )}
+            {nextTier && (
+              <p className="presale-cart-note">
+                Add {nextTier.itemsNeeded} more gift {nextTier.itemsNeeded === 1 ? "box" : "boxes"} to get{" "}
+                <strong>{nextTier.percent}% off</strong> your whole order.
+              </p>
+            )}
 
             <div className="gift-card-redeem">
               {giftCard ? (

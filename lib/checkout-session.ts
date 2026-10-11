@@ -7,6 +7,7 @@ import {
   EXPRESS_DELIVERY_COST,
 } from "@/lib/products";
 import type Stripe from "stripe";
+import { preSalePercent } from "@/lib/campaign";
 
 export type CheckoutItem = { slug: string; quantity: number };
 
@@ -60,6 +61,7 @@ export async function createCheckoutSession(
     return sum + (product ? product.price * qty : 0);
   }, 0);
   const standardCost = subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : STANDARD_DELIVERY_COST;
+  const itemCount = items.reduce((sum, { quantity }) => sum + Math.max(1, Math.min(20, Math.floor(quantity) || 1)), 0);
 
   // A coupon passed in from Meta Shops must already exist as a real Stripe
   // Promotion Code — Stripe rejects an arbitrary unknown string outright, so
@@ -87,7 +89,21 @@ export async function createCheckoutSession(
   // Stripe coupon is the only way to apply an arbitrary pence amount off a
   // Checkout Session; the matching balance deduction happens in the webhook,
   // only after payment actually succeeds.
+  // Early Christmas pre-sale (lib/campaign.ts): an automatic tiered discount
+  // while it's running. It doesn't stack with a Meta Shops promotion code.
+  // Stripe Checkout takes only one discount, so when a gift card is also used
+  // both are combined into a single fixed-amount coupon below.
+  const preSalePct = discounts ? 0 : preSalePercent(itemCount);
+  const preSalePence = Math.round((subtotal * preSalePct) / 100);
+
+  // Gift card redemption: re-validated here against the database regardless
+  // of what the client claimed the balance was (the /redeem check endpoint
+  // is informational only — this is the actual source of truth). A one-time
+  // Stripe coupon is the only way to apply an arbitrary pence amount off a
+  // Checkout Session; the matching balance deduction happens in the webhook,
+  // only after payment actually succeeds.
   let giftCardMetadata: Record<string, string> = {};
+  let giftCardApplied = false;
   if (opts.giftCardCode) {
     const normalized = opts.giftCardCode.trim().toUpperCase();
     try {
@@ -96,14 +112,18 @@ export async function createCheckoutSession(
       const rows = await sql`SELECT balance_pence FROM gift_cards WHERE code = ${normalized};`;
       const balance = rows[0]?.balance_pence ?? 0;
       if (balance > 0) {
-        const redeemedPence = Math.min(balance, subtotal);
+        const redeemedPence = Math.min(balance, subtotal - preSalePence);
         const coupon = await stripe.coupons.create({
-          amount_off: redeemedPence,
+          amount_off: redeemedPence + preSalePence,
           currency: "gbp",
           duration: "once",
-          name: `Gift card ${normalized}`,
+          name:
+            preSalePct > 0
+              ? `Pre-sale ${preSalePct}% off + gift card ${normalized}`
+              : `Gift card ${normalized}`,
         });
         discounts = [...(discounts || []), { coupon: coupon.id }];
+        giftCardApplied = true;
         giftCardMetadata = {
           giftCardCode: normalized,
           giftCardRedeemedPence: String(redeemedPence),
@@ -112,6 +132,22 @@ export async function createCheckoutSession(
     } catch (err) {
       console.error("Gift card redemption failed — continuing checkout without it:", err);
     }
+  }
+
+  if (preSalePct > 0 && !giftCardApplied) {
+    try {
+      const coupon = await stripe.coupons.create({
+        percent_off: preSalePct,
+        duration: "once",
+        name: `Early Christmas Pre-Sale ${preSalePct}% off`,
+      });
+      discounts = [{ coupon: coupon.id }];
+    } catch (err) {
+      console.error("Pre-sale discount failed — continuing checkout without it:", err);
+    }
+  }
+  if (preSalePct > 0) {
+    giftCardMetadata = { ...giftCardMetadata, preSalePercent: String(preSalePct) };
   }
 
   return stripe.checkout.sessions.create({

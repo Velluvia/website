@@ -6,6 +6,7 @@ import { CartProvider } from "@/components/CartProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CollectionStrip from "@/components/CollectionStrip";
+import PreSaleBar from "@/components/PreSaleBar";
 import ChatWidget from "@/components/ChatWidget";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
         <CartProvider>
+          <PreSaleBar />
           <Header />
           <CollectionStrip />
           <main>{children}</main>

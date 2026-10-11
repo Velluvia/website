@@ -4,7 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import CampaignSignup from "@/components/CampaignSignup";
 import { products, getSavingsPercent } from "@/lib/products";
 import type { Product } from "@/lib/types";
-import { blackFriday as bf, campaignHasEnded, formatCampaignDate } from "@/lib/campaign";
+import { blackFriday as bf, campaignHasEnded, formatCampaignDate, preSale, preSaleIsActive } from "@/lib/campaign";
 
 // Re-check hourly so the page switches wording on its own once the campaign ends.
 export const revalidate = 3600;
@@ -150,6 +150,16 @@ export default function BlackFridayPage() {
               Get your Christmas gifting sorted early. Join the list for early access: you&rsquo;ll see our Black
               Friday gift box offers before anyone else.
             </p>
+          )}
+
+          {preSaleIsActive() && (
+            <div className="bf-presale">
+              <strong>Can&rsquo;t wait? Our Early Christmas Pre-Sale is on now.</strong>
+              <span>
+                10% off one gift box, 15% off two or more, taken off automatically at checkout. Ends{" "}
+                {formatCampaignDate(preSale.endsAt)}.
+              </span>
+            </div>
           )}
 
           <ul className="bf-dates" aria-label="Key dates">

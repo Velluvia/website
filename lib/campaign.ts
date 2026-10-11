@@ -34,6 +34,55 @@ export const blackFriday = {
   earlyAccessCode: "",
 };
 
+/**
+ * Early Christmas pre-sale, running before Black Friday.
+ *
+ * Tiered and automatic: 10% off one item, 15% off when the basket has two or
+ * more. No code to type: checkout applies it by itself while the pre-sale is
+ * on, and the cart shows the saving. The announcement bar at the top of every
+ * page appears between `startsAt` and `endsAt` and hides itself afterwards.
+ *
+ * Nothing needs setting up in Stripe. To switch it on, set `enabled: true`.
+ * Keep the tiers smaller than your Black Friday offer so Black Friday stays
+ * the best deal, and don't extend the end date once it's advertised.
+ */
+export const preSale = {
+  enabled: false,
+  headline: "Early Christmas Pre-Sale: 10% off one gift box, 15% off two or more",
+  shortHeadline: "Pre-Sale: up to 15% off gift boxes",
+  /** Percent off by number of items in the basket (highest matching tier wins). */
+  tiers: [
+    { minItems: 1, percent: 10 },
+    { minItems: 2, percent: 15 },
+  ],
+  startsAt: "2026-10-12T00:00:00Z",
+  endsAt: "2026-11-01T23:59:00Z",
+  link: "/black-friday",
+};
+
+export function preSaleIsActive(now = new Date()) {
+  return (
+    preSale.enabled &&
+    now.getTime() >= new Date(preSale.startsAt).getTime() &&
+    now.getTime() <= new Date(preSale.endsAt).getTime()
+  );
+}
+
+/** Percent off for a basket with `itemCount` items, or 0 if none applies. */
+export function preSalePercent(itemCount: number, now = new Date()) {
+  if (!preSaleIsActive(now)) return 0;
+  return preSale.tiers.reduce((best, t) => (itemCount >= t.minItems && t.percent > best ? t.percent : best), 0);
+}
+
+/** The next tier up, if adding items would unlock a bigger discount. */
+export function preSaleNextTier(itemCount: number, now = new Date()) {
+  if (!preSaleIsActive(now)) return null;
+  const next = preSale.tiers
+    .filter((t) => t.minItems > itemCount)
+    .sort((a, b) => a.minItems - b.minItems)[0];
+  return next ? { itemsNeeded: next.minItems - itemCount, percent: next.percent } : null;
+}
+
 export function formatCampaignDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", {
     weekday: "long",
