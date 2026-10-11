@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductCard from "@/components/ProductCard";
 import { collections, getCollection, getProductsByCollection } from "@/lib/products";
+import { getCollectionSeo } from "@/lib/seo";
 
 export function generateStaticParams() {
   return collections.map((c) => ({ slug: c.slug }));
@@ -10,9 +11,20 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const collection = getCollection(params.slug);
   if (!collection) return {};
+  const seo = getCollectionSeo(collection);
+  const url = `/collections/${collection.slug}`;
   return {
-    title: collection.name,
-    description: collection.description,
+    title: seo.title,
+    description: seo.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      siteName: "Velluvia",
+      url,
+      title: `${seo.title} — Velluvia`,
+      description: seo.description,
+      images: collection.image ? [{ url: collection.image, alt: collection.name }] : undefined,
+    },
   };
 }
 

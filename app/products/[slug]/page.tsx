@@ -8,6 +8,9 @@ import TrustBadges from "@/components/TrustBadges";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
 import MetaViewContentEvent from "@/components/MetaViewContentEvent";
 import { formatPrice, getCollection, getProduct, getSavingsPercent, products } from "@/lib/products";
+import { getProductSeo } from "@/lib/seo";
+
+const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk").replace(/\/$/, "");
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -16,9 +19,27 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const product = getProduct(params.slug);
   if (!product) return {};
+  const seo = getProductSeo(product);
+  const url = `/products/${product.slug}`;
+  const images = product.images.slice(0, 4).map((src) => ({ url: src, alt: product.name }));
   return {
-    title: product.name,
-    description: product.description,
+    title: seo.title,
+    description: seo.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      siteName: "Velluvia",
+      url,
+      title: `${seo.title} — Velluvia`,
+      description: seo.description,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${seo.title} — Velluvia`,
+      description: seo.description,
+      images: images.map((i) => i.url),
+    },
   };
 }
 
@@ -29,12 +50,16 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const savingsPercent = getSavingsPercent(product);
   const isComingSoon = Boolean(collection?.comingSoon || product.comingSoon);
 
+  const productUrl = `${SITE}/products/${product.slug}`;
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
     description: product.description,
-    image: product.images,
+    image: product.images.map((src) => `${SITE}${src}`),
+    sku: product.slug,
+    brand: { "@type": "Brand", name: "Velluvia" },
+    category: collection?.name,
     offers: {
       "@type": "Offer",
       priceCurrency: "GBP",
@@ -44,7 +69,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         : product.soldOut
           ? "https://schema.org/OutOfStock"
           : "https://schema.org/InStock",
-      url: `https://velluvia.co.uk/products/${product.slug}`,
+      url: productUrl,
+      itemCondition: "https://schema.org/NewCondition",
       hasMerchantReturnPolicy: {
         "@type": "MerchantReturnPolicy",
         applicableCountry: "GB",
@@ -52,7 +78,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         merchantReturnDays: 14,
         returnMethod: "https://schema.org/ReturnByMail",
         returnFees: "https://schema.org/ReturnShippingFees",
-        merchantReturnLink: "https://velluvia.co.uk/returns-policy",
+        merchantReturnLink: `${SITE}/returns-policy`,
       },
     },
   };
@@ -63,6 +89,23 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+              ...(collection
+                ? [{ "@type": "ListItem", position: 2, name: collection.name, item: `${SITE}/collections/${collection.slug}` }]
+                : []),
+              { "@type": "ListItem", position: collection ? 3 : 2, name: product.name, item: productUrl },
+            ],
+          }),
+        }}
       />
       <MetaViewContentEvent slug={product.slug} name={product.name} pricePence={product.price} />
       <div className="wrap">

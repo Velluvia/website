@@ -25,7 +25,7 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk"),
   title: {
     default: "Velluvia — Thoughtful Gifts. Lasting Impact.",
     template: "%s — Velluvia",
@@ -33,9 +33,10 @@ export const metadata: Metadata = {
   description:
     "Velluvia is a corporate and personal gifting house. Curated with care, delivered with purpose — for welcomes, farewells, milestones and every occasion in between.",
   openGraph: {
-    title: "Velluvia — Thoughtful Gifts. Lasting Impact.",
+    title: "Velluvia — Luxury Gift Boxes, Baby Gift Sets & Corporate Gifts UK",
     description:
-      "Curated with care. Delivered with purpose. Explore Velluvia Signature, Luxe, Sport and Home.",
+      "Luxury gift boxes for every occasion: baby gift sets, pamper hampers for her, gifts for him and corporate gifts. Beautifully wrapped, UK delivery.",
+    images: [{ url: "/images/blush-bloom/blush-bloom-hero.jpg", alt: "Velluvia gift boxes" }],
     siteName: "Velluvia",
     type: "website",
   },

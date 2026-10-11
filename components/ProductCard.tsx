@@ -21,7 +21,6 @@ export default function ProductCard({
       className={`product-card ${spotlight ? "spotlight" : ""} ${product.soldOut ? "is-sold-out" : ""}`}
     >
       <div className="product-media">
-        {tag && <span className="corner-tag">{tag}</span>}
         {product.comingSoon && <span className="corner-tag savings-tag">Coming Soon</span>}
         {!product.comingSoon && product.soldOut && <span className="sold-out-banner" aria-label="Sold out">Sold Out</span>}
         {!product.comingSoon && !product.soldOut && savingsPercent && <span className="corner-tag savings-tag">Save {savingsPercent}%</span>}

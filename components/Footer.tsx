@@ -22,6 +22,7 @@ export default function Footer() {
             <Link href="/collections/baby">Velluvia Baby</Link>
             <Link href="/collections/office">Velluvia Office</Link>
             <Link href="/collections/home">Velluvia Home</Link>
+            <Link href="/gift-guides">Gift Guides</Link>
           </div>
 
           <div>

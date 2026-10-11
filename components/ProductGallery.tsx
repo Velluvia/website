@@ -131,7 +131,7 @@ export default function ProductGallery({ images, alt }: { images: string[]; alt:
         aria-label="View larger image"
         type="button"
       >
-        <img src={images[active]} alt={alt} draggable={false} />
+        <img src={images[active]} alt={images.length > 1 ? `${alt}, photo ${active + 1} of ${images.length}` : alt} draggable={false} />
         <span className="expand-hint">Tap to enlarge{images.length > 1 ? " · swipe for more" : ""}</span>
       </button>
 
@@ -145,7 +145,7 @@ export default function ProductGallery({ images, alt }: { images: string[]; alt:
               onClick={() => setActive(i)}
               aria-label={`Show image ${i + 1}`}
             >
-              <img src={src} alt={alt} />
+              <img src={src} alt={`${alt}, thumbnail ${i + 1}`} loading="lazy" />
             </button>
           ))}
         </div>

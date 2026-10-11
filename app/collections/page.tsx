@@ -3,8 +3,10 @@ import CollectionCard from "@/components/CollectionCard";
 import { collections } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Collections",
-  description: "Shop Velluvia Signature, Baby, Office and Home collections.",
+  title: "Shop Gift Boxes by Collection",
+  description:
+    "Shop Velluvia gift boxes by collection: luxury pamper and birthday gifts, baby gift sets from newborn to 18 months, and corporate gifts. UK delivery.",
+  alternates: { canonical: "/collections" },
 };
 
 export default function CollectionsPage() {

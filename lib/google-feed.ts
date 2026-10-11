@@ -1,5 +1,6 @@
 import { products, getCollection } from "@/lib/products";
 import type { Product } from "@/lib/types";
+import { getProductSeo } from "@/lib/seo";
 
 /**
  * Google Merchant Center product feed (RSS 2.0 + Google namespace).
@@ -48,7 +49,7 @@ export function buildGoogleFeed(): string {
       const [hero, ...extra] = p.images.map((i) => `${SITE}${i}`);
       const lines = [
         `<g:id>${x(p.slug)}</g:id>`,
-        `<g:title>${x(p.name.slice(0, 150))}</g:title>`,
+        `<g:title>${x(getProductSeo(p).title.slice(0, 150))}</g:title>`,
         `<g:description>${x(fullDescription(p))}</g:description>`,
         `<g:link>${SITE}/products/${p.slug}</g:link>`,
         `<g:image_link>${x(hero)}</g:image_link>`,

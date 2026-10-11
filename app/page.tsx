@@ -4,7 +4,15 @@ import ProductCard from "@/components/ProductCard";
 import HeroLogo from "@/components/HeroLogo";
 import ReminderSignup from "@/components/ReminderSignup";
 import ShippingBanner from "@/components/ShippingBanner";
+import type { Metadata } from "next";
 import { collections, getProductsByCollection } from "@/lib/products";
+import { siteSeo } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: { absolute: `Velluvia | ${siteSeo.title}` },
+  description: siteSeo.description,
+  alternates: { canonical: "/" },
+};
 
 const occasions = [
   { label: "Welcome New Joiners", glyph: "W" },

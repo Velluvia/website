@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { collections, products } from "@/lib/products";
+import { guides } from "@/lib/guides";
 
 const SITE = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk").replace(/\/$/, "");
 
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
     "/collections",
+    "/gift-guides",
     "/gift-card",
     "/about",
     "/contact",
@@ -37,5 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.9,
     }));
-  return [...staticPages, ...collectionPages, ...productPages];
+  const guidePages = guides.map((g) => ({
+    url: `${SITE}/gift-guides/${g.slug}`,
+    lastModified: new Date(g.updated),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+  return [...staticPages, ...collectionPages, ...productPages, ...guidePages];
 }
