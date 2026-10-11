@@ -980,6 +980,41 @@ export const products: Product[] = [
       "/images/baby-12m-sunflower/baby-12m-sunflower-04.jpg",
     ],
   },
+  {
+    slug: "little-rose-butterfly-1m-gift-set",
+    collection: "baby",
+    name: "The Little Rose Butterfly Newborn Gift Set (1M)",
+    price: 2799,
+    currency: "gbp",
+    rrpPence: 11000,
+    rrpIsSeparatePrice: true,
+    apparel: { gender: "female", ageGroup: "newborn", size: "1M", color: "White/Pink" },
+    badge: "new",
+    description:
+      "Roses, Butterflies and a Little Sparkle. Romantic, delicate and so very pretty, The Little Rose Butterfly Newborn Gift Set welcomes a brand-new baby girl with six coordinated pieces of genuine Barcellino. A soft white top with puff sleeves and a rose-print Peter Pan collar is finished with a sparkling monogram, two pink butterfly appliqués and a layered hem of painted roses and shimmering pink organza. Matching white leggings, two beautifully embroidered bibs, a pair of butterfly lace-up pram shoes and a white headband with a soft yellow bow complete the look. Presented in our signature Velluvia gift box: a keepsake-worthy welcome for her very first days.",
+    details: [
+      "Featuring genuine Barcellino baby clothing",
+      "White top with rose-print Peter Pan collar, puff sleeves, sparkling monogram, butterfly appliqués and a rose-print and pink organza ruffle hem",
+      "White leggings with sparkling monogram",
+      "White bib with hand-embroidered flowers and organza ruffle trim",
+      "White bib with pink embroidered dots",
+      "White and pink lace-up pram shoes with butterfly detail",
+      "White headband with a soft yellow bow",
+      "Six pieces in total",
+      "Size: 1 month (newborn)",
+      "Perfect for: new arrivals, baby showers, newborn visits, new mums, hospital visits, christenings, spring and summer babies, or welcoming a baby girl",
+      "Presented in Velluvia's signature gift box, ready to give",
+      "Velluvia is an independent retailer and is not affiliated with Barcellino.",
+      "Please check garment sizing and care instructions before purchase. Decorative sparkles and appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing headbands, bibs and shoes, and remove them during sleep. Props shown in photos are not included.",
+    ],
+    images: [
+      "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-01.jpg",
+      "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-02.jpg",
+      "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-03.jpg",
+      "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-04.jpg",
+      "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-05.jpg",
+    ],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
