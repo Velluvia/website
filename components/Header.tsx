@@ -8,7 +8,8 @@ export default function Header() {
   const { count } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const links = [
+  const links: { href: string; label: string; highlight?: boolean }[] = [
+    { href: "/black-friday", label: "Black Friday", highlight: true },
     { href: "/collections", label: "Collections" },
     { href: "/gift-guides", label: "Gift Guides" },
     { href: "/gift-card", label: "Gift Cards" },
@@ -26,7 +27,7 @@ export default function Header() {
 
         <nav className="nav">
           {links.map((l) => (
-            <Link href={l.href} key={l.href}>
+            <Link href={l.href} key={l.href} className={l.highlight ? "nav-highlight" : undefined}>
               {l.label}
             </Link>
           ))}
@@ -55,7 +56,12 @@ export default function Header() {
       {menuOpen && (
         <nav className="mobile-nav">
           {links.map((l) => (
-            <Link href={l.href} key={l.href} onClick={() => setMenuOpen(false)}>
+            <Link
+              href={l.href}
+              key={l.href}
+              onClick={() => setMenuOpen(false)}
+              className={l.highlight ? "nav-highlight" : undefined}
+            >
               {l.label}
             </Link>
           ))}

@@ -151,3 +151,27 @@ export function generateGiftCardCode(): string {
     Array.from({ length: 4 }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join("");
   return `VELV-${part()}-${part()}`;
 }
+
+let campaignSignupsTableReady = false;
+
+/**
+ * Marketing sign-ups for campaigns such as Black Friday early access.
+ * Only people who tick the consent box are stored. View or export them in
+ * Vercel → Storage → Neon → SQL editor:
+ *   SELECT email, created_at FROM campaign_signups WHERE campaign = 'black-friday-2026' ORDER BY created_at;
+ */
+export async function ensureCampaignSignupsTable() {
+  if (campaignSignupsTableReady) return;
+  const sql = getSql();
+  await sql`
+    CREATE TABLE IF NOT EXISTS campaign_signups (
+      id SERIAL PRIMARY KEY,
+      email TEXT NOT NULL,
+      campaign TEXT NOT NULL,
+      consent_text TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      UNIQUE (email, campaign)
+    );
+  `;
+  campaignSignupsTableReady = true;
+}

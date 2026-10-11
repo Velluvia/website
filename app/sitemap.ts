@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/collections",
     "/gift-guides",
+    "/black-friday",
     "/gift-card",
     "/about",
     "/contact",

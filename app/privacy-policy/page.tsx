@@ -28,6 +28,7 @@ export default function PrivacyPolicyPage() {
         <h2>What we collect</h2>
         <ul>
           <li>Contact details you submit via our enquiry form or chat (name, email, message)</li>
+          <li>Your email address, if you join an offers or early-access list (for example Black Friday early access)</li>
           <li>Order and billing details processed via Stripe at checkout</li>
           <li>Reviews you submit, and the email used to verify a purchase before posting one</li>
           <li>Basic browsing and advertising data via Meta Pixel (see Cookies below)</li>
@@ -38,6 +39,10 @@ export default function PrivacyPolicyPage() {
           <li>To respond to enquiries and process orders</li>
           <li>To fulfil and ship gifts you&rsquo;ve purchased</li>
           <li>To send order confirmations and, if you&rsquo;ve opted in, occasion reminders</li>
+          <li>
+            If you&rsquo;ve ticked the box to agree, to email you about offers and early access. You can
+            unsubscribe at any time by replying to any email or contacting us
+          </li>
           <li>To improve the website and measure the performance of our advertising</li>
         </ul>
 

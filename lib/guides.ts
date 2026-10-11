@@ -1,4 +1,4 @@
-import { products } from "./products";
+import { products, getSavingsPercent } from "./products";
 import type { Product } from "./types";
 
 /**
@@ -38,6 +38,30 @@ export type Guide = {
 };
 
 const live = (all: Product[]) => all.filter((p) => !p.comingSoon && !p.soldOut);
+const pick = (slugs: string[]) => (all: Product[]) =>
+  slugs.map((slug) => live(all).find((p) => p.slug === slug)).filter((p): p is Product => Boolean(p));
+const bestValue = (pool: (all: Product[]) => Product[], n: number) => (all: Product[]) =>
+  [...pool(all)]
+    .filter((p) => (getSavingsPercent(p) ?? 0) > 0)
+    .sort((a, b) => (getSavingsPercent(b) ?? 0) - (getSavingsPercent(a) ?? 0))
+    .slice(0, n);
+
+const KIDS = ["unicorn-dream-gift-set", "frozen-dreams-gift-set", "dino-adventure-gift-set"];
+const FOR_HER = [
+  "pink-blossom-gift-set",
+  "blush-bloom-gift-set",
+  "pretty-pampered-gift-set",
+  "citrus-bright-gift-set",
+  "blush-serenity-gift-set",
+];
+const CHRISTMAS_DELIVERY: GuideSection = {
+  heading: "Ordering in time for Christmas",
+  paragraphs: [
+    "Orders are usually prepared and dispatched within 1 to 2 business days. Standard delivery then takes an estimated 3 to 5 business days, and Express delivery an estimated 1 to 2 business days.",
+    "Couriers get very busy in December, so the earlier you order, the more relaxed your Christmas will be. Every gift arrives ready to give, so there's no wrapping to do.",
+  ],
+  cta: { href: "/delivery", label: "See delivery options" },
+};
 const baby = (all: Product[]) => live(all).filter((p) => p.collection === "baby");
 const bySize = (sizes: string[]) => (all: Product[]) =>
   baby(all).filter((p) => p.apparel && sizes.includes(p.apparel.size));
@@ -276,6 +300,126 @@ export const guides: Guide[] = [
       {
         q: "Do you offer bulk corporate orders?",
         a: "Yes. Contact us with the quantity and dates, and we'll help you plan the order.",
+      },
+    ],
+  },
+  {
+    slug: "christmas-gifts-for-kids",
+    title: "Christmas Gift Ideas for Kids: Gift Boxes They'll Love",
+    seoTitle: "Christmas Gifts for Kids UK | Gift Box Ideas",
+    seoDescription:
+      "Christmas gift ideas for kids and babies: unicorn, winter princess and dinosaur gift boxes, plus baby's first Christmas outfits. Gift-boxed, UK delivery.",
+    summary:
+      "Magical Christmas gift boxes for girls, boys and babies, ready to put under the tree.",
+    heroImage: "/images/unicorn-dream/unicorn-dream-hero.jpg",
+    updated: "2026-10-11",
+    intro: [
+      "There's nothing quite like a child's face when they lift the lid on a gift that feels made just for them. A themed gift box turns one present into a whole collection of little surprises, and it arrives beautifully presented, so there's nothing left to wrap.",
+      "Here are our favourite Christmas gift boxes for children, plus beautiful outfits for a baby's very first Christmas.",
+    ],
+    sections: [
+      {
+        heading: "Why a gift box makes a great Christmas present",
+        paragraphs: [
+          "Instead of one toy that's forgotten by Boxing Day, a gift box combines cosy things, fun things and useful things around a theme they love. Blankets, cushions and sleep masks get used all winter, while the little extras make unwrapping last longer.",
+        ],
+      },
+      {
+        heading: "Christmas gifts for girls",
+        paragraphs: [
+          "For little dreamers who love rainbows, sparkle and snowy castles: plush cushions, soft blankets, tiaras and headbands, all in one magical box.",
+        ],
+        products: pick(KIDS.slice(0, 2)),
+      },
+      {
+        heading: "Christmas gifts for dinosaur fans",
+        paragraphs: [
+          "For curious little explorers of any kind: a dinosaur backpack, a cosy printed blanket, toys and stationery for roaring adventures.",
+        ],
+        products: pick(KIDS.slice(2)),
+      },
+      {
+        heading: "Baby's first Christmas",
+        paragraphs: [
+          "A first Christmas only happens once. A boxed outfit set is a gift parents treasure, perfect for Christmas Day photos and family visits. Choose the size the baby will be on Christmas Day; these sets show the biggest savings against their worth if bought separately.",
+        ],
+        products: bestValue(bySize(["3M", "6M"]), 4),
+        cta: { href: "/gift-guides/baby-gifts-by-age", label: "Find the right size" },
+      },
+      CHRISTMAS_DELIVERY,
+    ],
+    faqs: [
+      {
+        q: "When should I order Christmas gifts?",
+        a: "As early as you can. Orders are usually dispatched within 1 to 2 business days, then standard delivery takes an estimated 3 to 5 business days. Express delivery is available for later orders, but couriers are busiest in December.",
+      },
+      {
+        q: "Do the gift boxes need wrapping?",
+        a: "No. Every Velluvia gift arrives beautifully presented and ready to give.",
+      },
+      {
+        q: "What size should I choose for a baby's first Christmas?",
+        a: "Choose the size the baby will be on Christmas Day, or one size up if you're unsure. Babies grow quickly.",
+      },
+    ],
+  },
+  {
+    slug: "christmas-gifts-for-her",
+    title: "Christmas Gifts for Her: Luxury Pamper Gift Boxes",
+    seoTitle: "Christmas Gifts for Her UK | Pamper Gift Boxes",
+    seoDescription:
+      "Christmas gifts for her: luxury pamper gift boxes with candles, cosy socks, eye masks and tumblers for mum, wife, sister or friend. UK delivery.",
+    summary:
+      "Cosy, pampering Christmas gift boxes for mum, your partner, your sister or your best friend.",
+    heroImage: "/images/pink-blossom/pink-blossom-hero.jpg",
+    updated: "2026-10-11",
+    intro: [
+      "Christmas is the one time of year she might actually slow down, so give her something that helps her do exactly that. A pamper gift box brings together cosy textures, soft lighting and little indulgences in one beautifully presented gift.",
+      "Here's how to choose, and the gift boxes we'd put under the tree.",
+    ],
+    sections: [
+      {
+        heading: "How to choose a Christmas gift for her",
+        paragraphs: [
+          "Think about how she likes to unwind. A scented candle and a soft blanket suit someone who loves a cosy night in, while a tumbler and pretty accessories are ideal for someone always on the go. A gift box covers several of these at once, so you don't have to guess.",
+        ],
+      },
+      {
+        heading: "Our Christmas pamper gift boxes",
+        paragraphs: [
+          "Each box is curated around a colour and a mood, from romantic pinks to sunshine yellow, and arrives ready to give. They're shown with the biggest savings against RRP first.",
+        ],
+        products: bestValue(pick(FOR_HER), 6),
+        cta: { href: "/collections/signature", label: "See all gifts for her" },
+      },
+      {
+        heading: "Christmas gifts for her under £20",
+        paragraphs: [
+          "Secret Santa, a colleague or a little something for a friend: these boxes feel generous without the big price tag.",
+        ],
+        products: (all) => pick(FOR_HER)(all).filter((p) => p.price < 2000),
+      },
+      {
+        heading: "For new mums this Christmas",
+        paragraphs: [
+          "Know someone celebrating a first Christmas with a new baby? A boxed baby outfit set is a gift for the whole family.",
+        ],
+        cta: { href: "/gift-guides/christmas-gifts-for-kids", label: "Baby's first Christmas gifts" },
+      },
+      CHRISTMAS_DELIVERY,
+    ],
+    faqs: [
+      {
+        q: "What is a good Christmas gift for her?",
+        a: "A pamper gift box is a safe and thoughtful choice: it combines several things she'll enjoy, like a candle, cosy socks and an eye mask, and arrives beautifully presented.",
+      },
+      {
+        q: "When should I order for Christmas delivery?",
+        a: "Order as early as you can. Orders are usually dispatched within 1 to 2 business days, and standard delivery takes an estimated 3 to 5 business days after that.",
+      },
+      {
+        q: "Can I send the gift directly to her?",
+        a: "Yes. Enter her address at checkout and the gift arrives ready to open.",
       },
     ],
   },

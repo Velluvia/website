@@ -22,7 +22,10 @@ export default function GiftGuidesPage() {
           </p>
         </div>
         <div className="guide-index-grid">
-          {guides.map((g) => (
+          {[...guides]
+            // seasonal guides first
+            .sort((a, b) => Number(b.slug.includes("christmas")) - Number(a.slug.includes("christmas")))
+            .map((g) => (
             <Link href={`/gift-guides/${g.slug}`} className="guide-index-card" key={g.slug}>
               <span className="guide-index-media">
                 <img src={g.heroImage} alt={g.title} loading="lazy" />

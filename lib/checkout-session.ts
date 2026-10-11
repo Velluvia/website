@@ -117,6 +117,12 @@ export async function createCheckoutSession(
   return stripe.checkout.sessions.create({
     mode: "payment",
     line_items,
+    // Lets customers type a promo code (e.g. a Black Friday code created in
+    // Stripe Dashboard → Product catalogue → Coupons → Promotion codes) on the
+    // Stripe checkout page. Stripe doesn't allow this together with a discount
+    // already applied by us (gift card / Meta Shops code), so it's only switched
+    // on when there isn't one.
+    ...(discounts && discounts.length > 0 ? {} : { allow_promotion_codes: true }),
     // Klarna requires enabling it once in Stripe Dashboard → Settings →
     // Payment methods (Riccardo: this is a one-time toggle, not something
     // deployable in code). Until that's done, Stripe simply won't offer
