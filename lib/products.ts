@@ -1016,6 +1016,42 @@ export const products: Product[] = [
       "/images/baby-1m-rose-butterfly/baby-1m-rose-butterfly-05.jpg",
     ],
   },
+  {
+    slug: "little-doll-3m-gift-set",
+    collection: "baby",
+    name: "The Little Doll Baby Gift Set (3M)",
+    price: 2999,
+    currency: "gbp",
+    rrpPence: 13000,
+    rrpIsSeparatePrice: true,
+    apparel: { gender: "female", ageGroup: "infant", size: "3M", color: "White/Navy/Red" },
+    badge: "new",
+    description:
+      "Nine Pieces of Pure Charm. Playful, classic and beautifully coordinated in white, navy and a pop of red, The Little Doll Gift Set is a generous collection of genuine Barcellino pieces for her three-month milestone. The star is a soft white bodysuit with a navy-scalloped Peter Pan collar and an adorable hand-drawn little girl print, finished with a real red bow. A cosy terry bolero, two pretty hats (one in blue florals, one with a navy ribbon and crochet flower) and four beautifully detailed bibs mean there's a fresh look for every day, while a pair of blue 'I Love Dad' pram shoes adds the sweetest finishing touch. Presented in our signature Velluvia gift box, ready to give.",
+    details: [
+      "Featuring genuine Barcellino baby clothing",
+      "White short-sleeve bodysuit with navy-scalloped Peter Pan collar and a hand-drawn little girl print with red bow appliqué",
+      "White soft terry bolero with charm detail",
+      "Blue floral print baby hat with butterfly appliqué",
+      "White baby hat with navy ribbon and crochet flower",
+      "White bib with lace frill and teddy appliqué",
+      "Navy-and-white striped bib with sparkling monogram",
+      "White bib with heart appliqué",
+      "White polka-dot bib with red bow and sparkling monogram",
+      "Blue 'I Love Dad' pram shoes",
+      "Nine pieces in total",
+      "Size: 3 months",
+      "Perfect for: baby girls, baby showers, newborn visits, christenings, new mums, Father's Day, or a special little treat",
+      "Presented in Velluvia's signature gift box, ready to give",
+      "Velluvia is an independent retailer and is not affiliated with Barcellino.",
+      "Please check garment sizing and care instructions before purchase. Decorative sparkles, bows and appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the nine pieces listed above; lifestyle photos are for illustration.",
+    ],
+    images: [
+      "/images/baby-3m-little-doll/baby-3m-little-doll-01.jpg",
+      "/images/baby-3m-little-doll/baby-3m-little-doll-02.jpg",
+      "/images/baby-3m-little-doll/baby-3m-little-doll-03.jpg",
+    ],
+  },
 ];
 
 export function getCollection(slug: string): Collection | undefined {
