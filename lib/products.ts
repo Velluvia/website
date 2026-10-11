@@ -615,7 +615,7 @@ export const products: Product[] = [
   {
     slug: "little-miss-newborn-gift-set",
     collection: "baby",
-    name: "The Little Miss Newborn Gift Set",
+    name: "The Little Miss 5-Piece Newborn Gift Box",
     price: 2799,
     currency: "gbp",
     rrpPence: 10000,
@@ -630,6 +630,7 @@ export const products: Product[] = [
       "A soft baby bib",
       "A sweet baby hat",
       "A matching headband",
+      "Five pieces in total",
       "Beautifully presented, ready to gift",
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Perfect for: baby showers, newborn visits, maternity celebrations, new mums, or welcoming a new arrival",
@@ -646,14 +647,14 @@ export const products: Product[] = [
   {
     slug: "little-prince-newborn-gift-set",
     collection: "baby",
-    name: "The Little Prince Newborn Gift Set",
+    name: "The Little Prince 6-Piece Newborn Gift Box",
     price: 2799,
     currency: "gbp",
     rrpPence: 12000,
     rrpIsSeparatePrice: true,
     apparel: { gender: "male", ageGroup: "newborn", size: "0-3M", color: "Blue/White" },
     description:
-      "Smart, Soft and Simply Adorable. Welcome a brand-new baby boy in style with The Little Prince Newborn Gift Set — a beautifully coordinated newborn wardrobe that's as practical as it is photo-ready. A classic blue gingham shirt romper for special occasions sits alongside a soft white romper with a sweet teddy appliqué for everyday cuddles, finished with two hats and two pairs of tiny pram shoes. Every piece is genuine Barcellino, chosen for those precious first weeks and presented in our signature white Velluvia gift box, so it's ready to give the moment it arrives. Six pieces, one unforgettable first outfit collection.",
+      "Smart, Soft and Simply Adorable. Welcome a brand-new baby boy in style with The Little Prince Newborn Gift Box — a beautifully coordinated newborn wardrobe that's as practical as it is photo-ready. A classic blue gingham shirt romper for special occasions sits alongside a soft white romper with a sweet teddy appliqué for everyday cuddles, finished with two hats and two pairs of tiny pram shoes. Every piece is genuine Barcellino, chosen for those precious first weeks and presented in our signature white Velluvia gift box, so it's ready to give the moment it arrives. Six pieces, one unforgettable first outfit collection.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "Blue gingham shirt romper with button front and collar",
@@ -665,6 +666,7 @@ export const products: Product[] = [
       "Sized for newborns, 0–3 months",
       "Presented in Velluvia's signature white gift box, ready to give",
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
+      "Six pieces in total",
       "Perfect for: baby showers, newborn visits, new baby boys, maternity leave gifts, new mums, christenings, or welcoming a new arrival",
       "Please check garment sizing and care instructions before purchase. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats and shoes, and remove them during sleep.",
     ],
@@ -682,14 +684,14 @@ export const products: Product[] = [
   {
     slug: "little-explorer-newborn-gift-set",
     collection: "baby",
-    name: "The Little Explorer Newborn Gift Set",
+    name: "The Little Explorer 5-Piece Newborn Gift Box",
     price: 1799,
     currency: "gbp",
     rrpPence: 11000,
     rrpIsSeparatePrice: true,
     apparel: { gender: "male", ageGroup: "newborn", size: "0-3M", color: "Grey/White" },
     description:
-      "Big Adventures Start Small. Playful, cosy and full of charm, The Little Explorer Newborn Gift Set is made for the newest little adventurer in the family. A heather-grey short romper with a buttercup-yellow collar and a teddy-and-train appliqué brings the fun by day, while a soft white footed sleepsuit keeps him snug through the night. A cheerful red-and-grey striped knot hat and two pairs of tiny pram shoes complete the look. Made up of genuine Barcellino pieces, thoughtfully put together and presented in our signature white Velluvia gift box, it's a joyful, ready-to-give welcome at a truly lovely price.",
+      "Big Adventures Start Small. Playful, cosy and full of charm, The Little Explorer Newborn Gift Box is made for the newest little adventurer in the family. A heather-grey short romper with a buttercup-yellow collar and a teddy-and-train appliqué brings the fun by day, while a soft white footed sleepsuit keeps him snug through the night. A cheerful red-and-grey striped knot hat and two pairs of tiny pram shoes complete the look. Made up of genuine Barcellino pieces, thoughtfully put together and presented in our signature white Velluvia gift box, it's a joyful, ready-to-give welcome at a truly lovely price.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "Heather-grey short romper with yellow collar and teddy-and-train appliqué",
@@ -700,6 +702,7 @@ export const products: Product[] = [
       "Sized for newborns, 0–3 months",
       "Presented in Velluvia's signature white gift box, ready to give",
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
+      "Five pieces in total",
       "Perfect for: baby showers, newborn visits, new baby boys, welcome-home gifts, new mums, colleague collections, or welcoming a new arrival",
       "Please check garment sizing and care instructions before purchase. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats and shoes, and remove them during sleep. Props shown in lifestyle photos are not included.",
     ],
@@ -714,14 +717,14 @@ export const products: Product[] = [
   {
     slug: "little-cherry-6m-gift-set",
     collection: "baby",
-    name: "The Little Cherry Baby Gift Set (6M)",
+    name: "The Little Cherry 8-Piece Baby Gift Box (6M)",
     price: 2299,
     currency: "gbp",
     rrpPence: 12000,
     rrpIsSeparatePrice: true,
     apparel: { gender: "female", ageGroup: "infant", size: "6M", color: "Red/White" },
     description:
-      "Sweet as a Cherry. The Little Cherry Gift Set brings together eight genuine Barcellino pieces in a cheerful palette of cherry red, coral pink and soft ivory. A classic red-and-white striped footed sleepsuit and an elegant ivory bodysuit with a Peter Pan collar and sparkling monogram form the heart of the set, finished with a coral bolero cardigan, a polka-dot hat, a headband with hand-crocheted cherries, two beautifully detailed bibs and a pair of 'I Love Mum' pram shoes. Presented in our signature white Velluvia gift box, it's a charming, complete wardrobe for her six-month milestone — and a gift she'll look adorable in.",
+      "Sweet as a Cherry. The Little Cherry Gift Box brings together eight genuine Barcellino pieces in a cheerful palette of cherry red, coral pink and soft ivory. A classic red-and-white striped footed sleepsuit and an elegant ivory bodysuit with a Peter Pan collar and sparkling monogram form the heart of the set, finished with a coral bolero cardigan, a polka-dot hat, a headband with hand-crocheted cherries, two beautifully detailed bibs and a pair of 'I Love Mum' pram shoes. Presented in our signature white Velluvia gift box, it's a charming, complete wardrobe for her six-month milestone — and a gift she'll look adorable in.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "Red-and-white striped footed sleepsuit",
@@ -732,6 +735,7 @@ export const products: Product[] = [
       "Ivory bib with embroidered teddy bear",
       "Ivory bib with lace trim and gold monogram",
       "Pink 'I Love Mum' pram shoes",
+      "Eight pieces in total",
       "Size: 6 months",
       "Presented in Velluvia's signature white gift box, ready to give",
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
@@ -750,14 +754,14 @@ export const products: Product[] = [
   {
     slug: "little-sweetheart-6m-gift-set",
     collection: "baby",
-    name: "The Little Sweetheart Baby Gift Set (6M)",
+    name: "The Little Sweetheart 7-Piece Baby Gift Box (6M)",
     price: 2799,
     currency: "gbp",
     rrpPence: 13000,
     rrpIsSeparatePrice: true,
     apparel: { gender: "female", ageGroup: "infant", size: "6M", color: "Pink/White" },
     description:
-      "Hearts, Clouds and a Little Sparkle. Soft pinks, delicate ivory and just the right amount of shimmer — The Little Sweetheart Gift Set is seven genuine Barcellino pieces made for your little princess. A dreamy pink romper with sparkling heart balloons, embroidered clouds and frilled legs sits beside an ivory-and-pink romper finished with silver shimmer stripes, a satin bow and a tiny heart charm. A long-sleeve ivory bodysuit for layering, a white hat with a lace bow, two pretty bibs and a pair of 'I Love Mum' pram shoes complete the look. Presented in our signature white Velluvia gift box, it's a gift that feels as special as she is.",
+      "Hearts, Clouds and a Little Sparkle. Soft pinks, delicate ivory and just the right amount of shimmer — The Little Sweetheart Gift Box is seven genuine Barcellino pieces made for your little princess. A dreamy pink romper with sparkling heart balloons, embroidered clouds and frilled legs sits beside an ivory-and-pink romper finished with silver shimmer stripes, a satin bow and a tiny heart charm. A long-sleeve ivory bodysuit for layering, a white hat with a lace bow, two pretty bibs and a pair of 'I Love Mum' pram shoes complete the look. Presented in our signature white Velluvia gift box, it's a gift that feels as special as she is.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "Pink romper with sparkling heart balloons, embroidered clouds and frilled legs",
@@ -767,6 +771,7 @@ export const products: Product[] = [
       "Pink bib with ditsy floral print",
       "White bib with flower appliqué and sparkling monogram",
       "Pink 'I Love Mum' pram shoes",
+      "Seven pieces in total",
       "Size: 6 months",
       "Presented in Velluvia's signature white gift box, ready to give",
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
@@ -787,7 +792,7 @@ export const products: Product[] = [
   {
     slug: "little-butterfly-18m-gift-set",
     collection: "baby",
-    name: "The Little Butterfly Jumbo Baby Gift Set (18M)",
+    name: "The Little Butterfly Jumbo 7-Piece Baby Gift Box (18M)",
     price: 2999,
     currency: "gbp",
     rrpPence: 12000,
@@ -795,7 +800,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "toddler", size: "18M", color: "Pink/White" },
     badge: "new",
     description:
-      "Our Biggest Baby Set Yet — Seven Pieces of Pure Sweetness. The Little Butterfly Jumbo Gift Set is a complete little wardrobe for her 18-month milestone, made up of seven genuine Barcellino pieces in soft blush pink and ivory. The star is a pink romper with a Peter Pan collar, a padded butterfly appliqué with a fluffy pom-pom and tiered tulle ruffles — made for twirling. Layer it with a pink bolero tied with a satin ribbon, a white bolero with a sparkling monogram or a classic white button-front cardigan, and finish with three ivory long-sleeve pieces edged in delicate scalloped lace. Mix, match and layer through the seasons — all presented in our signature white Velluvia gift box, ready to give.",
+      "Our Biggest Baby Set Yet — Seven Pieces of Pure Sweetness. The Little Butterfly Jumbo Gift Box is a complete little wardrobe for her 18-month milestone, made up of seven genuine Barcellino pieces in soft blush pink and ivory. The star is a pink romper with a Peter Pan collar, a padded butterfly appliqué with a fluffy pom-pom and tiered tulle ruffles — made for twirling. Layer it with a pink bolero tied with a satin ribbon, a white bolero with a sparkling monogram or a classic white button-front cardigan, and finish with three ivory long-sleeve pieces edged in delicate scalloped lace. Mix, match and layer through the seasons — all presented in our signature white Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "Pink short-sleeve romper with Peter Pan collar, butterfly appliqué and tiered tulle ruffle skirt",
@@ -825,7 +830,7 @@ export const products: Product[] = [
   {
     slug: "little-sunflower-1m-gift-set",
     collection: "baby",
-    name: "The Little Sunflower Newborn Gift Set (1M)",
+    name: "The Little Sunflower 6-Piece Newborn Gift Box (1M)",
     price: 2499,
     currency: "gbp",
     rrpPence: 10000,
@@ -833,7 +838,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "newborn", size: "1M", color: "Yellow/White" },
     badge: "new",
     description:
-      "Sunshine for Her Very First Days. Bright, sweet and full of joy, The Little Sunflower Newborn Gift Set welcomes a brand-new baby girl with a beautifully coordinated collection of genuine Barcellino pieces. The star is a soft white romper with a scalloped buttercup-yellow collar, a sparkling monogram and a cheerful flower appliqué. Two pretty hats, one in sunny yellow and one in white, both decorated with little flowers, sit alongside two embroidered bibs and a matching headband. Six pieces in all, presented in our signature Velluvia gift box: a happy, ready-to-give welcome for a new arrival.",
+      "Sunshine for Her Very First Days. Bright, sweet and full of joy, The Little Sunflower Newborn Gift Box welcomes a brand-new baby girl with a beautifully coordinated collection of genuine Barcellino pieces. The star is a soft white romper with a scalloped buttercup-yellow collar, a sparkling monogram and a cheerful flower appliqué. Two pretty hats, one in sunny yellow and one in white, both decorated with little flowers, sit alongside two embroidered bibs and a matching headband. Six pieces in all, presented in our signature Velluvia gift box: a happy, ready-to-give welcome for a new arrival.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White romper with scalloped yellow collar, sparkling monogram and flower appliqué",
@@ -856,7 +861,7 @@ export const products: Product[] = [
   {
     slug: "little-polka-dot-6m-gift-set",
     collection: "baby",
-    name: "The Little Polka Dot Baby Gift Set (6M)",
+    name: "The Little Polka Dot 7-Piece Baby Gift Box (6M)",
     price: 2799,
     currency: "gbp",
     rrpPence: 12000,
@@ -864,7 +869,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "6M", color: "Beige/White/Pink" },
     badge: "new",
     description:
-      "Little Details Make Big Moments. Soft neutrals, delicate polka dots and the sweetest pink accents — The Little Polka Dot Gift Set is a beautifully coordinated collection for her six-month milestone. A white dress with a beige polka-dot yoke, frilled sleeves, a Peter Pan collar and a pink bow, finished with a padded heart and teddy appliqué, pairs perfectly with matching polka-dot bloomers. A cream knitted bolero with a jewelled button, an ivory ruffle-trim piece, two pretty bibs and a pair of 'I Love Dad' pram shoes complete the set. Presented in our signature Velluvia gift box, ready to give.",
+      "Little Details Make Big Moments. Soft neutrals, delicate polka dots and the sweetest pink accents — The Little Polka Dot Gift Box is a beautifully coordinated collection for her six-month milestone. A white dress with a beige polka-dot yoke, frilled sleeves, a Peter Pan collar and a pink bow, finished with a padded heart and teddy appliqué, pairs perfectly with matching polka-dot bloomers. A cream knitted bolero with a jewelled button, an ivory ruffle-trim piece, two pretty bibs and a pair of 'I Love Dad' pram shoes complete the set. Presented in our signature Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White dress with beige polka-dot yoke, Peter Pan collar, frilled sleeves, pink bow and heart-and-teddy appliqué",
@@ -874,6 +879,7 @@ export const products: Product[] = [
       "White bib with lace teddy appliqué",
       "White bib with pink embroidered dots",
       "Pink 'I Love Dad' pram shoes",
+      "Seven pieces in total",
       "Size: 6 months",
       "Perfect for: baby girls, half-birthdays, baby showers, christenings, family occasions, new mums, or a special little treat",
       "Presented in Velluvia's signature gift box, ready to give",
@@ -888,7 +894,7 @@ export const products: Product[] = [
   {
     slug: "little-bluebell-6m-gift-set",
     collection: "baby",
-    name: "The Little Bluebell Baby Gift Set (6M)",
+    name: "The Little Bluebell 7-Piece Baby Gift Box (6M)",
     price: 2799,
     currency: "gbp",
     rrpPence: 12000,
@@ -896,7 +902,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "6M", color: "White/Blue/Pink" },
     badge: "new",
     description:
-      "A Little Bundle of Love. Fresh white cotton, painted blue blossoms and a pop of raspberry pink — The Little Bluebell Gift Set is a charming, coordinated wardrobe for her six-month milestone. A crisp long-sleeve bodysuit with a navy-piped Peter Pan collar is layered with a choice of two white cardigans, one long-sleeved and one short-sleeved, each finished with scalloped edges and a sparkling monogram. A blue floral hat and matching bib, frilly raspberry-and-white bloomers with a bow and a pair of blue 'I Love Dad' pram shoes complete the look. Presented in our signature Velluvia gift box, ready to give.",
+      "A Little Bundle of Love. Fresh white cotton, painted blue blossoms and a pop of raspberry pink — The Little Bluebell Gift Box is a charming, coordinated wardrobe for her six-month milestone. A crisp long-sleeve bodysuit with a navy-piped Peter Pan collar is layered with a choice of two white cardigans, one long-sleeved and one short-sleeved, each finished with scalloped edges and a sparkling monogram. A blue floral hat and matching bib, frilly raspberry-and-white bloomers with a bow and a pair of blue 'I Love Dad' pram shoes complete the look. Presented in our signature Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White long-sleeve bodysuit with navy-piped Peter Pan collar and sparkling monogram",
@@ -906,6 +912,7 @@ export const products: Product[] = [
       "Matching blue floral bib with sparkling monogram",
       "White bloomers with raspberry ruffle waistband and bow",
       "Blue 'I Love Dad' pram shoes",
+      "Seven pieces in total",
       "Size: 6 months",
       "Perfect for: baby girls, half-birthdays, baby showers, christenings, summer celebrations, new mums, or a special little treat",
       "Presented in Velluvia's signature gift box, ready to give",
@@ -920,7 +927,7 @@ export const products: Product[] = [
   {
     slug: "little-darling-9m-gift-set",
     collection: "baby",
-    name: "The Little Darling Complete Baby Gift Set (9M)",
+    name: "The Little Darling 7-Piece Baby Gift Box (9M)",
     price: 2999,
     currency: "gbp",
     rrpPence: 12000,
@@ -928,7 +935,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "9M", color: "White/Red/Navy" },
     badge: "new",
     description:
-      "Seven Pieces, Endless Little Outfits. Classic, cosy and effortlessly cute, The Little Darling Complete Gift Set gives her a mix-and-match wardrobe for her nine-month milestone. Three white cardigans and boleros, each finished with a sparkling monogram, layer over a cheerful red-and-white striped footed sleepsuit. A white hat with a little pink bow, a soft headband with a teddy appliqué and a navy-striped bandana bib with a red bow finish the set. Presented in our signature Velluvia gift box, it's a complete, ready-to-give gift that will be worn again and again.",
+      "Seven Pieces, Endless Little Outfits. Classic, cosy and effortlessly cute, The Little Darling Complete Gift Box gives her a mix-and-match wardrobe for her nine-month milestone. Three white cardigans and boleros, each finished with a sparkling monogram, layer over a cheerful red-and-white striped footed sleepsuit. A white hat with a little pink bow, a soft headband with a teddy appliqué and a navy-striped bandana bib with a red bow finish the set. Presented in our signature Velluvia gift box, it's a complete, ready-to-give gift that will be worn again and again.",
     details: [
       "Featuring Barcellino baby clothing",
       "Three white cardigans and boleros with sparkling monograms",
@@ -951,7 +958,7 @@ export const products: Product[] = [
   {
     slug: "little-sunflower-12m-gift-set",
     collection: "baby",
-    name: "The Little Sunflower Baby Gift Set (12M)",
+    name: "The Little Sunflower 7-Piece Baby Gift Box (12M)",
     price: 2999,
     currency: "gbp",
     rrpPence: 13000,
@@ -959,7 +966,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "12M", color: "White/Yellow/Red" },
     badge: "new",
     description:
-      "Little Moments, Big Smiles. Made for her first birthday and beyond, The Little Sunflower Gift Set is a bright, joyful collection of genuine Barcellino pieces. A white dress with a scalloped buttercup-yellow collar, a sparkling monogram and a big flower appliqué is the star, with frilly red-ruffle bloomers to match. Three white boleros and cardigans, including a soft rib-knit style, mean she's covered from sunny days to cooler evenings, while a navy-striped knot hat and a red polka-dot hat add a playful finishing touch. Presented in our signature Velluvia gift box, ready to give.",
+      "Little Moments, Big Smiles. Made for her first birthday and beyond, The Little Sunflower Gift Box is a bright, joyful collection of genuine Barcellino pieces. A white dress with a scalloped buttercup-yellow collar, a sparkling monogram and a big flower appliqué is the star, with frilly red-ruffle bloomers to match. Three white boleros and cardigans, including a soft rib-knit style, mean she's covered from sunny days to cooler evenings, while a navy-striped knot hat and a red polka-dot hat add a playful finishing touch. Presented in our signature Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White dress with scalloped yellow collar, sparkling monogram and flower appliqué",
@@ -967,6 +974,7 @@ export const products: Product[] = [
       "Three white boleros and cardigans, including a rib-knit bolero, with sparkling monograms",
       "Navy-and-white striped knot hat",
       "White hat with red polka dots",
+      "Seven pieces in total",
       "Size: 12 months",
       "Perfect for: first birthdays, baby girls, christenings, family celebrations, summer occasions, or spoiling a little one",
       "Presented in Velluvia's signature gift box, ready to give",
@@ -983,7 +991,7 @@ export const products: Product[] = [
   {
     slug: "little-rose-butterfly-1m-gift-set",
     collection: "baby",
-    name: "The Little Rose Butterfly Newborn Gift Set (1M)",
+    name: "The Little Rose Butterfly 6-Piece Newborn Gift Box (1M)",
     price: 2799,
     currency: "gbp",
     rrpPence: 11000,
@@ -991,7 +999,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "newborn", size: "1M", color: "White/Pink" },
     badge: "new",
     description:
-      "Roses, Butterflies and a Little Sparkle. Romantic, delicate and so very pretty, The Little Rose Butterfly Newborn Gift Set welcomes a brand-new baby girl with six coordinated pieces of genuine Barcellino. A soft white top with puff sleeves and a rose-print Peter Pan collar is finished with a sparkling monogram, two pink butterfly appliqués and a layered hem of painted roses and shimmering pink organza. Matching white leggings, two beautifully embroidered bibs, a pair of butterfly lace-up pram shoes and a white headband with a soft yellow bow complete the look. Presented in our signature Velluvia gift box: a keepsake-worthy welcome for her very first days.",
+      "Roses, Butterflies and a Little Sparkle. Romantic, delicate and so very pretty, The Little Rose Butterfly Newborn Gift Box welcomes a brand-new baby girl with six coordinated pieces of genuine Barcellino. A soft white top with puff sleeves and a rose-print Peter Pan collar is finished with a sparkling monogram, two pink butterfly appliqués and a layered hem of painted roses and shimmering pink organza. Matching white leggings, two beautifully embroidered bibs, a pair of butterfly lace-up pram shoes and a white headband with a soft yellow bow complete the look. Presented in our signature Velluvia gift box: a keepsake-worthy welcome for her very first days.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White top with rose-print Peter Pan collar, puff sleeves, sparkling monogram, butterfly appliqués and a rose-print and pink organza ruffle hem",
@@ -1019,7 +1027,7 @@ export const products: Product[] = [
   {
     slug: "little-doll-3m-gift-set",
     collection: "baby",
-    name: "The Little Doll Baby Gift Set (3M)",
+    name: "The Little Doll 9-Piece Baby Gift Box (3M)",
     price: 2999,
     currency: "gbp",
     rrpPence: 13000,
@@ -1027,7 +1035,7 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "3M", color: "White/Navy/Red" },
     badge: "new",
     description:
-      "Nine Pieces of Pure Charm. Playful, classic and beautifully coordinated in white, navy and a pop of red, The Little Doll Gift Set is a generous collection of genuine Barcellino pieces for her three-month milestone. The star is a soft white bodysuit with a navy-scalloped Peter Pan collar and an adorable hand-drawn little girl print, finished with a real red bow. A cosy terry bolero, two pretty hats (one in blue florals, one with a navy ribbon and crochet flower) and four beautifully detailed bibs mean there's a fresh look for every day, while a pair of blue 'I Love Dad' pram shoes adds the sweetest finishing touch. Presented in our signature Velluvia gift box, ready to give.",
+      "Nine Pieces of Pure Charm. Playful, classic and beautifully coordinated in white, navy and a pop of red, The Little Doll Gift Box is a generous collection of genuine Barcellino pieces for her three-month milestone. The star is a soft white bodysuit with a navy-scalloped Peter Pan collar and an adorable hand-drawn little girl print, finished with a real red bow. A cosy terry bolero, two pretty hats (one in blue florals, one with a navy ribbon and crochet flower) and four beautifully detailed bibs mean there's a fresh look for every day, while a pair of blue 'I Love Dad' pram shoes adds the sweetest finishing touch. Presented in our signature Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White short-sleeve bodysuit with navy-scalloped Peter Pan collar and a hand-drawn little girl print with red bow appliqué",

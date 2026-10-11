@@ -94,6 +94,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 {collection.name}
               </Link>
             )}
+            {product.soldOut && !isComingSoon && <span className="sold-out-pill">Sold Out</span>}
             <h1>{product.name}</h1>
             <p className="price">
               {formatPrice(product.price)}
@@ -126,7 +127,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </button>
             ) : product.soldOut ? (
               <>
-                <button className="btn btn-outline btn-block" disabled style={{ opacity: 0.6, cursor: "not-allowed" }}>
+                <button className="btn btn-block btn-sold-out" disabled>
                   Sold Out
                 </button>
                 <p style={{ fontSize: 13, color: "var(--ink-soft)", marginTop: 10 }}>

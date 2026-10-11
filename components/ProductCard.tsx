@@ -23,7 +23,7 @@ export default function ProductCard({
       <div className="product-media">
         {tag && <span className="corner-tag">{tag}</span>}
         {product.comingSoon && <span className="corner-tag savings-tag">Coming Soon</span>}
-        {!product.comingSoon && product.soldOut && <span className="corner-tag sold-out-tag">Sold Out</span>}
+        {!product.comingSoon && product.soldOut && <span className="sold-out-banner" aria-label="Sold out">Sold Out</span>}
         {!product.comingSoon && !product.soldOut && savingsPercent && <span className="corner-tag savings-tag">Save {savingsPercent}%</span>}
         {product.images.length > 0 ? (
           <img src={product.images[0]} alt={product.name} />
