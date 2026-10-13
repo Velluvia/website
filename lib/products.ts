@@ -55,6 +55,7 @@ export const products: Product[] = [
     slug: "blush-bloom-gift-set",
     collection: "signature",
     name: "The Blush & Bloom Gift Set",
+    soldOut: true,
     price: 2599,
     currency: "gbp",
     rrpPence: 3599,
