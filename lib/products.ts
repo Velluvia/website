@@ -1270,7 +1270,7 @@ export const products: Product[] = [
     slug: "curated-coordinates-2-3y-gift-set",
     collection: "baby",
     name: "The Curated Coordinates 3-Piece Girls' Cardigan Gift Box (2-3Y)",
-    price: 2499,
+    price: 1777,
     currency: "gbp",
     rrpPence: 9000,
     rrpIsSeparatePrice: true,
@@ -1343,7 +1343,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase.",
     ],
-    images: ["/images/kids-5y-boleros/kids-5y-boleros-00.jpg", "/images/kids-5y-boleros/kids-5y-boleros-01.jpg"],
+    images: ["/images/kids-5y-boleros/kids-5y-boleros-main.jpg", "/images/kids-5y-boleros/kids-5y-boleros-01.jpg"],
   },
 ];
 
