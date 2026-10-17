@@ -5,7 +5,7 @@ import { collections } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Shop Gift Boxes by Collection",
   description:
-    "Shop Velluvia gift boxes by collection: luxury pamper and birthday gifts, baby gift sets from newborn to 18 months, and corporate gifts. UK delivery.",
+    "Shop Velluvia gift boxes by collection: luxury pamper and birthday gifts, baby and girls' gift sets from newborn to age 5, and corporate gifts. UK delivery.",
   alternates: { canonical: "/collections" },
 };
 

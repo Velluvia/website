@@ -131,6 +131,36 @@ export const productSeo: Record<string, Seo> = {
     description:
       "Baby girl gift box (3-6 months): heart romper, rose headband, 2 bloomers, hat, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed, UK delivery.",
   },
+  "little-blossom-0-3m-gift-set": {
+    title: "Baby Girl Gift Box 0-3 Months | 8-Piece Clothing Set",
+    description:
+      "Baby girl gift box (0-3 months): bolero, top, leggings, bloomers, hat, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed, ready to give.",
+  },
+  "little-poppy-1m-gift-set": {
+    title: "Newborn Baby Girl Gift Box 1 Month | Red 6-Piece Set",
+    description:
+      "Newborn girl gift box (1 month): poppy top, leggings, red cardigan, hat, lace bib & pram shoes featuring genuine Barcellino. Gift-boxed, UK delivery.",
+  },
+  "little-candy-stripe-6-9m-gift-set": {
+    title: "Baby Girl Gift Box 6-9 Months | 6-Piece Clothing Set",
+    description:
+      "Baby girl gift box (6-9 months): striped sleepsuit, bodysuit, 2 boleros, lace bib & headband featuring genuine Barcellino. Gift-boxed. Lovely Christmas gift.",
+  },
+  "curated-coordinates-2-3y-gift-set": {
+    title: "Girls' Cardigan & Bolero Gift Set Age 2-3 | 3-Piece",
+    description:
+      "Girls' gift box (age 2-3): 3 white Barcellino cardigans and boleros with sparkle, ruffle and scalloped details. Gift-boxed. Perfect for parties.",
+  },
+  "curated-coordinates-4y-gift-set": {
+    title: "Girls' White Cardigan Gift Set Age 4 | 4-Piece",
+    description:
+      "Girls' gift box (age 4): 3 white Barcellino cardigans with sparkling monogram and a scalloped bolero. Gift-boxed, ready to give. UK delivery.",
+  },
+  "curated-coordinates-5y-gift-set": {
+    title: "Girls' Bolero Gift Set Age 5 | White & Pink 2-Piece",
+    description:
+      "Girls' gift box (age 5): white scalloped bolero and pink bolero with satin bow by Barcellino. Gift-boxed, perfect for parties & weddings. UK delivery.",
+  },
   "little-cherry-6m-gift-set": {
     title: "Baby Girl Gift Box 6 Months | 8-Piece Clothing Set",
     description:
@@ -177,7 +207,7 @@ export const collectionSeo: Record<string, Seo> = {
   baby: {
     title: "Baby Gift Boxes & New Baby Gift Sets UK",
     description:
-      "Baby girl and baby boy gift boxes from newborn to 18 months, featuring genuine Barcellino clothing. Beautifully boxed baby shower and new baby gifts.",
+      "Baby and girls' gift boxes from newborn to age 5, featuring genuine Barcellino clothing. Beautifully boxed baby shower, new baby and birthday gifts.",
   },
   office: {
     title: "Corporate Gifts & Executive Gift Sets UK",

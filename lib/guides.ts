@@ -173,7 +173,7 @@ export const guides: Guide[] = [
         paragraphs: [
           "Because newborn sizes are outgrown so quickly, a 3-month or 6-month set is a clever gift. It will be ready and waiting just as the first wave of gifts no longer fits.",
         ],
-        products: (all) => [...bySize(["3M", "3-6M"])(all), ...bySize(["6M"])(all)].filter((p) => p.apparel?.gender === "female").slice(0, 3),
+        products: (all) => [...bySize(["3M", "3-6M"])(all), ...bySize(["6M", "6-9M"])(all)].filter((p) => p.apparel?.gender === "female").slice(0, 3),
         cta: { href: "/gift-guides/baby-gifts-by-age", label: "See gifts by age" },
       },
     ],
@@ -197,7 +197,7 @@ export const guides: Guide[] = [
     title: "Baby Gift Ideas by Age: Newborn to 18 Months",
     seoTitle: "Baby Gift Ideas by Age | Newborn to 18 Months UK",
     seoDescription:
-      "Baby gift ideas for every age, from newborn to 3, 6, 9, 12 and 18 months, including first birthday outfits. Boxed baby clothing sets with UK delivery.",
+      "Baby gift ideas for every age, from newborn to 18 months and girls up to age 5, including first birthday outfits. Boxed baby clothing sets with UK delivery.",
     summary:
       "The right gift for every stage, from the first days to a first birthday and beyond.",
     heroImage: "/images/baby-12m-sunflower/baby-12m-sunflower-01.jpg",
@@ -224,7 +224,7 @@ export const guides: Guide[] = [
         paragraphs: [
           "At six months babies are more alert, sitting up and on the move, so comfortable sets with something special for photos are ideal. A lovely half-birthday gift.",
         ],
-        products: bySize(["6M"]),
+        products: bySize(["6M", "6-9M"]),
       },
       {
         heading: "9 months",
@@ -242,6 +242,13 @@ export const guides: Guide[] = [
         heading: "18 months",
         paragraphs: ["Bigger, generous sets for toddlers with plenty to mix and match."],
         products: bySize(["18M"]),
+      },
+      {
+        heading: "2 to 5 years",
+        paragraphs: [
+          "For little girls, pretty cover-ups are the outfit-makers: a white or pink bolero or cardigan finishes a party dress and gets worn all year round.",
+        ],
+        products: bySize(["2-3Y", "4Y", "5Y"]),
       },
     ],
     faqs: [
