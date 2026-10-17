@@ -129,7 +129,7 @@ export const productSeo: Record<string, Seo> = {
   "little-heart-3-6m-gift-set": {
     title: "Baby Girl Gift Box 3-6 Months | 8-Piece Romper Set",
     description:
-      "Baby girl gift box (3-6 months): heart romper, rose headband, 2 bloomers, hat, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed, UK delivery.",
+      "Baby girl gift box (3-6 months): heart romper, rose bandana, 2 bloomers, hat, 2 bibs & pram shoes featuring genuine Barcellino. Gift-boxed, UK delivery.",
   },
   "little-blossom-0-3m-gift-set": {
     title: "Baby Girl Gift Box 0-3 Months | 8-Piece Clothing Set",

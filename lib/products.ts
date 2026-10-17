@@ -902,12 +902,12 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "6M", color: "White/Blue/Pink" },
     badge: "new",
     description:
-      "A Little Bundle of Love. Fresh white cotton, painted blue blossoms and a pop of raspberry pink — The Little Bluebell Gift Box is a charming, coordinated wardrobe for her six-month milestone. A crisp long-sleeve bodysuit with a navy-piped Peter Pan collar is layered with a choice of two white cardigans, one long-sleeved and one short-sleeved, each finished with scalloped edges and a sparkling monogram. A blue floral hat and matching bib, frilly raspberry-and-white bloomers with a bow and a pair of blue 'I Love Dad' pram shoes complete the look. Presented in our signature Velluvia gift box, ready to give.",
+      "A Little Bundle of Love. Fresh white cotton, painted blue blossoms and a pop of raspberry pink — The Little Bluebell Gift Box is a charming, coordinated wardrobe for her six-month milestone. A crisp long-sleeve bodysuit with a navy-piped Peter Pan collar is layered with a choice of two long-sleeved white cardigans, each finished with scalloped edges and a sparkling monogram. A blue floral hat and matching bib, frilly raspberry-and-white bloomers with a bow and a pair of blue 'I Love Dad' pram shoes complete the look. Presented in our signature Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "White long-sleeve bodysuit with navy-piped Peter Pan collar and sparkling monogram",
       "White long-sleeve cardigan with scalloped trim and sparkling monogram",
-      "White short-sleeve cardigan with Peter Pan collar and sparkling monogram",
+      "White long-sleeve cardigan with Peter Pan collar and sparkling monogram",
       "Blue floral print baby hat with charm detail",
       "Matching blue floral bib with sparkling monogram",
       "White bloomers with raspberry ruffle waistband and bow",
@@ -1133,11 +1133,11 @@ export const products: Product[] = [
     apparel: { gender: "female", ageGroup: "infant", size: "3-6M", color: "Grey/Pink/White" },
     badge: "new",
     description:
-      "Soft Hearts and Summer Roses. Sweet, stylish and made for her first summer outings, The Little Heart Baby Gift Box brings together eight pieces featuring genuine Barcellino. The star is a soft grey romper with a pink Peter Pan collar, a sparkling monogram, a pink bow and two heart-patch pockets, with easy snaps for quick changes. A rose-print headband with a bow and matching rose-print ruffle bloomers add a pop of colour, alongside cream frill bloomers, a white hat, two bibs and a pair of pink 'I Love Mum' pram shoes. Presented in our signature Velluvia gift box, ready to give.",
+      "Soft Hearts and Summer Roses. Sweet, stylish and made for her first summer outings, The Little Heart Baby Gift Box brings together eight pieces featuring genuine Barcellino. The star is a soft grey romper with a pink Peter Pan collar, a sparkling monogram, a pink bow and two heart-patch pockets, with easy snaps for quick changes. A rose-print bandana headscarf with a green ribbon tie and matching rose-print ruffle bloomers add a pop of colour, alongside cream frill bloomers, a white hat, two bibs and a pair of pink 'I Love Mum' pram shoes. Presented in our signature Velluvia gift box, ready to give.",
     details: [
       "Featuring genuine Barcellino baby clothing",
       "Grey romper with pink Peter Pan collar, sparkling monogram, pink bow, heart-patch pockets and snap fastening",
-      "Pink rose-print headband with bow",
+      "Rose-print bandana headscarf with green ribbon tie",
       "Rose-print ruffle bloomers",
       "Cream frill bloomers",
       "White baby hat with embroidered detail",
@@ -1149,7 +1149,7 @@ export const products: Product[] = [
       "Perfect for: baby showers, half-birthdays, summer babies, newborn visits, new mums, or a special little treat",
       "Presented in Velluvia's signature gift box, ready to give",
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
-      "Please check garment sizing and care instructions before purchase. Decorative sparkles, bows and appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing headbands, hats, bibs and shoes, and remove them during sleep. The set contains the eight pieces listed above; images are for illustration and props are not included.",
+      "Please check garment sizing and care instructions before purchase. Decorative sparkles, bows and appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing headscarves, hats, bibs and shoes, and remove them during sleep. The set contains the eight pieces listed above; images are for illustration and props are not included.",
     ],
     images: [
       "/images/baby-3-6m-little-heart/baby-3-6m-little-heart-01.jpg",
