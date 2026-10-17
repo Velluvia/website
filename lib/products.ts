@@ -888,6 +888,7 @@ export const products: Product[] = [
     ],
     images: [
       "/images/baby-6m-polka-dot/baby-6m-polka-dot-01.jpg",
+      "/images/baby-6m-polka-dot/baby-6m-polka-dot-christmas.jpg",
       "/images/baby-6m-polka-dot/baby-6m-polka-dot-02.jpg",
     ],
   },
@@ -1056,6 +1057,7 @@ export const products: Product[] = [
     ],
     images: [
       "/images/baby-3m-little-doll/baby-3m-little-doll-04.jpg",
+      "/images/baby-3m-little-doll/baby-3m-little-doll-christmas.jpg",
       "/images/baby-3m-little-doll/baby-3m-little-doll-01.jpg",
       "/images/baby-3m-little-doll/baby-3m-little-doll-02.jpg",
       "/images/baby-3m-little-doll/baby-3m-little-doll-03.jpg",
@@ -1090,7 +1092,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative sparkles and appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the eight pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-1m-pink-princess/baby-1m-pink-princess-01.jpg"],
+    images: ["/images/baby-1m-pink-princess/baby-1m-pink-princess-01.jpg", "/images/baby-1m-pink-princess/baby-1m-pink-princess-christmas.jpg"],
   },
   {
     slug: "little-beach-hut-1m-gift-set",
@@ -1120,7 +1122,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Appliqués are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the seven pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-1m-beach-hut/baby-1m-beach-hut-01.jpg"],
+    images: ["/images/baby-1m-beach-hut/baby-1m-beach-hut-01.jpg", "/images/baby-1m-beach-hut/baby-1m-beach-hut-christmas.jpg"],
   },
   {
     slug: "little-heart-3-6m-gift-set",
@@ -1153,6 +1155,7 @@ export const products: Product[] = [
     ],
     images: [
       "/images/baby-3-6m-little-heart/baby-3-6m-little-heart-01.jpg",
+      "/images/baby-3-6m-little-heart/baby-3-6m-little-heart-christmas.jpg",
       "/images/baby-3-6m-little-heart/baby-3-6m-little-heart-02.jpg",
     ],
   },
@@ -1185,7 +1188,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative appliqués and brooches are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the eight pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-0-3m-blossom/baby-0-3m-blossom-00.jpg", "/images/baby-0-3m-blossom/baby-0-3m-blossom-01.jpg"],
+    images: ["/images/baby-0-3m-blossom/baby-0-3m-blossom-00.jpg", "/images/baby-0-3m-blossom/baby-0-3m-blossom-christmas.jpg", "/images/baby-0-3m-blossom/baby-0-3m-blossom-01.jpg"],
   },
   {
     slug: "little-poppy-1m-gift-set",
@@ -1214,7 +1217,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative sparkles and bows are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the six pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-1m-poppy/baby-1m-poppy-00.jpg", "/images/baby-1m-poppy/baby-1m-poppy-01.jpg"],
+    images: ["/images/baby-1m-poppy/baby-1m-poppy-00.jpg", "/images/baby-1m-poppy/baby-1m-poppy-christmas.jpg", "/images/baby-1m-poppy/baby-1m-poppy-01.jpg"],
   },
   {
     slug: "little-candy-stripe-6-9m-gift-set",
@@ -1243,7 +1246,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative sparkles and bows are securely attached, but please check garments regularly. Always supervise babies while wearing headbands and bibs, and remove them during sleep. The set contains the six pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-00.jpg", "/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-01.jpg"],
+    images: ["/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-00.jpg", "/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-christmas.jpg", "/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-01.jpg"],
   },
   {
     slug: "curated-coordinates-2-3y-gift-set",
