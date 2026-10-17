@@ -1186,7 +1186,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative appliqués and brooches are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the eight pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-0-3m-blossom/baby-0-3m-blossom-01.jpg"],
+    images: ["/images/baby-0-3m-blossom/baby-0-3m-blossom-00.jpg", "/images/baby-0-3m-blossom/baby-0-3m-blossom-01.jpg"],
   },
   {
     slug: "little-poppy-1m-gift-set",
@@ -1215,7 +1215,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative sparkles and bows are securely attached, but please check garments regularly. Pram shoes are designed for non-walking babies. Always supervise babies while wearing hats, bibs and shoes, and remove them during sleep. The set contains the six pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-1m-poppy/baby-1m-poppy-01.jpg"],
+    images: ["/images/baby-1m-poppy/baby-1m-poppy-00.jpg", "/images/baby-1m-poppy/baby-1m-poppy-01.jpg"],
   },
   {
     slug: "little-candy-stripe-6-9m-gift-set",
@@ -1244,7 +1244,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative sparkles and bows are securely attached, but please check garments regularly. Always supervise babies while wearing headbands and bibs, and remove them during sleep. The set contains the six pieces listed above; images are for illustration and props are not included.",
     ],
-    images: ["/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-01.jpg"],
+    images: ["/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-00.jpg", "/images/baby-6-9m-candy-stripe/baby-6-9m-candy-stripe-01.jpg"],
   },
   {
     slug: "curated-coordinates-2-3y-gift-set",
@@ -1270,13 +1270,13 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase. Decorative sparkles are securely attached, but please check garments regularly.",
     ],
-    images: ["/images/kids-2-3y-coordinates/kids-2-3y-coordinates-01.jpg"],
+    images: ["/images/kids-2-3y-coordinates/kids-2-3y-coordinates-00.jpg", "/images/kids-2-3y-coordinates/kids-2-3y-coordinates-01.jpg"],
   },
   {
     slug: "curated-coordinates-4y-gift-set",
     collection: "baby",
     name: "The Curated Coordinates 4-Piece Girls' Cardigan Gift Box (4Y)",
-    price: 2999,
+    price: 1999,
     currency: "gbp",
     rrpPence: 12000,
     rrpIsSeparatePrice: true,
@@ -1296,7 +1296,7 @@ export const products: Product[] = [
       "Please check garment sizing and care instructions before purchase. Decorative sparkles are securely attached, but please check garments regularly.",
     ],
     images: [
-      "/images/kids-4y-coordinates/kids-4y-coordinates-01.jpg",
+      "/images/kids-4y-coordinates/kids-4y-coordinates-00.jpg", "/images/kids-4y-coordinates/kids-4y-coordinates-01.jpg",
       "/images/kids-4y-coordinates/kids-4y-coordinates-02.jpg",
     ],
   },
@@ -1323,7 +1323,7 @@ export const products: Product[] = [
       "Velluvia is an independent retailer and is not affiliated with Barcellino.",
       "Please check garment sizing and care instructions before purchase.",
     ],
-    images: ["/images/kids-5y-boleros/kids-5y-boleros-01.jpg"],
+    images: ["/images/kids-5y-boleros/kids-5y-boleros-00.jpg", "/images/kids-5y-boleros/kids-5y-boleros-01.jpg"],
   },
 ];
 
