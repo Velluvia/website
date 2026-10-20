@@ -410,6 +410,8 @@ export const products: Product[] = [
       "Perfect for: onboarding new joiners, promotions, retirements, client thank-yous, corporate milestones, or as a personal everyday-carry upgrade",
     ],
     images: [
+      "/images/office-pen/office-pen-luxe-hero.jpg",
+      "/images/office-pen/office-pen-luxe-collage.jpg",
       "/images/office-pen/office-pen-angled.jpg",
       "/images/office-pen/office-pen-birdseye.jpg",
       "/images/office-pen/office-pen-flatlay.jpg",
