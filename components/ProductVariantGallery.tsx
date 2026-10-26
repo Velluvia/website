@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import ProductGallery from "./ProductGallery";
 import type { ProductVariant } from "@/lib/types";
+import { useVariantSelection } from "./VariantSelection";
 
 export default function ProductVariantGallery({
   variants,
@@ -13,7 +13,7 @@ export default function ProductVariantGallery({
   fallbackImages: string[];
   alt: string;
 }) {
-  const [selected, setSelected] = useState(0);
+  const { selected, setSelected } = useVariantSelection();
 
   if (!variants || variants.length === 0) {
     return <ProductGallery images={fallbackImages} alt={alt} />;

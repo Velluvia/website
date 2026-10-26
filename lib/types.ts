@@ -5,6 +5,7 @@ export type Collection = {
   description: string;
   accent: "gold" | "charcoal" | "sage" | "navy";
   image?: string;
+  thumb?: string; // optional square image for the round "Shop by collection" circle at the top of the site; falls back to image
   comingSoon?: boolean; // true while its products are still awaiting stock/photography
 };
 
@@ -45,4 +46,5 @@ export type Product = {
 export type CartLine = {
   slug: string;
   quantity: number;
+  variant?: string; // chosen colour/style name, for products with variants
 };

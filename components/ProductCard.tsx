@@ -48,7 +48,7 @@ export default function ProductCard({
           </span>
         )}
       </p>
-      {!product.comingSoon && !product.soldOut && <QuickAddButton slug={product.slug} />}
+      {!product.comingSoon && !product.soldOut && !product.variants?.length && <QuickAddButton slug={product.slug} />}
       {occasions.length > 0 && (
         <div className="occasion-pills">
           {occasions.map((o) => (

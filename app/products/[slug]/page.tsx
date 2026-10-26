@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductVariantGallery from "@/components/ProductVariantGallery";
+import { VariantSelectionProvider } from "@/components/VariantSelection";
 import ReviewsSection from "@/components/ReviewsSection";
 import TrustBadges from "@/components/TrustBadges";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
@@ -109,6 +110,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       />
       <MetaViewContentEvent slug={product.slug} name={product.name} pricePence={product.price} />
       <div className="wrap">
+        <VariantSelectionProvider>
         <div className="pdp-grid">
           <div className="pdp-media">
             <ProductVariantGallery
@@ -187,6 +189,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </p>
           </div>
         </div>
+        </VariantSelectionProvider>
       </div>
       <ReviewsSection productSlug={product.slug} productName={product.name} />
       {collection && (

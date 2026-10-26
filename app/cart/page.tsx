@@ -74,7 +74,7 @@ export default function CartPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: items.map((i) => ({ slug: i.product.slug, quantity: i.quantity })),
+          items: items.map((i) => ({ slug: i.product.slug, quantity: i.quantity, variant: i.variant })),
           giftCardCode: giftCard?.code,
         }),
       });
@@ -109,11 +109,14 @@ export default function CartPage() {
         <h1 style={{ fontSize: 34, marginBottom: 30 }}>Your Cart</h1>
         <div className="pdp-grid" style={{ alignItems: "flex-start" }}>
           <div>
-            {items.map(({ product, quantity }) => (
-              <div className="cart-line" key={product.slug}>
+            {items.map(({ product, quantity, variant, key }) => (
+              <div className="cart-line" key={key}>
                 <div className="thumb">
                   {product.images.length > 0 ? (
-                    <img src={product.images[0]} alt={product.name} />
+                    <img
+                      src={product.variants?.find((v) => v.name === variant)?.images[0] ?? product.images[0]}
+                      alt={product.name}
+                    />
                   ) : (
                     <div className="monogram-tile">
                       <span className="glyph" style={{ fontSize: 24 }}>V</span>
@@ -124,20 +127,23 @@ export default function CartPage() {
                   <p className="product-name" style={{ marginBottom: 4 }}>
                     <Link href={`/products/${product.slug}`}>{product.name}</Link>
                   </p>
+                  {variant && (
+                    <p style={{ fontSize: 13, color: "var(--ink-soft)", marginBottom: 2 }}>Colour: {variant}</p>
+                  )}
                   <p style={{ fontSize: 13, color: "var(--ink-soft)" }}>{formatPrice(product.price)} each</p>
                   <button
-                    onClick={() => removeItem(product.slug)}
+                    onClick={() => removeItem(key)}
                     style={{ background: "none", border: "none", color: "var(--ink-soft)", fontSize: 12, textDecoration: "underline", cursor: "pointer", padding: 0, marginTop: 8 }}
                   >
                     Remove
                   </button>
                 </div>
                 <div className="qty-control">
-                  <button onClick={() => setQuantity(product.slug, quantity - 1)} aria-label="Decrease quantity">
+                  <button onClick={() => setQuantity(key, quantity - 1)} aria-label="Decrease quantity">
                     −
                   </button>
                   <span>{quantity}</span>
-                  <button onClick={() => setQuantity(product.slug, quantity + 1)} aria-label="Increase quantity">
+                  <button onClick={() => setQuantity(key, quantity + 1)} aria-label="Increase quantity">
                     +
                   </button>
                 </div>

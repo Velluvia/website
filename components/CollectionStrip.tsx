@@ -15,7 +15,7 @@ export default function CollectionStrip() {
         {live.map((c) => (
           <Link href={`/collections/${c.slug}`} className="cs-item" key={c.slug}>
             <span className="cs-thumb">
-              {c.image ? <img src={c.image} alt="" /> : <span className="cs-mono">V</span>}
+              {c.thumb || c.image ? <img src={c.thumb || c.image} alt="" /> : <span className="cs-mono">V</span>}
             </span>
             <span className="cs-name">{c.name}</span>
           </Link>

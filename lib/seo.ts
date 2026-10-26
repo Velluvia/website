@@ -85,6 +85,13 @@ export const productSeo: Record<string, Seo> = {
       "Corporate gift set with faux-leather A5 folio, engraved pen and golf umbrella. Ideal for client gifts, onboarding and promotions. Save vs buying separately.",
   },
 
+  // ---------- Velluvia Home ----------
+  "home-11-piece-cast-iron-cookware-set": {
+    title: "11-Piece Enamelled Cast Iron Cookware Set",
+    description:
+      "Enamelled cast iron cookware set: 4 lidded pots, baking dish, griddle and skillet with engraved Velluvia knobs. Red, blue or teal. Induction safe, UK delivery.",
+  },
+
   // ---------- Velluvia Baby ----------
   "little-sunflower-1m-gift-set": {
     title: "Newborn Baby Girl Gift Box 1 Month | 6-Piece Set",
@@ -199,6 +206,11 @@ export const productSeo: Record<string, Seo> = {
 };
 
 export const collectionSeo: Record<string, Seo> = {
+  home: {
+    title: "Enamelled Cast Iron Cookware Sets UK",
+    description:
+      "Velluvia Home: enamelled cast iron cookware in Classic Red, Royal Blue and Ocean Teal, with engraved lid knobs. A lasting housewarming or wedding gift.",
+  },
   signature: {
     title: "Luxury Gift Boxes & Pamper Hampers UK",
     description:

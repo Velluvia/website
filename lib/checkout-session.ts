@@ -9,7 +9,7 @@ import {
 import type Stripe from "stripe";
 import { preSalePercent } from "@/lib/campaign";
 
-export type CheckoutItem = { slug: string; quantity: number };
+export type CheckoutItem = { slug: string; quantity: number; variant?: string };
 
 /**
  * Builds and creates a Stripe Checkout Session from a list of {slug, quantity}
@@ -27,7 +27,7 @@ export async function createCheckoutSession(
 
   const { siteUrl } = opts;
 
-  const line_items = items.map(({ slug, quantity }) => {
+  const line_items = items.map(({ slug, quantity, variant }) => {
     const product = getProduct(slug);
     if (!product) {
       throw new Error(`Unknown product: ${slug}`);
@@ -36,18 +36,20 @@ export async function createCheckoutSession(
       throw new Error(`Sorry, ${product.name} is currently sold out — please remove it from your cart.`);
     }
     const qty = Math.max(1, Math.min(20, Math.floor(quantity) || 1));
+    // Colour choice: only accept a name that really exists on the product, and
+    // put it in the line-item name so it shows in Stripe, receipts and order emails.
+    const chosen = product.variants?.find((v) => v.name === variant);
+    const image = chosen?.images[0] ?? product.images[0];
     return {
       quantity: qty,
       price_data: {
         currency: product.currency,
         unit_amount: product.price,
         product_data: {
-          name: product.name,
+          name: chosen ? `${product.name} — ${chosen.name}` : product.name,
           description: product.description.slice(0, 300),
-          images: product.images.length
-            ? [new URL(product.images[0], siteUrl).toString()]
-            : undefined,
-          metadata: { slug: product.slug },
+          images: image ? [new URL(image, siteUrl).toString()] : undefined,
+          metadata: chosen ? { slug: product.slug, colour: chosen.name } : { slug: product.slug },
         },
       },
     };

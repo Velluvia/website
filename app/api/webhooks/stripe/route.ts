@@ -11,7 +11,11 @@ import type Stripe from "stripe";
 // verification will fail.
 export const runtime = "nodejs";
 
-async function sendConfirmationEmail(session: Stripe.Checkout.Session, productSlugs: string[]) {
+async function sendConfirmationEmail(
+  session: Stripe.Checkout.Session,
+  productSlugs: string[],
+  itemLabels: string[] = []
+) {
   const email = session.customer_details?.email;
   const name = session.customer_details?.name || "there";
   if (!email) {
@@ -20,11 +24,15 @@ async function sendConfirmationEmail(session: Stripe.Checkout.Session, productSl
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.velluvia.co.uk";
-  const lines = productSlugs
-    .map((slug) => getProduct(slug))
-    .filter(Boolean)
-    .map((p) => `  • ${p!.name}`)
-    .join("\n");
+  // Prefer the Stripe line-item names (they include the chosen colour and quantity);
+  // fall back to the product names from the slugs.
+  const lines = itemLabels.length
+    ? itemLabels.map((l) => `  • ${l}`).join("\n")
+    : productSlugs
+        .map((slug) => getProduct(slug))
+        .filter(Boolean)
+        .map((p) => `  • ${p!.name}`)
+        .join("\n");
   const total = formatPrice(session.amount_total || 0);
 
   // Two sends: one to the customer, one to the business inbox, so an order is
@@ -257,6 +265,7 @@ export async function POST(req: NextRequest) {
   }
 
   let productSlugs: string[] = [];
+  let itemLabels: string[] = [];
   try {
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
       expand: ["data.price.product"],
@@ -269,6 +278,14 @@ export async function POST(req: NextRequest) {
         return (product as any).metadata?.slug as string | undefined;
       })
       .filter((slug): slug is string => Boolean(slug));
+    itemLabels = lineItems.data.map((item) => {
+      const product = item.price?.product;
+      const name =
+        product && typeof product !== "string" && "name" in product
+          ? (product as Stripe.Product).name
+          : item.description || "Item";
+      return (item.quantity ?? 1) > 1 ? `${name} × ${item.quantity}` : name;
+    });
   } catch (err) {
     console.error("Could not fetch line items for order email — sending without item list:", err);
   }
@@ -285,7 +302,7 @@ export async function POST(req: NextRequest) {
   // never reach here a second time.
   await deductGiftCardBalance(session);
 
-  const emailed = await sendConfirmationEmail(session, productSlugs);
+  const emailed = await sendConfirmationEmail(session, productSlugs, itemLabels);
   if (!emailed) {
     console.error(
       `Order ${session.id} completed but no confirmation email could be sent — check RESEND_API_KEY and that your sending domain is verified in Resend.`

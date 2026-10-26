@@ -45,8 +45,8 @@ export const collections: Collection[] = [
     description:
       "Warm, considered pieces for the kitchen and the home — the softer side of Velluvia, marked by our navy-and-blush botanical monogram.",
     accent: "sage",
-    image: "/images/cookware-set/home-collection-card.jpg",
-    comingSoon: true,
+    image: "/images/cookware-set/home-collection-card-v2.jpg",
+    thumb: "/images/cookware-set/home-circle.jpg",
   },
 ];
 
@@ -440,46 +440,55 @@ export const products: Product[] = [
     description:
       "There is a quiet confidence in a kitchen stocked with cookware that simply works — pieces you reach for without a second thought, that go from stovetop to oven to table without missing a beat. The Velluvia 11-Piece Enamelled Cast Iron Cookware Set was built around that idea: fewer gaps, better choices, everyday essentials elevated to something you're proud to cook with. Each piece is finished with a smooth, glossy enamel exterior and a cream interior, so food releases cleanly and colour is easy to judge as you cook — no seasoning, no rust, and none of the maintenance that traditional bare cast iron demands.",
     details: [
-      "11 coordinated pieces: large and medium round casseroles with lids, an oval casserole with lid, a shallow braiser with lid, a saucepan with lid, a mini cocotte with lid, a rectangular roasting dish, a square ridged griddle pan, a round skillet, a loaf/terrine dish and a round serving dish",
-      "Even, reliable heat retention across every piece, for consistent searing, braising and roasting",
-      "Enamelled cast iron resists chipping and cracking under normal use, with no seasoning required",
-      "Hob, oven and grill safe (see care notes); hand wash recommended to preserve the glaze",
-      "Available in Cobalt Blue, Signature Red or Turquoise",
-      "Presented in Velluvia's signature packaging with tissue wrap, branded seal, ribbon and thank-you card",
+      "11 pieces: 5.3L Dutch oven, 3.8L Dutch oven, 2.1L saucepan and 3.2L low casserole, each with its lid, plus a 2.8L baking dish, 26cm griddle pan and 26cm skillet",
+      "Every lid is finished with a stainless-steel knob engraved with the Velluvia logo",
+      "Smooth enamel inside and out: no seasoning, easy to clean and built to last",
+      "Even heat distribution for searing, braising, roasting and baking",
+      "Suitable for all hobs, including induction, gas, electric, ceramic and halogen; oven safe up to 260°C",
+      "Available in three colours: Classic Red, Royal Blue and Ocean Teal",
       "Perfect for: housewarmings, weddings, first homes, kitchen upgrades, or a considered gift for the cook in your life",
     ],
     images: [
-      "/images/cookware-set/cookware-set-hero.jpg",
-      "/images/cookware-set/cookware-set-red-lifestyle.jpg",
+      "/images/cookware-set/cookware-red-cover.jpg",
+      "/images/cookware-set/cookware-red-11-piece.jpg",
+      "/images/cookware-set/cookware-red-details.jpg",
+      "/images/cookware-set/cookware-ocean-teal-11-piece.jpg",
       "/images/cookware-set/cookware-set-blue-full.jpg",
-      "/images/cookware-set/cookware-set-red-full.jpg",
-      "/images/cookware-set/cookware-set-blue-full-alt.jpg",
-      "/images/cookware-set/cookware-set-colour-swatch.jpg",
+      "/images/cookware-set/cookware-engraved-knob.jpg",
+      "/images/cookware-set/cookware-three-colours.jpg",
+      "/images/cookware-set/cookware-ocean-teal-feature.jpg",
     ],
     variants: [
       {
-        name: "Cobalt Blue",
-        hex: "#2C5F8A",
+        name: "Classic Red",
+        hex: "#A3161E",
         images: [
-          "/images/cookware-set/cookware-set-hero.jpg",
+          "/images/cookware-set/cookware-red-11-piece.jpg",
+          "/images/cookware-set/cookware-red-details.jpg",
+          "/images/cookware-set/cookware-engraved-knob.jpg",
+          "/images/cookware-set/cookware-three-colours.jpg",
+        ],
+      },
+      {
+        name: "Royal Blue",
+        hex: "#1F4FA8",
+        images: [
           "/images/cookware-set/cookware-set-blue-full.jpg",
+          "/images/cookware-set/cookware-set-red-lifestyle.jpg", // (file name is historic: this photo is the blue set)
           "/images/cookware-set/cookware-set-blue-full-alt.jpg",
+          "/images/cookware-set/cookware-engraved-knob.jpg",
+          "/images/cookware-set/cookware-three-colours.jpg",
         ],
       },
       {
-        name: "Signature Red",
-        hex: "#A6241E",
+        name: "Ocean Teal",
+        hex: "#1B7F8C",
         images: [
-          "/images/cookware-set/cookware-set-red-lifestyle.jpg",
-          "/images/cookware-set/cookware-set-red-full.jpg",
+          "/images/cookware-set/cookware-ocean-teal-11-piece.jpg",
+          "/images/cookware-set/cookware-ocean-teal-feature.jpg",
+          "/images/cookware-set/cookware-engraved-knob.jpg",
+          "/images/cookware-set/cookware-three-colours.jpg",
         ],
-      },
-      {
-        name: "Turquoise",
-        hex: "#2E93A0",
-        // Photography for this colourway is limited to the comparison shot below —
-        // swap in dedicated Turquoise product photos here once available.
-        images: ["/images/cookware-set/cookware-set-colour-swatch.jpg"],
       },
     ],
   },
