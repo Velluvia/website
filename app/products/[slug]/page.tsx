@@ -154,6 +154,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </>
               )}
             </p>
+            {product.priceNote && <p className="price-note">{product.priceNote}</p>}
             <p className="desc">{product.description}</p>
             <p className="pdp-returns-note">
               14-day returns &middot;{" "}

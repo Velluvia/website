@@ -434,7 +434,7 @@ export const products: Product[] = [
     name: "11-Piece Enamelled Cast Iron Cookware Set",
     price: 16599,
     currency: "gbp",
-    rrpPence: 20000,
+    priceNote: "Comparable 11-piece enamelled cast iron sets retail at £260+",
     badge: "new",
     order: 0,
     description:

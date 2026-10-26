@@ -2687,3 +2687,11 @@ a.trust-badge-link .trust-label {
   color: var(--gold-dark);
   font-weight: 600;
 }
+
+/* Factual value line under a product price (e.g. comparable retail prices) */
+.pdp-info .price-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: -6px 0 16px;
+  font-style: italic;
+}
