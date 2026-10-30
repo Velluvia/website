@@ -255,6 +255,7 @@ export const products: Product[] = [
     slug: "pink-blossom-gift-set",
     collection: "signature",
     name: "The Pink Blossom Gift Set",
+    soldOut: true,
     price: 2599,
     currency: "gbp",
     rrpPence: 3099,
