@@ -40,6 +40,7 @@ export type Product = {
   priceNote?: string; // short factual line shown under the price on the product page (no crossed-out price or "Save %" badge)
   rrpIsSeparatePrice?: boolean; // true when rrpPence is the combined price of the set's items bought separately (a bundle value, not a manufacturer RRP) — shows "Worth £X if bought separately" instead of "RRP"
   badge?: "new" | "bestseller"; // "bestseller" should only be set once you have real sales data backing it up — never guess
+  hidden?: boolean; // true to switch a product off completely: it disappears from the site, feeds and checkout but its details are kept for later
   soldOut?: boolean; // true when out of stock: stays visible on the site marked "Sold Out", cannot be added to the cart or bought, and feeds report it as out of stock
   comingSoon?: boolean; // true for an individual product not yet purchasable, even inside an otherwise-live collection (e.g. a new design awaiting a decided launch date)
 };

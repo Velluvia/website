@@ -49,7 +49,8 @@ export const collections: Collection[] = [
   },
 ];
 
-export const products: Product[] = [
+// Every product, including ones switched off with `hidden: true`.
+export const allProducts: Product[] = [
   {
     slug: "blush-bloom-gift-set",
     collection: "signature",
@@ -604,6 +605,7 @@ export const products: Product[] = [
     name: "The Happy Birthday Gift Set",
     price: 1699,
     currency: "gbp",
+    hidden: true, // not available: switched off 5 Nov 2026
     badge: "new",
     description:
       "A bright, daisy-covered birthday treat that keeps things simple and sweet — a pretty glass to sip from, a couple of hair accessories, and a candle to mark the day.",
@@ -854,6 +856,7 @@ export const products: Product[] = [
     name: "The Little Elephant Baby Gift Set (Blue)",
     price: 2499,
     currency: "gbp",
+    hidden: true, // not available: switched off 5 Nov 2026
     badge: "new",
     description:
       "A sweet “welcome to the world” box for a baby boy, with a little blue elephant theme throughout: a soft flannel blanket, teething-friendly toys and a gentle night light for the nursery.",
@@ -880,6 +883,7 @@ export const products: Product[] = [
     name: "The Little Elephant Baby Gift Set (Pink)",
     price: 2499,
     currency: "gbp",
+    hidden: true, // not available: switched off 5 Nov 2026
     badge: "new",
     description:
       "A sweet “welcome to the world” box for a baby girl, with a little pink elephant theme throughout: a soft flannel blanket, teething-friendly toys and a gentle night light for the nursery.",
@@ -1677,6 +1681,10 @@ export function getProductsByCollection(slug: string): Product[] {
       return a.price - b.price;
     });
 }
+
+// What the site shows and sells: hidden products are left out everywhere
+// (shop, collections, feeds, sitemap, search, checkout) until switched back on.
+export const products: Product[] = allProducts.filter((p) => !p.hidden);
 
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
