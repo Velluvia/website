@@ -85,6 +85,58 @@ export const productSeo: Record<string, Seo> = {
       "Corporate gift set with faux-leather A5 folio, engraved pen and golf umbrella. Ideal for client gifts, onboarding and promotions. Save vs buying separately.",
   },
 
+  // ---------- New Arrivals ----------
+  "hot-pink-pamper-gift-set": {
+    title: "Hot Pink Pamper Gift Box for Her",
+    description:
+      "Pink pamper gift box for her: 40oz tumbler, Hot Pink candle, satin eye mask, crochet bouquet and leopard plush accessories. Gift-wrapped, UK delivery.",
+  },
+  "lets-celebrate-birthday-gift-set": {
+    title: "Birthday Gift Box for Her: Let's Celebrate",
+    description:
+      "Fun birthday gift box: checked crossbody bag, Youth Serum wine glass, birthday headband, smiley playing cards and bracelets. UK delivery.",
+  },
+  "best-wishes-blue-gift-set": {
+    title: "Get Well Soon Gift Box for Her (Blue)",
+    description:
+      "10-piece blue care package: tumbler, fuzzy socks, eye mask, diamond soap, candle, bath bomb and towel. Thoughtful get-well or thinking-of-you gift.",
+  },
+  "best-wishes-red-gift-set": {
+    title: "Pamper Gift Box for Her (Red)",
+    description:
+      "10-piece red pamper gift box: tumbler, fuzzy socks, satin eye mask, diamond soap, candle, bath bomb and towel. Perfect for Christmas or Valentine's.",
+  },
+  "lavender-amethyst-gift-set": {
+    title: "Lavender Spa Gift Box for Women",
+    description:
+      "Lavender self-care gift box: bath salts, diamond soap, bath bomb, candle, eye mask, bracelet and tumbler. Relaxing gift for her, UK delivery.",
+  },
+  "lavender-spa-robe-gift-set": {
+    title: "Spa Gift Set with Bathrobe and Slippers",
+    description:
+      "Lavender spa gift box with white bathrobe, slippers, face towel, bath bomb, candle and face mask. A full pamper day for her, UK delivery.",
+  },
+  "happily-retired-gift-set": {
+    title: "Retirement Gift Box for Women",
+    description:
+      "Retirement gift for women: “I'm outta here” canvas tote, retired tumbler, funny socks, candle and keychain. Ideal leaving gift, UK delivery.",
+  },
+  "little-elephant-blue-baby-gift-set": {
+    title: "Baby Boy Gift Box: Blue Elephant",
+    description:
+      "Welcome-to-the-world baby boy gift box: flannel blanket, night light, bib, elephant rattle and soothing toy. Lovely baby shower gift.",
+  },
+  "little-elephant-pink-baby-gift-set": {
+    title: "Baby Girl Gift Box: Pink Elephant",
+    description:
+      "Welcome-to-the-world baby girl gift box: flannel blanket, night light, bib, elephant rattle and soothing toy. Lovely baby shower gift.",
+  },
+  "mermaid-magic-gift-set": {
+    title: "Mermaid Gift Set for Girls",
+    description:
+      "Mermaid gift box for girls: sequin bag, light-up star cushion, lockable notebook, jewellery, stickers and diamond painting kit. UK delivery.",
+  },
+
   // ---------- Velluvia Home ----------
   "home-11-piece-cast-iron-cookware-set": {
     title: "11-Piece Enamelled Cast Iron Cookware Set",
