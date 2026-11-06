@@ -59,7 +59,7 @@ export default function HomePage() {
             <div className="section-head">
               <span className="eyebrow">Velluvia Baby</span>
               <h2>Little moments, lasting memories</h2>
-              <p>Boxed baby clothing sets featuring genuine Barcellino, ready to give.</p>
+              <p>Boxed baby gift sets and clothing, ready to give.</p>
             </div>
             <div className="product-grid">
               {babyPicks.map((p) => (

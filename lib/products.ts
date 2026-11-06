@@ -496,6 +496,7 @@ export const allProducts: Product[] = [
   {
     slug: "hello-sunshine-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Hello Sunshine Gift Set",
     price: 2599,
     currency: "gbp",
@@ -517,6 +518,7 @@ export const allProducts: Product[] = [
   {
     slug: "hugs-in-a-box-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Hugs in a Box Gift Set",
     price: 3099,
     currency: "gbp",
@@ -545,6 +547,7 @@ export const allProducts: Product[] = [
   {
     slug: "especially-for-you-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Especially For You Gift Set",
     price: 3199,
     currency: "gbp",
@@ -574,6 +577,7 @@ export const allProducts: Product[] = [
   {
     slug: "hugs-in-a-box-cream-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Hugs in a Box Gift Set (Cream)",
     price: 2999,
     currency: "gbp",
@@ -602,10 +606,10 @@ export const allProducts: Product[] = [
   {
     slug: "happy-birthday-daisy-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Happy Birthday Gift Set",
     price: 1699,
     currency: "gbp",
-    hidden: true, // not available: switched off 5 Nov 2026
     badge: "new",
     description:
       "A bright, daisy-covered birthday treat that keeps things simple and sweet — a pretty glass to sip from, a couple of hair accessories, and a candle to mark the day.",
@@ -628,6 +632,7 @@ export const allProducts: Product[] = [
   {
     slug: "hot-pink-pamper-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Hot Pink Pamper Gift Set",
     price: 2699,
     currency: "gbp",
@@ -662,6 +667,7 @@ export const allProducts: Product[] = [
   {
     slug: "lets-celebrate-birthday-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Let's Celebrate Birthday Gift Set",
     price: 1899,
     currency: "gbp",
@@ -687,6 +693,7 @@ export const allProducts: Product[] = [
   {
     slug: "best-wishes-blue-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Best Wishes Gift Set (Blue)",
     price: 2699,
     currency: "gbp",
@@ -721,6 +728,7 @@ export const allProducts: Product[] = [
   {
     slug: "best-wishes-red-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Best Wishes Gift Set (Red)",
     price: 2699,
     currency: "gbp",
@@ -752,6 +760,7 @@ export const allProducts: Product[] = [
   {
     slug: "lavender-amethyst-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Lavender Amethyst Gift Set",
     price: 2699,
     currency: "gbp",
@@ -784,6 +793,7 @@ export const allProducts: Product[] = [
   {
     slug: "lavender-spa-robe-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Lavender Spa Robe Gift Set",
     price: 2199,
     currency: "gbp",
@@ -820,6 +830,7 @@ export const allProducts: Product[] = [
   {
     slug: "happily-retired-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Happily Retired Gift Set",
     price: 2999,
     currency: "gbp",
@@ -853,10 +864,10 @@ export const allProducts: Product[] = [
   {
     slug: "little-elephant-blue-baby-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature", "baby"],
     name: "The Little Elephant Baby Gift Set (Blue)",
     price: 2499,
     currency: "gbp",
-    hidden: true, // not available: switched off 5 Nov 2026
     badge: "new",
     description:
       "A sweet “welcome to the world” box for a baby boy, with a little blue elephant theme throughout: a soft flannel blanket, teething-friendly toys and a gentle night light for the nursery.",
@@ -880,10 +891,10 @@ export const allProducts: Product[] = [
   {
     slug: "little-elephant-pink-baby-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature", "baby"],
     name: "The Little Elephant Baby Gift Set (Pink)",
     price: 2499,
     currency: "gbp",
-    hidden: true, // not available: switched off 5 Nov 2026
     badge: "new",
     description:
       "A sweet “welcome to the world” box for a baby girl, with a little pink elephant theme throughout: a soft flannel blanket, teething-friendly toys and a gentle night light for the nursery.",
@@ -907,6 +918,7 @@ export const allProducts: Product[] = [
   {
     slug: "mermaid-magic-gift-set",
     collection: "new-arrivals",
+    alsoIn: ["signature"],
     name: "The Mermaid Magic Gift Set",
     price: 2599,
     currency: "gbp",
@@ -1677,9 +1689,13 @@ export function getCollection(slug: string): Collection | undefined {
 
 export function getProductsByCollection(slug: string): Product[] {
   return products
-    .filter((p) => p.collection === slug)
+    .filter((p) => p.collection === slug || p.alsoIn?.includes(slug))
     .sort((a, b) => {
       if (Boolean(a.soldOut) !== Boolean(b.soldOut)) return a.soldOut ? 1 : -1;
+      // Products featured here from another collection (e.g. New Arrivals) lead the list.
+      const guestA = a.collection !== slug;
+      const guestB = b.collection !== slug;
+      if (guestA !== guestB) return guestA ? -1 : 1;
       const orderA = a.order ?? Infinity;
       const orderB = b.order ?? Infinity;
       if (orderA !== orderB) return orderA - orderB;

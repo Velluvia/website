@@ -18,6 +18,7 @@ export type ProductVariant = {
 export type Product = {
   slug: string;
   collection: string;
+  alsoIn?: string[]; // extra collections this product also appears in (shown at the top of those collections)
   name: string;
   price: number; // in minor units (pence)
   currency: "gbp";
