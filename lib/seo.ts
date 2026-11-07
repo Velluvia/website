@@ -116,10 +116,10 @@ export const productSeo: Record<string, Seo> = {
     description:
       "Lavender spa gift box with white bathrobe, slippers, face towel, bath bomb, candle and face mask. A full pamper day for her, UK delivery.",
   },
-  "happily-retired-gift-set": {
-    title: "Retirement Gift Box for Women",
+  "teacher-appreciation-gift-set": {
+    title: "Teacher Appreciation Gift Set: Tote Bag Gift Box",
     description:
-      "Retirement gift for women: “I'm outta here” canvas tote, retired tumbler, funny socks, candle and keychain. Ideal leaving gift, UK delivery.",
+      "Teacher thank-you gift box: wildflower canvas tote, teal tumbler, “difference you've made” keyring, candle, sleep mask and socks. UK delivery.",
   },
   "little-elephant-blue-baby-gift-set": {
     title: "Baby Boy Gift Box: Blue Elephant",

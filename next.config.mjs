@@ -3,6 +3,12 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      // Old listing for this set before the real product photos arrived.
+      { source: "/products/happily-retired-gift-set", destination: "/products/teacher-appreciation-gift-set", permanent: true },
+    ];
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
