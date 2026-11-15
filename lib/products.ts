@@ -522,6 +522,7 @@ export const allProducts: Product[] = [
     name: "The Hugs in a Box Gift Set",
     price: 3099,
     currency: "gbp",
+    soldOut: true,
     badge: "new",
     description:
       "A soft, wildflower-pretty collection built for comfort — the kind of gift that says 'thinking of you' better than words do. Every piece is chosen to slow someone down for an afternoon: something to wrap up in, something to sip from, something to write in.",
