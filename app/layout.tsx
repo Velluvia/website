@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import { CartProvider } from "@/components/CartProvider";
@@ -10,19 +10,23 @@ import PreSaleBar from "@/components/PreSaleBar";
 import ChatWidget from "@/components/ChatWidget";
 import { Analytics } from "@vercel/analytics/next";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
+// Fonts are bundled in app/fonts (SIL Open Font License) instead of being fetched
+// from Google at build time: a Google Fonts hiccup was failing Vercel builds.
+const fraunces = localFont({
+  src: [
+    { path: "./fonts/fraunces-latin-wght-normal.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/fraunces-latin-wght-italic.woff2", weight: "100 900", style: "italic" },
+  ],
   variable: "--font-fraunces",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
   display: "swap",
+  fallback: ["Georgia", "serif"],
 });
 
-const workSans = Work_Sans({
-  subsets: ["latin"],
+const workSans = localFont({
+  src: [{ path: "./fonts/work-sans-latin-wght-normal.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-worksans",
-  weight: ["400", "500", "600", "700"],
   display: "swap",
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
