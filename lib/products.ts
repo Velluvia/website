@@ -552,6 +552,7 @@ export const allProducts: Product[] = [
     name: "The Especially For You Gift Set",
     price: 3199,
     currency: "gbp",
+    soldOut: true,
     badge: "new",
     description:
       "A romantic, rose-toned collection made to make someone feel genuinely spoiled — soft textures, a rose-scented candle, and delicate floral touches throughout, all finished with a hand-tied bow.",
