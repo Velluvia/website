@@ -638,6 +638,7 @@ export const allProducts: Product[] = [
     name: "The Hot Pink Pamper Gift Set",
     price: 2699,
     currency: "gbp",
+    soldOut: true,
     badge: "new",
     description:
       "A bold, playful pink-and-black pamper box for the friend who deserves to feel like royalty. Plush leopard-print accessories, a giant tumbler with a cheeky reminder that she's magic, and a hand-crocheted bouquet that never wilts.",
