@@ -229,6 +229,7 @@ export const allProducts: Product[] = [
     name: "The Citrus Bright Gift Set",
     price: 1899,
     currency: "gbp",
+    soldOut: true,
     rrpPence: 2599,
     description:
       "A Burst of Sunshine. A Moment Just for You. Bright, uplifting, and beautifully curated, The Citrus Bright Gift Set is a joyful collection designed to bring a little sunshine into someone's day, inspired by the fresh, cheerful energy of citrus.",
@@ -435,6 +436,7 @@ export const allProducts: Product[] = [
     name: "11-Piece Enamelled Cast Iron Cookware Set",
     price: 16599,
     currency: "gbp",
+    soldOut: true,
     priceNote: "Comparable 11-piece enamelled cast iron sets retail at £260+",
     badge: "new",
     order: 0,
